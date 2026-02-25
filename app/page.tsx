@@ -52,8 +52,11 @@ export default function Home() {
           </h1>
           <span className="blink text-accent font-mono text-3xl">█</span>
         </div>
-        <p className="text-text-secondary text-lg mb-8 font-light">
+        <p className="text-text-secondary text-lg mb-2 font-light">
           Developer tools that don&apos;t suck.
+        </p>
+        <p className="text-emerald-400 text-sm mb-8 font-mono">
+          🤖 WebMCP ready — AI agents can use our tools directly
         </p>
         <SearchBar onFilter={setFilterQuery} />
       </header>
@@ -135,7 +138,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border-subtle py-8 text-center space-y-2">
         <p className="text-sm text-text-muted">
-          devpick.sh — {tools.length} tools · 100% client-side, private, free
+          devpick.sh — {tools.length} tools · 100% client-side, private, free · <span className="text-emerald-400">WebMCP ready</span>
         </p>
         <a
           href="https://github.com/kimbobmarley03/devpick.sh"

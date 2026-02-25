@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -31,6 +33,28 @@ function getJsonError(raw: string): string | null {
 const SAMPLE_JSON = `{"name":"devpick","tools":36,"categories":["format","encode","convert","generate","network","compare"],"meta":{"author":"devpick","url":"https://devpick.sh"}}`;
 
 export function JsonFormatter() {
+  useWebMCP({
+    name: "formatJSON",
+    description: "Format, prettify, or minify JSON data",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "json": {
+            "type": "string",
+            "description": "Raw JSON string to format"
+      },
+      "indent": {
+            "type": "number",
+            "description": "Indent spaces (default 2)"
+      }
+},
+      required: ["json"],
+    },
+    execute: async (params) => {
+      const indent = (params.indent as number) || 2; try { const parsed = JSON.parse(params.json as string); return { content: [{ type: "text", text: JSON.stringify(parsed, null, indent) }] }; } catch (e) { return { content: [{ type: "text", text: "Error: " + (e instanceof Error ? e.message : "Invalid JSON") }] }; }
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("format");
   const [input, setInput] = useState(SAMPLE_JSON);
   const [indent, setIndent] = useState(2);
@@ -61,6 +85,7 @@ export function JsonFormatter() {
 
   return (
     <ToolLayout
+      agentReady
       title="JSON Formatter"
       description="Format, validate, and minify JSON — instant syntax checking and pretty-printing"
       kbdHint="⌘↵ toggle format/minify"

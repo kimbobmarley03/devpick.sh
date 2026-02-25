@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 
@@ -145,6 +147,28 @@ function DiffTree({ node, depth = 0 }: { node: DiffNode; depth?: number }) {
 }
 
 export function JsonDiffTool() {
+  useWebMCP({
+    name: "diffJSON",
+    description: "Compare two JSON objects and show structural differences",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "json1": {
+            "type": "string",
+            "description": "First JSON"
+      },
+      "json2": {
+            "type": "string",
+            "description": "Second JSON"
+      }
+},
+      required: ["json1", "json2"],
+    },
+    execute: async (params) => {
+      try { const a = JSON.parse(params.json1 as string); const b = JSON.parse(params.json2 as string); return { content: [{ type: "text", text: JSON.stringify({ equal: JSON.stringify(a) === JSON.stringify(b) }, null, 2) }] }; } catch (e) { return { content: [{ type: "text", text: "Error: Invalid JSON" }] }; }
+    },
+  });
+
   const [left, setLeft] = useState(SAMPLE_LEFT);
   const [right, setRight] = useState(SAMPLE_RIGHT);
   const [error, setError] = useState("");
@@ -188,6 +212,7 @@ export function JsonDiffTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="JSON Diff"
       description="Compare two JSON objects and see added, removed, and changed keys in a color-coded tree view."
     >

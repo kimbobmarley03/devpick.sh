@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -9,6 +11,32 @@ import { ArrowUpDown, Trash2 } from "lucide-react";
 type Mode = "encode" | "decode";
 
 export function UrlTool() {
+  useWebMCP({
+    name: "urlEncode",
+    description: "URL encode or decode a string",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "input": {
+            "type": "string",
+            "description": "String to encode/decode"
+      },
+      "mode": {
+            "type": "string",
+            "description": "encode or decode",
+            "enum": [
+                  "encode",
+                  "decode"
+            ]
+      }
+},
+      required: ["input", "mode"],
+    },
+    execute: async (params) => {
+      const result = params.mode === "encode" ? encodeURIComponent(params.input as string) : decodeURIComponent(params.input as string); return { content: [{ type: "text", text: result }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("encode");
   const [input, setInput] = useState("");
 
@@ -43,6 +71,7 @@ export function UrlTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="URL Encoder / Decoder"
       description="Encode or decode URL components with percent-encoding"
       kbdHint="⌘↵ swap"

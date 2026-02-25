@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -89,6 +91,28 @@ function csvToSql(csv: string, tableName: string): string {
 }
 
 export function CsvToSqlTool() {
+  useWebMCP({
+    name: "csvToSQL",
+    description: "Convert CSV data to SQL CREATE TABLE and INSERT statements",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "csv": {
+            "type": "string",
+            "description": "CSV data"
+      },
+      "tableName": {
+            "type": "string",
+            "description": "SQL table name (default: data)"
+      }
+},
+      required: ["csv"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for CSV to SQL conversion" }] };
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE_CSV);
   const [tableName, setTableName] = useState("my_table");
   const [error, setError] = useState("");
@@ -106,6 +130,7 @@ export function CsvToSqlTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="CSV to SQL Converter"
       description="Paste CSV data and instantly get CREATE TABLE + INSERT statements. Runs entirely in your browser."
     >

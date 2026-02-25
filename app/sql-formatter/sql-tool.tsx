@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -100,6 +102,24 @@ order by order_count desc
 limit 50`;
 
 export function SqlTool() {
+  useWebMCP({
+    name: "formatSQL",
+    description: "Format and prettify SQL queries",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "sql": {
+            "type": "string",
+            "description": "SQL query to format"
+      }
+},
+      required: ["sql"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for SQL formatting" }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("format");
   const [input, setInput] = useState(SAMPLE_SQL);
 
@@ -114,6 +134,7 @@ export function SqlTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="SQL Formatter"
       description="Beautify or minify SQL queries — keyword capitalization, proper indentation"
     >

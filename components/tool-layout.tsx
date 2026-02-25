@@ -8,9 +8,11 @@ interface ToolLayoutProps {
   children: React.ReactNode;
   kbdHint?: string;
   breadcrumb?: string;
+  /** Enable WebMCP badge (tool is agent-compatible) */
+  agentReady?: boolean;
 }
 
-export function ToolLayout({ title, description, children, kbdHint, breadcrumb }: ToolLayoutProps) {
+export function ToolLayout({ title, description, children, kbdHint, breadcrumb, agentReady }: ToolLayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Nav */}
@@ -51,6 +53,11 @@ export function ToolLayout({ title, description, children, kbdHint, breadcrumb }
             {kbdHint && (
               <span className="kbd">{kbdHint}</span>
             )}
+            {agentReady && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" title="This tool supports WebMCP — AI agents can call it directly">
+                <span>🤖</span> Agent Ready
+              </span>
+            )}
           </div>
           <p className="text-sm text-text-secondary mt-1">{description}</p>
         </div>
@@ -58,8 +65,8 @@ export function ToolLayout({ title, description, children, kbdHint, breadcrumb }
         {children}
       </main>
 
-      <footer className="border-t border-border-subtle py-4 text-center text-xs text-text-muted">
-        devpick.sh — 100% client-side, private, free
+      <footer className="border-t border-border-subtle py-4 text-center text-sm text-text-muted">
+        devpick.sh — 100% client-side, private, free · <span className="text-emerald-400">WebMCP ready</span>
       </footer>
     </div>
   );

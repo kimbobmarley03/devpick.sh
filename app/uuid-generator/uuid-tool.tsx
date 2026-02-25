@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton, copyToClipboard } from "@/components/copy-button";
@@ -16,6 +18,24 @@ function generateUUID(): string {
 }
 
 export function UuidTool() {
+  useWebMCP({
+    name: "generateUUID",
+    description: "Generate a random UUID v4",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "count": {
+            "type": "number",
+            "description": "Number of UUIDs to generate (default 1)"
+      }
+},
+      required: [],
+    },
+    execute: async (params) => {
+      const n = Math.min((params.count as number) || 1, 100); const uuids = Array.from({ length: n }, () => crypto.randomUUID()); return { content: [{ type: "text", text: uuids.join("\n") }] };
+    },
+  });
+
   const [uuids, setUuids] = useState<string[]>([generateUUID()]);
   const [count, setCount] = useState(10);
   const [uppercase, setUppercase] = useState(false);
@@ -57,6 +77,7 @@ export function UuidTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="UUID Generator"
       description="Generate UUID v4 — cryptographically random, universally unique identifiers"
       kbdHint="⌘↵ generate · ⌘⇧↵ bulk"

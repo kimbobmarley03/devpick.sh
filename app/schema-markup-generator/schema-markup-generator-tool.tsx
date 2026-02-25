@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -369,6 +371,32 @@ function cleanUndefined(obj: unknown): unknown {
 }
 
 export function SchemaMarkupGeneratorTool() {
+  useWebMCP({
+    name: "generateSchemaMarkup",
+    description: "Generate JSON-LD schema markup for SEO",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "type": {
+            "type": "string",
+            "description": "Schema type",
+            "enum": [
+                  "Article",
+                  "FAQ",
+                  "LocalBusiness",
+                  "Product",
+                  "Person",
+                  "Organization"
+            ]
+      }
+},
+      required: ["type"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for schema markup generation" }] };
+    },
+  });
+
   const [schemaType, setSchemaType] = useState<SchemaType>("Article");
   const [values, setValues] = useState<Record<string, string>>({});
 
@@ -386,6 +414,7 @@ export function SchemaMarkupGeneratorTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="Schema Markup Generator"
       description="Generate JSON-LD structured data for SEO. Pick a schema type, fill in the fields, and copy the script tag."
     >

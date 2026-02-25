@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -156,6 +158,33 @@ async function sha(algorithm: string, input: string): Promise<string> {
 }
 
 export function HashTool() {
+  useWebMCP({
+    name: "generateHash",
+    description: "Generate MD5, SHA-1, SHA-256, or SHA-512 hash of text",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to hash"
+      },
+      "algorithm": {
+            "type": "string",
+            "description": "Hash algorithm",
+            "enum": [
+                  "SHA-256",
+                  "SHA-512",
+                  "SHA-1"
+            ]
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      const algo = (params.algorithm as string) || "SHA-256"; const encoded = new TextEncoder().encode(params.text as string); const buf = await crypto.subtle.digest(algo, encoded); const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join(""); return { content: [{ type: "text", text: hash }] };
+    },
+  });
+
   const [input, setInput] = useState("");
   const [hashes, setHashes] = useState<HashResult[]>([
     { algorithm: "MD5", value: "", loading: false },
@@ -204,6 +233,7 @@ export function HashTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="Hash Generator"
       description="Generate cryptographic hashes — MD5, SHA-1, SHA-256, SHA-512"
     >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -53,6 +55,24 @@ const SAMPLE_JWT =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjk5OTk5OTk5OTl9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
 export function JwtTool() {
+  useWebMCP({
+    name: "decodeJWT",
+    description: "Decode a JWT token and show header and payload",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "token": {
+            "type": "string",
+            "description": "JWT token to decode"
+      }
+},
+      required: ["token"],
+    },
+    execute: async (params) => {
+      try { const parts = (params.token as string).split("."); const header = JSON.parse(atob(parts[0])); const payload = JSON.parse(atob(parts[1])); return { content: [{ type: "text", text: JSON.stringify({ header, payload }, null, 2) }] }; } catch (e) { return { content: [{ type: "text", text: "Error: Invalid JWT" }] }; }
+    },
+  });
+
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
 
@@ -69,6 +89,7 @@ export function JwtTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="JWT Decoder"
       description="Decode and inspect JWT tokens — header, payload, signature"
     >

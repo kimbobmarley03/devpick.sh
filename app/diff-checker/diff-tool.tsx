@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { Trash2 } from "lucide-react";
@@ -117,6 +119,28 @@ const result = greet("World", "Hi");
 console.log("Result:", result);`;
 
 export function DiffTool() {
+  useWebMCP({
+    name: "diffText",
+    description: "Compare two texts and show differences",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text1": {
+            "type": "string",
+            "description": "First text"
+      },
+      "text2": {
+            "type": "string",
+            "description": "Second text"
+      }
+},
+      required: ["text1", "text2"],
+    },
+    execute: async (params) => {
+      const lines1 = (params.text1 as string).split("\n"); const lines2 = (params.text2 as string).split("\n"); const diff = lines1.map((l, i) => l === lines2[i] ? "  " + l : "- " + l + "\n+ " + (lines2[i] || "")).join("\n"); return { content: [{ type: "text", text: diff }] };
+    },
+  });
+
   const [leftText, setLeftText] = useState(SAMPLE_LEFT);
   const [rightText, setRightText] = useState(SAMPLE_RIGHT);
   const [showInputs, setShowInputs] = useState(true);
@@ -136,6 +160,7 @@ export function DiffTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="Diff Checker"
       description="Compare two texts side by side — highlights added, removed, and unchanged lines"
     >

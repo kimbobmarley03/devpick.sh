@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -9,6 +11,32 @@ import { ArrowUpDown, Trash2 } from "lucide-react";
 type Mode = "encode" | "decode";
 
 export function Base64Tool() {
+  useWebMCP({
+    name: "base64",
+    description: "Encode or decode Base64 strings",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "input": {
+            "type": "string",
+            "description": "Text to encode/decode"
+      },
+      "mode": {
+            "type": "string",
+            "description": "encode or decode",
+            "enum": [
+                  "encode",
+                  "decode"
+            ]
+      }
+},
+      required: ["input", "mode"],
+    },
+    execute: async (params) => {
+      try { const text = params.mode === "encode" ? btoa(params.input as string) : atob(params.input as string); return { content: [{ type: "text", text }] }; } catch (e) { return { content: [{ type: "text", text: "Error: " + (e instanceof Error ? e.message : "Failed") }] }; }
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("encode");
   const [input, setInput] = useState("");
 
@@ -44,6 +72,7 @@ export function Base64Tool() {
 
   return (
     <ToolLayout
+      agentReady
       title="Base64 Encoder / Decoder"
       description="Encode text to Base64 or decode Base64 back to text"
       kbdHint="⌘↵ swap"

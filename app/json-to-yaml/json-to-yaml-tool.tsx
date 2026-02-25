@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -182,6 +184,24 @@ const SAMPLE_JSON = `{
 }`;
 
 export function JsonToYamlTool() {
+  useWebMCP({
+    name: "jsonToYaml",
+    description: "Convert JSON to YAML format",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "json": {
+            "type": "string",
+            "description": "JSON string to convert"
+      }
+},
+      required: ["json"],
+    },
+    execute: async (params) => {
+      try { const obj = JSON.parse(params.json as string); const toYaml = (o: unknown, indent: number = 0): string => { const pad = "  ".repeat(indent); if (o === null) return "null"; if (typeof o !== "object") return JSON.stringify(o); if (Array.isArray(o)) return o.map(i => pad + "- " + (typeof i === "object" ? "\n" + toYaml(i, indent + 1) : String(i))).join("\n"); return Object.entries(o as Record<string,unknown>).map(([k,v]) => pad + k + ": " + (typeof v === "object" && v !== null ? "\n" + toYaml(v, indent + 1) : String(v))).join("\n"); }; return { content: [{ type: "text", text: toYaml(obj) }] }; } catch (e) { return { content: [{ type: "text", text: "Error: " + (e instanceof Error ? e.message : "Invalid JSON") }] }; }
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("json-to-yaml");
   const [input, setInput] = useState(SAMPLE_JSON);
   const [error, setError] = useState("");
@@ -211,6 +231,7 @@ export function JsonToYamlTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="JSON ↔ YAML Converter"
       description="Convert between JSON and YAML — bidirectional, runs entirely in your browser."
     >

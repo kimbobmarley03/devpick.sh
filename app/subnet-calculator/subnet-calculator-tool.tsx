@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 
@@ -106,6 +108,28 @@ const EXAMPLES = [
 ];
 
 export function SubnetCalculatorTool() {
+  useWebMCP({
+    name: "calculateSubnet",
+    description: "Calculate subnet details from IP and CIDR notation",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "ip": {
+            "type": "string",
+            "description": "IP address (e.g. 192.168.1.0)"
+      },
+      "cidr": {
+            "type": "number",
+            "description": "CIDR prefix length (e.g. 24)"
+      }
+},
+      required: ["ip", "cidr"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for subnet calculation" }] };
+    },
+  });
+
   const [input, setInput] = useState("192.168.1.0/24");
 
   const [ip, cidrStr] = input.includes("/") ? input.split("/") : [input, "24"];
@@ -122,6 +146,7 @@ export function SubnetCalculatorTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="Subnet Calculator"
       description="Enter an IP address with CIDR notation to calculate network address, broadcast, host range, subnet mask, and more."
     >

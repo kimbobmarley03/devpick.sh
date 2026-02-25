@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -81,6 +83,24 @@ function OutputRow({ label, value }: OutputRowProps) {
 }
 
 export function SlugTool() {
+  useWebMCP({
+    name: "generateSlug",
+    description: "Convert text to a URL-friendly slug",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to convert to slug"
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      const slug = (params.text as string).toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""); return { content: [{ type: "text", text: slug }] };
+    },
+  });
+
   const [input, setInput] = useState("");
   const [sep, setSep] = useState<"-" | "_">("-");
   const [lowercase, setLowercase] = useState(true);
@@ -93,6 +113,7 @@ export function SlugTool() {
 
   return (
     <ToolLayout
+      agentReady
       title="Slug Generator"
       description="Convert text to URL-safe slugs, filename-safe strings, and variable names"
     >
