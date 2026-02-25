@@ -14,6 +14,8 @@ const categoryColors: Record<ToolCategory, { bg: string; border: string; text: s
   "NETWORK": { bg: "rgba(236, 72, 153, 0.15)", border: "rgba(236, 72, 153, 0.3)", text: "#f472b6" },
   "COMPARE": { bg: "rgba(14, 165, 233, 0.15)", border: "rgba(14, 165, 233, 0.3)", text: "#38bdf8" },
   "TEST & DEBUG": { bg: "rgba(245, 158, 11, 0.15)", border: "rgba(245, 158, 11, 0.3)", text: "#fbbf24" },
+  "PDF": { bg: "rgba(239, 68, 68, 0.15)", border: "rgba(239, 68, 68, 0.3)", text: "#f87171" },
+  "SEO": { bg: "rgba(16, 185, 129, 0.15)", border: "rgba(16, 185, 129, 0.3)", text: "#34d399" },
 };
 
 // CPC to heat color: higher CPC = warmer/more intense
