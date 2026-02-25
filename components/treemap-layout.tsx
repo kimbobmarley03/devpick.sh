@@ -236,7 +236,7 @@ export function TreemapLayout({ tools }: TreemapLayoutProps) {
                   className="w-2.5 h-2.5 rounded-sm"
                   style={{ background: color.text, opacity: 0.7 }}
                 />
-                <span className="text-[10px] text-text-muted uppercase tracking-wider">
+                <span className="text-xs text-text-muted uppercase tracking-wider">
                   {cat}
                 </span>
               </div>

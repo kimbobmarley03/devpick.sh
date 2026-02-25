@@ -54,7 +54,7 @@ export function ToolSidebar({ tools, hoveredId, onHover }: ToolSidebarProps) {
         if (!catTools || catTools.length === 0) return null;
         return (
           <div key={cat} className="mb-3">
-            <div className="text-[9px] font-bold tracking-[0.15em] text-text-muted uppercase mb-1 px-2">
+            <div className="text-xs font-bold tracking-[0.15em] text-text-muted uppercase mb-1 px-2">
               {cat}
             </div>
             {catTools.map((tool) => {
@@ -64,7 +64,7 @@ export function ToolSidebar({ tools, hoveredId, onHover }: ToolSidebarProps) {
                 <Link
                   key={tool.id}
                   href={tool.route}
-                  className={`globe-sidebar-item flex items-center gap-2 px-2 py-1 rounded-md text-[11px] transition-all duration-150 no-underline ${
+                  className={`globe-sidebar-item flex items-center gap-2 px-2 py-1 rounded-md text-xs transition-all duration-150 no-underline ${
                     isActive
                       ? "bg-[var(--dp-accent-bg)] text-[var(--dp-accent)] border-r-2 border-[var(--dp-accent)]"
                       : "text-text-secondary hover:text-text-primary hover:bg-[var(--dp-bg-subtle)]"
@@ -75,7 +75,7 @@ export function ToolSidebar({ tools, hoveredId, onHover }: ToolSidebarProps) {
                   <Icon size={11} className="flex-shrink-0" style={{ color: isActive ? "var(--dp-accent)" : "inherit" }} />
                   <span className="truncate flex-1">{tool.name}</span>
                   {tool.volume && (
-                    <span className="text-[9px] text-text-muted font-mono flex-shrink-0">{formatVolume(tool.volume)}</span>
+                    <span className="text-[11px] text-text-muted font-mono flex-shrink-0">{formatVolume(tool.volume)}</span>
                   )}
                 </Link>
               );

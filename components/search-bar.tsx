@@ -194,7 +194,7 @@ export function SearchBar({ onFilter }: SearchBarProps) {
             focus:border-[color:var(--dp-accent-border)] focus:shadow-[var(--dp-focus-ring)]"
         />
         <div className="absolute right-3 flex items-center gap-1 pointer-events-none">
-          <kbd className="flex items-center gap-0.5 bg-surface-subtle border border-card-border rounded px-1.5 py-0.5 text-[10px] text-text-dimmed">
+          <kbd className="flex items-center gap-0.5 bg-surface-subtle border border-card-border rounded px-1.5 py-0.5 text-xs text-text-dimmed">
             <Command size={9} />
             <span>K</span>
           </kbd>
@@ -214,10 +214,10 @@ export function SearchBar({ onFilter }: SearchBarProps) {
               elements.push(
                 <div key={`cat-${cat}`} className="px-4 pt-3 pb-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold tracking-[0.15em] text-accent uppercase">
+                    <span className="text-xs font-bold tracking-[0.15em] text-accent uppercase">
                       {cat}
                     </span>
-                    <span className="text-[10px] text-text-dimmed">
+                    <span className="text-xs text-text-dimmed">
                       {catTools.length} tools
                     </span>
                     <div className="flex-1 h-px bg-border-subtle" />
@@ -252,7 +252,7 @@ export function SearchBar({ onFilter }: SearchBarProps) {
               elements.push(
                 <div key="other-header" className="px-4 pt-3 pb-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold tracking-[0.15em] text-text-muted uppercase">
+                    <span className="text-xs font-bold tracking-[0.15em] text-text-muted uppercase">
                       OTHER MATCHES
                     </span>
                     <div className="flex-1 h-px bg-border-subtle" />

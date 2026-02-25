@@ -131,14 +131,14 @@ export function ToolCard({ tool }: ToolCardProps) {
           </div>
         </div>
 
-        <p className="text-xs text-text-dimmed mb-3 leading-relaxed">
+        <p className="text-sm text-text-dimmed mb-3 leading-relaxed">
           {tool.description}
         </p>
 
         {/* Preview */}
         {tool.preview && (
           <div
-            className={`preview-text text-[11px] leading-relaxed whitespace-pre-wrap break-all ${
+            className={`preview-text text-[13px] leading-relaxed whitespace-pre-wrap break-all ${
               isFeatured ? "text-xs" : ""
             }`}
           >
