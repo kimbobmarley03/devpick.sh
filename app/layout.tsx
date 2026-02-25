@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | devpick.sh",
   },
   description:
-    "Free, fast developer tools for everyday tasks. JSON formatter, Base64, UUID generator, hash tools, JWT decoder & more. No sign-up, 100% client-side.",
+    "Free developer tools that run 100% client-side. JSON formatter, Base64, UUID generator, hash tools, JWT decoder, PDF tools & more. Private, no sign-up.",
   keywords: [
     "developer tools",
     "json formatter",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "devpick.sh — Developer Tools That Don't Suck",
     description:
-      "Free, fast developer tools for everyday tasks. 100% client-side, no sign-up.",
+      "Free developer tools. 100% client-side, private, no sign-up.",
   },
   robots: {
     index: true,

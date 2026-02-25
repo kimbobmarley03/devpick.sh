@@ -59,7 +59,7 @@ export function ToolLayout({ title, description, children, kbdHint, breadcrumb }
       </main>
 
       <footer className="border-t border-border-subtle py-4 text-center text-xs text-text-muted">
-        devpick.sh — free, fast, client-side
+        devpick.sh — 100% client-side, private, free
       </footer>
     </div>
   );

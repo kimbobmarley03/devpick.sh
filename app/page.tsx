@@ -135,7 +135,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border-subtle py-8 text-center">
         <p className="text-xs text-text-muted">
-          devpick.sh — free, fast, client-side
+          devpick.sh — 100% client-side, private, free
         </p>
       </footer>
     </div>

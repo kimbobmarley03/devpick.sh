@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Third-party worker files in public
+    "public/**/*.mjs",
+    "public/**/*.js",
   ]),
 ]);
 
