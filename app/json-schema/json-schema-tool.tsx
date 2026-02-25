@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -219,6 +221,28 @@ const SAMPLE_SCHEMA = `{
 }`;
 
 export function JsonSchemaTool() {
+  useWebMCP({
+    name: "validateJsonSchema",
+    description: "Validate JSON against a JSON Schema",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "json": {
+            "type": "string",
+            "description": "JSON to validate"
+      },
+      "schema": {
+            "type": "string",
+            "description": "JSON Schema"
+      }
+},
+      required: ["json", "schema"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for schema validation" }] };
+    },
+  });
+
   const [jsonInput, setJsonInput] = useState(SAMPLE_JSON);
   const [schemaInput, setSchemaInput] = useState(SAMPLE_SCHEMA);
 
@@ -247,7 +271,7 @@ export function JsonSchemaTool() {
   const isValid = result?.type === "validation" && result.errors.length === 0;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="JSON Schema Validator"
       description="Validate JSON data against a JSON Schema (draft-07) — type checking, required fields, patterns, min/max, enum"
     >

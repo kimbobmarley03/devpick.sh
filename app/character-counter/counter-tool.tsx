@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { Trash2 } from "lucide-react";
@@ -29,6 +31,24 @@ function getFrequency(text: string): [string, number][] {
 }
 
 export function CounterTool() {
+  useWebMCP({
+    name: "countCharacters",
+    description: "Count words, characters, sentences, and reading time",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to analyze"
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      const t = params.text as string; const words = t.trim().split(/\s+/).filter(Boolean).length; const chars = t.length; const sentences = t.split(/[.!?]+/).filter(Boolean).length; const readMin = Math.ceil(words / 200); return { content: [{ type: "text", text: JSON.stringify({ words, characters: chars, sentences, readingTimeMinutes: readMin }, null, 2) }] };
+    },
+  });
+
   const [text, setText] = useState(SAMPLE_TEXT);
   const [withSpaces, setWithSpaces] = useState(true);
 
@@ -51,7 +71,7 @@ export function CounterTool() {
   ];
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Character & Word Counter"
       description="Real-time character, word, sentence, and paragraph counting with reading time estimate"
     >

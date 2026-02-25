@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -86,6 +88,24 @@ const DELIMITER_LABELS: Record<Delimiter, string> = {
 };
 
 export function CsvTool() {
+  useWebMCP({
+    name: "formatCSV",
+    description: "Format and align CSV data",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "csv": {
+            "type": "string",
+            "description": "CSV data"
+      }
+},
+      required: ["csv"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: params.csv as string }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("csv-to-json");
   const [input, setInput] = useState("");
   const [delimiter, setDelimiter] = useState<Delimiter>(",");
@@ -110,7 +130,7 @@ export function CsvTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="CSV ↔ JSON Converter"
       description="Convert CSV to JSON or JSON back to CSV — handles headers, quoted fields, and multiple delimiters"
     >

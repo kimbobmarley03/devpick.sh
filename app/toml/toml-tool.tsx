@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -221,6 +223,24 @@ const SAMPLE_JSON = `{
 }`;
 
 export function TomlTool() {
+  useWebMCP({
+    name: "validateTOML",
+    description: "Validate TOML configuration",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "toml": {
+            "type": "string",
+            "description": "TOML content"
+      }
+},
+      required: ["toml"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for TOML validation" }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("toml2json");
   const [input, setInput] = useState(mode === "toml2json" ? SAMPLE_TOML : SAMPLE_JSON);
 
@@ -247,7 +267,7 @@ export function TomlTool() {
   const isError = output.startsWith("⚠");
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="TOML ↔ JSON Converter"
       description="Convert TOML to JSON or JSON to TOML — no dependencies, runs client-side"
     >

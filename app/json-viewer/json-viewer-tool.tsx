@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -201,6 +203,24 @@ const SAMPLE = `{
 }`;
 
 export function JsonViewerTool() {
+  useWebMCP({
+    name: "viewJSON",
+    description: "Parse and explore JSON data",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "json": {
+            "type": "string",
+            "description": "JSON to view"
+      }
+},
+      required: ["json"],
+    },
+    execute: async (params) => {
+      try { const obj = JSON.parse(params.json as string); return { content: [{ type: "text", text: JSON.stringify(obj, null, 2) }] }; } catch { return { content: [{ type: "text", text: "Error: Invalid JSON" }] }; }
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE);
   const [searchQuery, setSearchQuery] = useState("");
   const [copiedPath, setCopiedPath] = useState<string | null>(null);
@@ -225,7 +245,7 @@ export function JsonViewerTool() {
   const formatted = parsed !== null ? JSON.stringify(parsed, null, 2) : "";
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="JSON Viewer"
       description="Interactive JSON tree viewer — expand/collapse, click keys to copy paths, search nodes."
     >

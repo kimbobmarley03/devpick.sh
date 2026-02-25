@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -103,6 +105,24 @@ console.log(result);`,
 };
 
 export function MinifyTool() {
+  useWebMCP({
+    name: "minifyJS",
+    description: "Minify JavaScript code",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "code": {
+            "type": "string",
+            "description": "JavaScript to minify"
+      }
+},
+      required: ["code"],
+    },
+    execute: async (params) => {
+      const c = (params.code as string).replace(/\/\/.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim(); return { content: [{ type: "text", text: c }] };
+    },
+  });
+
   const [tab, setTab] = useState<Tab>("html");
   const [inputs, setInputs] = useState<Record<Tab, string>>({ html: "", css: "", js: "" });
 
@@ -116,7 +136,7 @@ export function MinifyTool() {
   const setInput = (val: string) => setInputs((prev) => ({ ...prev, [tab]: val }));
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Code Minifier"
       description="Minify HTML, CSS, and JavaScript — strip comments, collapse whitespace, reduce file size"
     >

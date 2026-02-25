@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -312,6 +314,24 @@ function jsonToYaml(value: YamlValue, indent = 0): string {
 }
 
 export function YamlTool() {
+  useWebMCP({
+    name: "formatYAML",
+    description: "Format and validate YAML",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "yaml": {
+            "type": "string",
+            "description": "YAML string"
+      }
+},
+      required: ["yaml"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: params.yaml as string }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("yaml-to-json");
   const [input, setInput] = useState("");
 
@@ -347,7 +367,7 @@ export function YamlTool() {
   }, [output, mode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="YAML ↔ JSON Converter"
       description="Convert YAML to JSON or JSON to YAML — handles nested objects, arrays, strings, numbers, booleans"
       kbdHint="⌘↵ swap"

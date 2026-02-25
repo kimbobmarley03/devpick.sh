@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -22,6 +24,28 @@ const selectStyle: React.CSSProperties = {
 };
 
 export function MetaTagsTool() {
+  useWebMCP({
+    name: "generateMetaTags",
+    description: "Generate HTML meta tags for SEO",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "title": {
+            "type": "string",
+            "description": "Page title"
+      },
+      "description": {
+            "type": "string",
+            "description": "Meta description"
+      }
+},
+      required: ["title", "description"],
+    },
+    execute: async (params) => {
+      const t = params.title as string; const d = params.description as string; return { content: [{ type: "text", text: `<title>${t}</title>\n<meta name="description" content="${d}">\n<meta property="og:title" content="${t}">\n<meta property="og:description" content="${d}">` }] };
+    },
+  });
+
   const [title, setTitle] = useState("My Awesome Website");
   const [description, setDescription] = useState("This is a description of my website — keep it under 160 characters.");
   const [url, setUrl] = useState("https://example.com");
@@ -61,7 +85,7 @@ export function MetaTagsTool() {
   const descLen = description.length;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Meta Tag Generator"
       description="Generate meta tags, Open Graph tags, and Twitter Card tags for your website"
     >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -130,6 +132,24 @@ const SAMPLE_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <catalog><book id="1"><title>Clean Code</title><author>Robert C. Martin</author><year>2008</year></book><book id="2"><title>The Pragmatic Programmer</title><author>David Thomas</author><year>1999</year></book></catalog>`;
 
 export function XmlTool() {
+  useWebMCP({
+    name: "formatXML",
+    description: "Format and prettify XML",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "xml": {
+            "type": "string",
+            "description": "XML string to format"
+      }
+},
+      required: ["xml"],
+    },
+    execute: async (params) => {
+      try { const parser = new DOMParser(); const doc = parser.parseFromString(params.xml as string, "text/xml"); const s = new XMLSerializer(); return { content: [{ type: "text", text: s.serializeToString(doc) }] }; } catch { return { content: [{ type: "text", text: "Error: Invalid XML" }] }; }
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("format");
   const [input, setInput] = useState(SAMPLE_XML);
 
@@ -146,7 +166,7 @@ export function XmlTool() {
   })();
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="XML Formatter"
       description="Beautify or minify XML — validates syntax and formats with proper indentation"
     >

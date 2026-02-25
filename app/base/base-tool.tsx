@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -52,6 +54,32 @@ function convertToBase(value: bigint, toBase: number): string {
 }
 
 export function BaseTool() {
+  useWebMCP({
+    name: "convertBase",
+    description: "Convert numbers between bases (binary, octal, decimal, hex)",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "number": {
+            "type": "string",
+            "description": "Number to convert"
+      },
+      "fromBase": {
+            "type": "string",
+            "description": "Source base (2,8,10,16)"
+      },
+      "toBase": {
+            "type": "string",
+            "description": "Target base (2,8,10,16)"
+      }
+},
+      required: ["number", "fromBase", "toBase"],
+    },
+    execute: async (params) => {
+      const n = parseInt(params.number as string, params.fromBase as unknown as number); return { content: [{ type: "text", text: n.toString(params.toBase as unknown as number) }] };
+    },
+  });
+
   const [input, setInput] = useState("");
   const [fromBase, setFromBase] = useState(10);
   const [customBase, setCustomBase] = useState(32);
@@ -73,7 +101,7 @@ export function BaseTool() {
   const baseButtons = [2, 8, 10, 16];
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Number Base Converter"
       description="Convert numbers between binary, octal, decimal, hex, and any base 2–36 in real-time"
     >

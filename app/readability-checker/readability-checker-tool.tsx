@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { Trash2 } from "lucide-react";
@@ -123,6 +125,24 @@ function ScoreBar({ value, min, max, inverse = false }: { value: number; min: nu
 }
 
 export function ReadabilityCheckerTool() {
+  useWebMCP({
+    name: "checkReadability",
+    description: "Calculate readability scores (Flesch, Gunning Fog, etc.)",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to analyze"
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for readability analysis" }] };
+    },
+  });
+
   const [text, setText] = useState(SAMPLE_TEXT);
 
   const scores = useMemo(() => {
@@ -182,7 +202,7 @@ export function ReadabilityCheckerTool() {
   ] : [];
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Readability Checker"
       description="Analyze text readability with Flesch-Kincaid, Gunning Fog, Coleman-Liau, SMOG, and ARI scoring algorithms."
     >

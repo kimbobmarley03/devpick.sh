@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -87,6 +89,24 @@ const SAMPLE = `<head>
 </head>`;
 
 export function OgPreviewTool() {
+  useWebMCP({
+    name: "previewOG",
+    description: "Preview Open Graph meta tags for a URL",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "url": {
+            "type": "string",
+            "description": "URL to preview"
+      }
+},
+      required: ["url"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for OG preview" }] };
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE);
   const og = parseOgTags(input);
   const missing: string[] = [];
@@ -97,7 +117,7 @@ export function OgPreviewTool() {
   if (!og.twitterCard) missing.push("twitter:card");
 
   return (
-    <ToolLayout title="Open Graph Preview" description="Preview how your page looks when shared on social media">
+    <ToolLayout agentReady title="Open Graph Preview" description="Preview how your page looks when shared on social media">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Input */}
         <div className="flex flex-col gap-3">

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -54,6 +56,28 @@ function RatioVisual({ w, h }: { w: number; h: number }) {
 }
 
 export function AspectRatioTool() {
+  useWebMCP({
+    name: "calculateAspectRatio",
+    description: "Calculate aspect ratio from dimensions",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "width": {
+            "type": "string",
+            "description": "Width"
+      },
+      "height": {
+            "type": "string",
+            "description": "Height"
+      }
+},
+      required: ["width", "height"],
+    },
+    execute: async (params) => {
+      const w = Number(params.width); const h = Number(params.height); const gcd = (a: number, b: number): number => b ? gcd(b, a % b) : a; const d = gcd(w, h); return { content: [{ type: "text", text: `${w/d}:${h/d}` }] };
+    },
+  });
+
   const [width, setWidth] = useState<string>("1920");
   const [height, setHeight] = useState<string>("1080");
   const [locked, setLocked] = useState(false);
@@ -111,7 +135,7 @@ export function AspectRatioTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Aspect Ratio Calculator"
       description="Calculate aspect ratios, lock dimensions, and scale to any size"
     >

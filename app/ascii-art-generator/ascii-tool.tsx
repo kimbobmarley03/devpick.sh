@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { Search } from "lucide-react";
@@ -72,6 +74,24 @@ const ASCII_TABLE = buildAscii();
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export function AsciiTool() {
+  useWebMCP({
+    name: "generateAsciiArt",
+    description: "Convert text to ASCII art",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to convert"
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for ASCII art" }] };
+    },
+  });
+
   const [query, setQuery] = useState("");
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -97,7 +117,7 @@ export function AsciiTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="ASCII Table"
       description="Full ASCII character set (0–127) — click any cell to copy"
     >

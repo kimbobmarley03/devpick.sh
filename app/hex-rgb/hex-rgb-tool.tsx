@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -51,6 +53,24 @@ function clamp(n: number, lo: number, hi: number) { return Math.min(hi, Math.max
 type Mode = "hex" | "rgb";
 
 export function HexRgbTool() {
+  useWebMCP({
+    name: "convertHexRgb",
+    description: "Convert between hex and RGB color values",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "color": {
+            "type": "string",
+            "description": "Hex (#ff0000) or RGB (255,0,0)"
+      }
+},
+      required: ["color"],
+    },
+    execute: async (params) => {
+      const c = (params.color as string).trim(); if (c.startsWith("#")) { const r = parseInt(c.slice(1,3),16); const g = parseInt(c.slice(3,5),16); const b = parseInt(c.slice(5,7),16); return { content: [{ type: "text", text: `rgb(${r}, ${g}, ${b})` }] }; } else { const m = c.match(/(\d+)/g); if (m && m.length >= 3) return { content: [{ type: "text", text: "#" + m.slice(0,3).map(n => parseInt(n).toString(16).padStart(2,"0")).join("") }] }; return { content: [{ type: "text", text: "Error: Invalid color" }] }; }
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("hex");
 
   // Hex mode state
@@ -93,7 +113,7 @@ export function HexRgbTool() {
   const rgResult = mode === "rgb" ? (result as { hex: string; hsl: { h: number; s: number; l: number } } | null) : null;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Hex ↔ RGB Converter"
       description="Convert hex color codes to RGB and HSL — or go the other way"
     >

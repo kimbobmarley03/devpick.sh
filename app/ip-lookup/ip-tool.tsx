@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -40,6 +42,24 @@ function InfoRow({ label, value }: { label: string; value?: string | number }) {
 }
 
 export function IpTool() {
+  useWebMCP({
+    name: "lookupIP",
+    description: "Look up IP address geolocation",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "ip": {
+            "type": "string",
+            "description": "IP address (leave empty for your IP)"
+      }
+},
+      required: [],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for IP lookup" }] };
+    },
+  });
+
   const [query, setQuery] = useState("");
   const [info, setInfo] = useState<IpInfo | null>(null);
   const [loading, setLoading] = useState(false);
@@ -71,7 +91,7 @@ export function IpTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="IP Lookup"
       description="Find your public IP address or look up any IP for geolocation and network info"
     >

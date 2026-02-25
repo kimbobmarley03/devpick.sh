@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -70,6 +72,32 @@ function formatOffset(minutes: number): string {
 }
 
 export function TimezoneTool() {
+  useWebMCP({
+    name: "convertTimezone",
+    description: "Convert time between timezones",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "time": {
+            "type": "string",
+            "description": "Time string"
+      },
+      "from": {
+            "type": "string",
+            "description": "Source timezone"
+      },
+      "to": {
+            "type": "string",
+            "description": "Target timezone"
+      }
+},
+      required: ["time", "from", "to"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for timezone conversion" }] };
+    },
+  });
+
   const [sourceTz, setSourceTz] = useState("America/New_York");
   const [targetTz, setTargetTz] = useState("Asia/Seoul");
   const [now, setNow] = useState(new Date());
@@ -115,7 +143,7 @@ export function TimezoneTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Timezone Converter"
       description="Convert time between any two IANA timezones"
     >

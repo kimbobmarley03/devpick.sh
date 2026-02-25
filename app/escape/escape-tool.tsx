@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -114,6 +116,32 @@ const TAB_LABELS: Record<Tab, string> = {
 };
 
 export function EscapeTool() {
+  useWebMCP({
+    name: "escapeString",
+    description: "Escape or unescape special characters in strings",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to escape/unescape"
+      },
+      "mode": {
+            "type": "string",
+            "description": "escape or unescape"
+      }
+},
+      required: ["text", "mode"],
+    },
+    execute: async (params) => {
+      const t = params.text as string;
+      const result = params.mode === "escape"
+        ? t.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, "\\n").replace(/\t/g, "\\t")
+        : t.replace(/\\n/g, "\n").replace(/\\t/g, "\t").replace(/\\"/g, '"').replace(/\\\\/g, "\\");
+      return { content: [{ type: "text", text: result }] };
+    },
+  });
+
   const [tab, setTab] = useState<Tab>("json");
   const [dir, setDir] = useState<Direction>("escape");
   const [input, setInput] = useState("");
@@ -126,7 +154,7 @@ export function EscapeTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Escape / Unescape"
       description="Escape and unescape strings — JSON, HTML, URL, XML, Regex"
     >

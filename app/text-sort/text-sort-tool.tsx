@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -89,6 +91,28 @@ fig
 cherry`;
 
 export function TextSortTool() {
+  useWebMCP({
+    name: "sortText",
+    description: "Sort lines of text alphabetically and optionally deduplicate",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text with lines to sort"
+      },
+      "dedupe": {
+            "type": "string",
+            "description": "Remove duplicates (default false)"
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      let lines = (params.text as string).split("\n"); lines.sort(); if (params.dedupe) lines = [...new Set(lines)]; return { content: [{ type: "text", text: lines.join("\n") }] };
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE);
   const [output, setOutput] = useState("");
   const [stats, setStats] = useState("");
@@ -115,7 +139,7 @@ export function TextSortTool() {
   const lineCount = (output || input).split("\n").length;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Text Sort & Dedupe"
       description="Sort lines alphabetically, by length, shuffle, deduplicate, trim whitespace, or remove empty lines"
     >

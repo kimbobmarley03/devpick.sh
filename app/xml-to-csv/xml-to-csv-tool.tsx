@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -114,6 +116,24 @@ function xmlToCsv(xml: string): { csv: string; rows: number; cols: number } {
 }
 
 export function XmlToCsvTool() {
+  useWebMCP({
+    name: "xmlToCsv",
+    description: "Convert XML to CSV format",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "xml": {
+            "type": "string",
+            "description": "XML data"
+      }
+},
+      required: ["xml"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for XML to CSV" }] };
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE_XML);
   const [error, setError] = useState("");
 
@@ -146,7 +166,7 @@ export function XmlToCsvTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="XML to CSV Converter"
       description="Paste XML data and get a flattened CSV with auto-detected columns. Handles nested elements and attributes."
     >

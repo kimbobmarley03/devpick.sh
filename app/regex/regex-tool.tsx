@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -26,6 +28,32 @@ function escapeHtml(s: string): string {
 }
 
 export function RegexTool() {
+  useWebMCP({
+    name: "testRegex",
+    description: "Test a regex pattern against text",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "pattern": {
+            "type": "string",
+            "description": "Regex pattern"
+      },
+      "text": {
+            "type": "string",
+            "description": "Text to test against"
+      },
+      "flags": {
+            "type": "string",
+            "description": "Regex flags (default g)"
+      }
+},
+      required: ["pattern", "text"],
+    },
+    execute: async (params) => {
+      try { const re = new RegExp(params.pattern as string, (params.flags as string) || "g"); const matches = [...(params.text as string).matchAll(re)].map(m => m[0]); return { content: [{ type: "text", text: JSON.stringify({ matches, count: matches.length }, null, 2) }] }; } catch (e) { return { content: [{ type: "text", text: "Error: " + (e instanceof Error ? e.message : "Invalid regex") }] }; }
+    },
+  });
+
   const [pattern, setPattern] = useState("");
   const [flags, setFlags] = useState("g");
   const [testString, setTestString] = useState(
@@ -97,7 +125,7 @@ export function RegexTool() {
   }, [regex, matches, testString]);
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Regex Tester"
       description="Test and debug regular expressions with real-time matching and highlighting"
     >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -68,6 +70,24 @@ const DEFAULT_PERMS: Permissions = {
 };
 
 export function ChmodTool() {
+  useWebMCP({
+    name: "calculateChmod",
+    description: "Calculate chmod permissions from symbolic or numeric notation",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "mode": {
+            "type": "string",
+            "description": "Numeric mode (e.g. 755) or symbolic (e.g. rwxr-xr-x)"
+      }
+},
+      required: ["mode"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Mode: " + (params.mode as string) }] };
+    },
+  });
+
   const [perms, setPerms] = useState<Permissions>(DEFAULT_PERMS);
   const [numericInput, setNumericInput] = useState("");
 
@@ -98,7 +118,7 @@ export function ChmodTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Chmod Calculator"
       description="Calculate Unix file permissions — visual checkboxes, numeric & symbolic modes"
     >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -106,13 +108,35 @@ function formatRows(raw: string): FormatRow[] {
 }
 
 export function NumberFormatTool() {
+  useWebMCP({
+    name: "formatNumber",
+    description: "Format numbers with commas, currency, or words",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "number": {
+            "type": "string",
+            "description": "Number to format"
+      },
+      "format": {
+            "type": "string",
+            "description": "comma, currency, or binary"
+      }
+},
+      required: ["number"],
+    },
+    execute: async (params) => {
+      const n = Number(params.number); if (params.format === "currency") return { content: [{ type: "text", text: "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2 }) }] }; return { content: [{ type: "text", text: n.toLocaleString("en-US") }] };
+    },
+  });
+
   const [input, setInput] = useState("1234567.89");
 
   const rows = formatRows(input);
   const isValid = rows.length > 0;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Number Formatter"
       description="Format a number as commas, currency, scientific, words, binary, hex, Roman numerals, and more"
     >

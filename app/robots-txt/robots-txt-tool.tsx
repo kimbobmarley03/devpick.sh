@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -30,6 +32,28 @@ const inputStyle = {
 } as React.CSSProperties;
 
 export function RobotsTxtTool() {
+  useWebMCP({
+    name: "generateRobotsTxt",
+    description: "Generate robots.txt content",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "sitemap": {
+            "type": "string",
+            "description": "Sitemap URL"
+      },
+      "disallow": {
+            "type": "string",
+            "description": "Paths to disallow (comma-separated)"
+      }
+},
+      required: [],
+    },
+    execute: async (params) => {
+      const s = params.sitemap ? `Sitemap: ${params.sitemap}\n` : ""; const d = params.disallow ? (params.disallow as string).split(",").map(p => `Disallow: ${p.trim()}`).join("\n") : "Disallow:"; return { content: [{ type: "text", text: `User-agent: *\n${d}\n\n${s}` }] };
+    },
+  });
+
   const [groups, setGroups] = useState<RuleGroup[]>([
     { id: makeId(), userAgent: "*", allow: [], disallow: ["/admin/", "/private/"], crawlDelay: "" },
   ]);
@@ -75,7 +99,7 @@ export function RobotsTxtTool() {
   })();
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Robots.txt Generator"
       description="Generate a robots.txt file with user agents, allow/disallow rules, crawl delay, and sitemap"
     >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -88,6 +90,24 @@ const SAMPLE = `<?xml version="1.0" encoding="UTF-8"?>
 </bookstore>`;
 
 export function XmlToJsonTool() {
+  useWebMCP({
+    name: "xmlToJson",
+    description: "Convert XML to JSON format",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "xml": {
+            "type": "string",
+            "description": "XML to convert"
+      }
+},
+      required: ["xml"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for XML to JSON" }] };
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE);
   const [error, setError] = useState("");
 
@@ -104,7 +124,7 @@ export function XmlToJsonTool() {
   }
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="XML to JSON"
       description="Convert XML to JSON instantly — runs entirely in your browser using the native DOMParser."
     >

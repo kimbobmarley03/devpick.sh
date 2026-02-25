@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -98,6 +100,28 @@ function CheckboxOption({
 }
 
 export function PasswordTool() {
+  useWebMCP({
+    name: "generatePassword",
+    description: "Generate a secure random password",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "length": {
+            "type": "string",
+            "description": "Password length (default 16)"
+      },
+      "symbols": {
+            "type": "string",
+            "description": "Include symbols (default true)"
+      }
+},
+      required: [],
+    },
+    execute: async (params) => {
+      const len = Math.min((params.length as number) || 16, 128); const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" + (params.symbols !== false ? "!@#$%^&*" : ""); const arr = new Uint32Array(len); crypto.getRandomValues(arr); const pw = Array.from(arr).map(v => chars[v % chars.length]).join(""); return { content: [{ type: "text", text: pw }] };
+    },
+  });
+
   const [length, setLength] = useState(16);
   const [useUpper, setUseUpper] = useState(true);
   const [useLower, setUseLower] = useState(true);
@@ -127,7 +151,7 @@ export function PasswordTool() {
   const sampleStrength = passwords.length > 0 ? getStrength(passwords[0]) : null;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Password Generator"
       description="Generate secure random passwords using crypto.getRandomValues() — no data leaves your browser"
     >

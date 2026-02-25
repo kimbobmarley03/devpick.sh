@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -104,6 +106,28 @@ function decodeEntities(input: string): string {
 }
 
 export function HtmlEntitiesTool() {
+  useWebMCP({
+    name: "htmlEntities",
+    description: "Encode or decode HTML entities",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to encode/decode"
+      },
+      "mode": {
+            "type": "string",
+            "description": "encode or decode"
+      }
+},
+      required: ["text", "mode"],
+    },
+    execute: async (params) => {
+      if (params.mode === "encode") { const el = document.createElement("div"); el.textContent = params.text as string; return { content: [{ type: "text", text: el.innerHTML }] }; } else { const el = document.createElement("div"); el.innerHTML = params.text as string; return { content: [{ type: "text", text: el.textContent || "" }] }; }
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("encode");
   const [input, setInput] = useState("");
 
@@ -122,7 +146,7 @@ export function HtmlEntitiesTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="HTML Entities Encoder / Decoder"
       description="Encode special characters to HTML entities and decode them back to text"
     >

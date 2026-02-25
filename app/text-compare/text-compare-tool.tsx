@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { Trash2 } from "lucide-react";
@@ -121,6 +123,28 @@ const OP_LINE_BG: Record<DiffOp, string> = {
 };
 
 export function TextCompareTool() {
+  useWebMCP({
+    name: "compareText",
+    description: "Compare two texts line by line",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text1": {
+            "type": "string",
+            "description": "First text"
+      },
+      "text2": {
+            "type": "string",
+            "description": "Second text"
+      }
+},
+      required: ["text1", "text2"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for text comparison" }] };
+    },
+  });
+
   const [left, setLeft] = useState(SAMPLE_LEFT);
   const [right, setRight] = useState(SAMPLE_RIGHT);
   const [view, setView] = useState<"unified" | "split">("unified");
@@ -163,7 +187,7 @@ export function TextCompareTool() {
   }), [diffs]);
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Text Compare"
       description="Compare two texts side by side or in unified view. Highlights added, removed, and changed lines."
     >

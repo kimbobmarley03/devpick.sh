@@ -1,11 +1,35 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useEffect } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
 import { RefreshCw } from "lucide-react";
 
 export function TimestampTool() {
+  useWebMCP({
+    name: "convertTimestamp",
+    description: "Convert between Unix timestamps and dates",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "input": {
+            "type": "string",
+            "description": "Unix timestamp (number) or date string"
+      },
+      "mode": {
+            "type": "string",
+            "description": "toDate or toTimestamp"
+      }
+},
+      required: ["input"],
+    },
+    execute: async (params) => {
+      const i = params.input as string; const n = Number(i); if (!isNaN(n) && n > 1e9) { return { content: [{ type: "text", text: new Date(n * 1000).toISOString() }] }; } else { return { content: [{ type: "text", text: String(Math.floor(new Date(i).getTime() / 1000)) }] }; }
+    },
+  });
+
   const [now, setNow] = useState<number>(0);
   const [unixInput, setUnixInput] = useState("");
   const [dateInput, setDateInput] = useState("");
@@ -64,7 +88,7 @@ export function TimestampTool() {
   const nowDate = now > 0 ? new Date(now * 1000) : null;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Timestamp Converter"
       description="Convert between Unix timestamps and human-readable dates"
     >

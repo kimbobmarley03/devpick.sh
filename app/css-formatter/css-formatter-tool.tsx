@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -82,6 +84,24 @@ const SAMPLE = `/* Navigation styles */
 }`;
 
 export function CssFormatterTool() {
+  useWebMCP({
+    name: "formatCSS",
+    description: "Format and prettify CSS",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "css": {
+            "type": "string",
+            "description": "CSS to format"
+      }
+},
+      required: ["css"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: params.css as string }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("beautify");
   const [input, setInput] = useState(SAMPLE);
 
@@ -89,7 +109,7 @@ export function CssFormatterTool() {
     mode === "beautify" ? beautifyCSS(input) : minifyCSS(input);
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="CSS Formatter"
       description="Beautify or minify CSS code — runs entirely in your browser, no data sent anywhere."
     >

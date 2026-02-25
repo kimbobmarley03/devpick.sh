@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -105,13 +107,31 @@ users.forEach(user => {
 });`;
 
 export function JsFormatterTool() {
+  useWebMCP({
+    name: "formatJS",
+    description: "Format JavaScript or TypeScript code",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "code": {
+            "type": "string",
+            "description": "JS/TS code to format"
+      }
+},
+      required: ["code"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: params.code as string }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("beautify");
   const [input, setInput] = useState(SAMPLE);
 
   const output = mode === "beautify" ? beautifyJS(input) : minifyJS(input);
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="JS / TS Formatter"
       description="Beautify or minify JavaScript and TypeScript code — runs entirely in your browser."
     >

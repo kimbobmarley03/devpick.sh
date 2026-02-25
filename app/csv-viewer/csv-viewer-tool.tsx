@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { Upload, Trash2, ArrowUpDown } from "lucide-react";
@@ -45,6 +47,24 @@ function isNumeric(s: string) {
 }
 
 export function CsvViewerTool() {
+  useWebMCP({
+    name: "viewCSV",
+    description: "Parse and display CSV as a table",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "csv": {
+            "type": "string",
+            "description": "CSV data"
+      }
+},
+      required: ["csv"],
+    },
+    execute: async (params) => {
+      const lines = (params.csv as string).trim().split("\n"); const headers = lines[0].split(","); return { content: [{ type: "text", text: "Columns: " + headers.join(", ") + "\nRows: " + (lines.length - 1) }] };
+    },
+  });
+
   const [raw, setRaw] = useState(SAMPLE_CSV);
   const [tab, setTab] = useState<"input" | "table">("table");
   const [sortCol, setSortCol] = useState<number | null>(null);
@@ -99,7 +119,7 @@ export function CsvViewerTool() {
   }
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="CSV Viewer"
       description="Paste or upload CSV data to view as a sortable, filterable table. Runs entirely in your browser."
     >

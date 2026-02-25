@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -99,6 +101,24 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string
 };
 
 export function HttpStatusTool() {
+  useWebMCP({
+    name: "lookupHttpStatus",
+    description: "Look up HTTP status code meaning",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "code": {
+            "type": "string",
+            "description": "HTTP status code (e.g. 404)"
+      }
+},
+      required: ["code"],
+    },
+    execute: async (params) => {
+      const codes: Record<string,string> = {"200":"OK","201":"Created","204":"No Content","301":"Moved Permanently","302":"Found","304":"Not Modified","400":"Bad Request","401":"Unauthorized","403":"Forbidden","404":"Not Found","405":"Method Not Allowed","409":"Conflict","429":"Too Many Requests","500":"Internal Server Error","502":"Bad Gateway","503":"Service Unavailable"}; const c = params.code as string; return { content: [{ type: "text", text: c + " " + (codes[c] || "Unknown") }] };
+    },
+  });
+
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
@@ -127,7 +147,7 @@ export function HttpStatusTool() {
   }, [filtered]);
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="HTTP Status Codes"
       description="Complete reference for all HTTP status codes (1xx–5xx) with descriptions"
     >

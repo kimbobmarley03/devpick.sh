@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -30,6 +32,24 @@ function hexToText(hex: string): string {
 }
 
 export function TextToHexTool() {
+  useWebMCP({
+    name: "textToHex",
+    description: "Convert text to hexadecimal",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to convert"
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      const result = Array.from(params.text as string).map(c => c.charCodeAt(0).toString(16).padStart(2, "0")).join(" "); return { content: [{ type: "text", text: result }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("encode");
   const [input, setInput] = useState("Hello, World!");
   const [prefix, setPrefix] = useState<Prefix>("none");
@@ -59,7 +79,7 @@ export function TextToHexTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Text to Hex"
       description="Convert text to hexadecimal and back — supports multiple prefix formats. 100% client-side."
     >

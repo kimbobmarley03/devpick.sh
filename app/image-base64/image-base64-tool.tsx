@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -20,6 +22,19 @@ interface ImageInfo {
 }
 
 export function ImageBase64Tool() {
+  useWebMCP({
+    name: "imageToBase64",
+    description: "Convert image to Base64 data URI",
+    inputSchema: {
+      type: "object" as const,
+      properties: {},
+      required: [],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI — requires file upload" }] };
+    },
+  });
+
   const [image, setImage] = useState<ImageInfo | null>(null);
   const [dragging, setDragging] = useState(false);
   const [error, setError] = useState("");
@@ -67,7 +82,7 @@ export function ImageBase64Tool() {
   const overhead = image ? Math.round((base64Size / image.originalSize - 1) * 100) : 0;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Image → Base64"
       description="Convert images to Base64 data URIs — drag & drop or pick a file"
     >

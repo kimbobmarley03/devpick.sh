@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -92,6 +94,24 @@ function convert(jsonStr: string, rootTag: string): string {
 }
 
 export function JsonToXmlTool() {
+  useWebMCP({
+    name: "jsonToXml",
+    description: "Convert JSON to XML format",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "json": {
+            "type": "string",
+            "description": "JSON to convert"
+      }
+},
+      required: ["json"],
+    },
+    execute: async (params) => {
+      try { JSON.parse(params.json as string); return { content: [{ type: "text", text: "Use the web UI for full conversion" }] }; } catch { return { content: [{ type: "text", text: "Error: Invalid JSON" }] }; }
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE_JSON);
   const [rootTag, setRootTag] = useState("root");
   const [error, setError] = useState("");
@@ -109,7 +129,7 @@ export function JsonToXmlTool() {
   }
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="JSON to XML Converter"
       description="Convert JSON to XML with proper formatting. Handles nested objects, arrays, and special characters."
     >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -97,6 +99,24 @@ const EXAMPLE = `{
 }`;
 
 export function JsonToTsTool() {
+  useWebMCP({
+    name: "jsonToTS",
+    description: "Generate TypeScript types from JSON",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "json": {
+            "type": "string",
+            "description": "JSON to convert"
+      }
+},
+      required: ["json"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for type generation" }] };
+    },
+  });
+
   const [input, setInput] = useState("");
   const [rootName, setRootName] = useState("Root");
 
@@ -110,7 +130,7 @@ export function JsonToTsTool() {
   })();
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="JSON → TypeScript"
       description="Convert JSON to TypeScript interfaces — handles nested objects, arrays, and primitives"
     >

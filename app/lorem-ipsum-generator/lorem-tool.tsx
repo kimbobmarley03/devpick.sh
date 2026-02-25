@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -83,6 +85,24 @@ const UNIT_MAX: Record<Unit, number> = {
 };
 
 export function LoremTool() {
+  useWebMCP({
+    name: "generateLoremIpsum",
+    description: "Generate placeholder lorem ipsum text",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "paragraphs": {
+            "type": "string",
+            "description": "Number of paragraphs (default 3)"
+      }
+},
+      required: [],
+    },
+    execute: async (params) => {
+      const n = Math.min((params.paragraphs as number) || 3, 20); const p = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."; return { content: [{ type: "text", text: Array(n).fill(p).join("\n\n") }] };
+    },
+  });
+
   const [unit, setUnit] = useState<Unit>("paragraphs");
   const [count, setCount] = useState(3);
   const [classic, setClassic] = useState(true);
@@ -96,7 +116,7 @@ export function LoremTool() {
   const charCount = output.length;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Lorem Ipsum Generator"
       description="Generate placeholder text — paragraphs, sentences, or words on demand"
     >

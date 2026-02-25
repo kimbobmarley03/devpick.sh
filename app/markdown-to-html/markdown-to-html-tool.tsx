@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -209,13 +211,31 @@ console.log(greet("World"));
 | Bob   | Editor  |`;
 
 export function MarkdownToHtmlTool() {
+  useWebMCP({
+    name: "markdownToHtml",
+    description: "Convert Markdown to HTML",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "markdown": {
+            "type": "string",
+            "description": "Markdown to convert"
+      }
+},
+      required: ["markdown"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for Markdown to HTML" }] };
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE);
   const [view, setView] = useState<"html" | "preview">("html");
 
   const output = markdownToHtml(input);
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Markdown to HTML"
       description="Convert Markdown to HTML — supports headings, lists, code blocks, tables, and more. Client-side."
     >

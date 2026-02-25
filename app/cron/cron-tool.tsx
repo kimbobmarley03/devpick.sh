@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -166,6 +168,24 @@ function FieldEditor({
 }
 
 export function CronTool() {
+  useWebMCP({
+    name: "parseCron",
+    description: "Parse and explain cron expressions",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "expression": {
+            "type": "string",
+            "description": "Cron expression (e.g. */5 * * * *)"
+      }
+},
+      required: ["expression"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Cron: " + (params.expression as string) }] };
+    },
+  });
+
   const [minute, setMinute] = useState("0");
   const [hour, setHour] = useState("9");
   const [dom, setDom] = useState("*");
@@ -201,7 +221,7 @@ export function CronTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Cron Expression Generator"
       description="Build, explain, and test cron schedule expressions"
     >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -68,6 +70,24 @@ const FORMAT_EXAMPLES: Record<Format, string> = {
 };
 
 export function TextToBinaryTool() {
+  useWebMCP({
+    name: "textToBinary",
+    description: "Convert text to binary representation",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to convert"
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      const result = Array.from(params.text as string).map(c => c.charCodeAt(0).toString(2).padStart(8, "0")).join(" "); return { content: [{ type: "text", text: result }] };
+    },
+  });
+
   const [mode, setMode] = useState<Mode>("encode");
   const [format, setFormat] = useState<Format>("binary");
   const [input, setInput] = useState("Hello");
@@ -104,7 +124,7 @@ export function TextToBinaryTool() {
   };
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Text to Binary"
       description="Convert text to binary, hex, octal, decimal — and back. Free, instant, client-side."
     >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -139,6 +141,24 @@ interface ObfuscateOptions {
 }
 
 export function JavascriptObfuscatorTool() {
+  useWebMCP({
+    name: "obfuscateJS",
+    description: "Obfuscate JavaScript code",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "code": {
+            "type": "string",
+            "description": "JavaScript to obfuscate"
+      }
+},
+      required: ["code"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for JS obfuscation" }] };
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE_JS);
   const [opts, setOpts] = useState<ObfuscateOptions>({
     renameVars: true,
@@ -167,7 +187,7 @@ export function JavascriptObfuscatorTool() {
   const savings = originalSize > 0 ? Math.round(((originalSize - obfSize) / originalSize) * 100) : 0;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="JavaScript Obfuscator"
       description="Obfuscate JavaScript code to make it harder to read. Renames variables, removes whitespace, and encodes strings. 100% client-side."
     >

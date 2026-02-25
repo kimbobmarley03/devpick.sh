@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { SplitPane } from "@/components/split-pane";
@@ -124,6 +126,24 @@ function minifyHtml(html: string, opts: MinifyOptions): string {
 }
 
 export function HtmlMinifierTool() {
+  useWebMCP({
+    name: "minifyHTML",
+    description: "Minify HTML by removing whitespace and comments",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "html": {
+            "type": "string",
+            "description": "HTML to minify"
+      }
+},
+      required: ["html"],
+    },
+    execute: async (params) => {
+      const h = (params.html as string).replace(/<!--[\s\S]*?-->/g, "").replace(/\s+/g, " ").replace(/> </g, "><").trim(); return { content: [{ type: "text", text: h }] };
+    },
+  });
+
   const [input, setInput] = useState(SAMPLE_HTML);
   const [opts, setOpts] = useState<MinifyOptions>({
     removeComments: true,
@@ -143,7 +163,7 @@ export function HtmlMinifierTool() {
   const savings = origSize > 0 ? Math.round(((origSize - minSize) / origSize) * 100) : 0;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="HTML Minifier"
       description="Minify HTML code to reduce file size. Remove comments, whitespace, optional tags. 100% client-side."
     >

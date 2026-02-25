@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -63,13 +65,35 @@ const CASES: CaseType[] = [
 ];
 
 export function CaseTool() {
+  useWebMCP({
+    name: "convertCase",
+    description: "Convert text between cases (upper, lower, title, camel, snake, kebab)",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to convert"
+      },
+      "case": {
+            "type": "string",
+            "description": "Target case: upper, lower, title, camel, snake, kebab"
+      }
+},
+      required: ["text", "case"],
+    },
+    execute: async (params) => {
+      const t = params.text as string; const c = params.case as string; let r = t; if (c === "upper") r = t.toUpperCase(); else if (c === "lower") r = t.toLowerCase(); else if (c === "title") r = t.replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase()); else if (c === "snake") r = t.toLowerCase().replace(/\s+/g, "_"); else if (c === "kebab") r = t.toLowerCase().replace(/\s+/g, "-"); else if (c === "camel") r = t.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()); return { content: [{ type: "text", text: r }] };
+    },
+  });
+
   const [input, setInput] = useState("");
   const [selected, setSelected] = useState<CaseType>("camelCase");
 
   const output = convert(input, selected);
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Text Case Converter"
       description="Convert text between UPPERCASE, camelCase, snake_case, kebab-case, PascalCase, and more"
     >

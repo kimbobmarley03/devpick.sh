@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { Plus, Trash2, Send } from "lucide-react";
@@ -34,6 +36,28 @@ const METHOD_COLORS: Record<Method, string> = {
 };
 
 export function WebhookTesterTool() {
+  useWebMCP({
+    name: "buildHttpRequest",
+    description: "Build HTTP requests with custom headers and body",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "url": {
+            "type": "string",
+            "description": "Request URL"
+      },
+      "method": {
+            "type": "string",
+            "description": "HTTP method"
+      }
+},
+      required: ["url", "method"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for HTTP request building" }] };
+    },
+  });
+
   const [method, setMethod] = useState<Method>("POST");
   const [url, setUrl] = useState("https://httpbin.org/post");
   const [headers, setHeaders] = useState<Header[]>([
@@ -124,7 +148,7 @@ export function WebhookTesterTool() {
     : "text-red-600 dark:text-red-400";
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Webhook Request Builder"
       description="Build and send HTTP requests with custom headers and body. Test webhooks and APIs from your browser."
     >

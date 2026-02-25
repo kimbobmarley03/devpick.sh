@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { Trash2 } from "lucide-react";
@@ -18,6 +20,24 @@ const STOP_WORDS = new Set([
 ]);
 
 export function KeywordDensityCheckerTool() {
+  useWebMCP({
+    name: "checkKeywordDensity",
+    description: "Analyze keyword density in text",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "text": {
+            "type": "string",
+            "description": "Text to analyze"
+      }
+},
+      required: ["text"],
+    },
+    execute: async (params) => {
+      const words = (params.text as string).toLowerCase().split(/\s+/).filter(Boolean); const freq: Record<string,number> = {}; words.forEach(w => freq[w] = (freq[w]||0)+1); const top = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0, 10); return { content: [{ type: "text", text: JSON.stringify(top.map(([w,c]) => ({ word: w, count: c, density: (c/words.length*100).toFixed(1)+"%" })), null, 2) }] };
+    },
+  });
+
   const [text, setText] = useState(SAMPLE_TEXT);
   const [minLength, setMinLength] = useState(3);
   const [showStopWords, setShowStopWords] = useState(false);
@@ -62,7 +82,7 @@ export function KeywordDensityCheckerTool() {
   const maxCount = analysis?.words[0]?.[1] ?? 1;
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="Keyword Density Checker"
       description="Analyze keyword frequency and density in your text. Essential for SEO optimization."
     >

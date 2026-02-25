@@ -1,5 +1,7 @@
 "use client";
 
+import { useWebMCP } from "@/lib/use-webmcp";
+
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
@@ -154,6 +156,28 @@ const SAMPLE_JSON = `{
 const SAMPLE_PATH = "$.store.book[*].title";
 
 export function JsonPathTool() {
+  useWebMCP({
+    name: "queryJsonPath",
+    description: "Query JSON with JSONPath expressions",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+      "json": {
+            "type": "string",
+            "description": "JSON data"
+      },
+      "path": {
+            "type": "string",
+            "description": "JSONPath expression"
+      }
+},
+      required: ["json", "path"],
+    },
+    execute: async (params) => {
+      return { content: [{ type: "text", text: "Use the web UI for JSONPath queries" }] };
+    },
+  });
+
   const [jsonInput, setJsonInput] = useState(SAMPLE_JSON);
   const [pathInput, setPathInput] = useState(SAMPLE_PATH);
 
@@ -171,7 +195,7 @@ export function JsonPathTool() {
   const resultText = results.map((r: JsonVal) => JSON.stringify(r, null, 2)).join("\n---\n");
 
   return (
-    <ToolLayout
+    <ToolLayout agentReady
       title="JSONPath Tester"
       description="Test JSONPath expressions against JSON — supports $ . [] [*] .."
     >
