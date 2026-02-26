@@ -49,3 +49,9 @@
 /ascii /ascii-art-generator 301
 /ascii/ /ascii-art-generator 301
 
+/epoch-converter /unix-timestamp-converter 301
+/xml-beautifier /xml-formatter 301
+/sql-beautifier /sql-formatter 301
+/guid /guid-generator 301
+/guid/ /guid-generator 301
+

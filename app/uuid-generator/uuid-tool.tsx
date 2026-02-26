@@ -78,8 +78,8 @@ export function UuidTool() {
   return (
     <ToolLayout
       agentReady
-      title="UUID Generator"
-      description="Generate UUID v4 — cryptographically random, universally unique identifiers"
+      title="UUID / GUID Generator"
+      description="Generate UUID v4 / GUID — cryptographically random, universally unique identifiers. UUID and GUID are the same thing."
       kbdHint="⌘↵ generate · ⌘⇧↵ bulk"
     >
       {/* Controls */}

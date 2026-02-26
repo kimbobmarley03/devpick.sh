@@ -89,8 +89,8 @@ export function TimestampTool() {
 
   return (
     <ToolLayout agentReady
-      title="Timestamp Converter"
-      description="Convert between Unix timestamps and human-readable dates"
+      title="Unix Timestamp & Epoch Converter"
+      description="Convert between Unix/epoch timestamps and human-readable dates. Enter a timestamp or pick a date."
     >
       {/* Live clock */}
       <div className="bg-card-bg border border-card-border rounded-xl p-5 mb-6">

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { UuidTool } from "./uuid-tool";
 
 export const metadata: Metadata = {
-  title: "UUID Generator Online — Free UUID v4 Generator",
+  title: "UUID Generator Online — Free UUID v4 & GUID Generator",
   description:
-    "Generate UUID v4 online. Bulk UUID generation (1-100). Free, instant, client-side UUID generator with one-click copy.",
+    "Generate UUID v4 / GUID online. Bulk UUID/GUID generation (1-100). Free, instant, client-side UUID generator with one-click copy. UUIDs and GUIDs are the same thing.",
   openGraph: {
-    title: "UUID Generator Online | devpick.sh",
-    description: "Generate UUID v4 online. Bulk generation, one-click copy.",
+    title: "UUID / GUID Generator Online | devpick.sh",
+    description: "Generate UUID v4 / GUID online. Bulk generation, one-click copy. Free, client-side.",
     url: "https://devpick.sh/uuid-generator",
   },
   alternates: { canonical: "https://devpick.sh/uuid-generator" },
