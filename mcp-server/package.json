@@ -1,7 +1,7 @@
 {
   "name": "@devpick/mcp-server",
   "version": "1.0.0",
-  "description": "43 developer tools for AI agents — PDF merge/split, subnet calc, regex tester, JSON diff, and more. 100% local, no API keys.",
+  "description": "Developer tools for AI agents. Merge PDFs, calculate subnets, test regex, diff JSON — things your agent can't do alone. 43 tools, 100% local, no API keys.",
   "bin": {
     "devpick-mcp": "./dist/index.js"
   },
