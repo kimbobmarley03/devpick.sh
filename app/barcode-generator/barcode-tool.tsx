@@ -272,8 +272,8 @@ export function BarcodeTool() {
       return;
     }
     const err = renderBarcode(canvasRef.current, input.trim(), type);
-    setError(err); // eslint-disable-line react-hooks/set-state-in-effect
-  // eslint-disable-next-line react-hooks/set-state-in-effect
+    setError(err);  
+   
   }, [input, type]);
 
   const download = () => {
