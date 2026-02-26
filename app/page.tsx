@@ -135,6 +135,24 @@ export default function Home() {
         )}
       </main>
 
+      {/* MCP Section */}
+      <section className="max-w-2xl mx-auto px-6 py-12 text-center">
+        <div className="rounded-xl border border-[var(--dp-border)] bg-[var(--dp-bg-subtle)] p-8">
+          <p className="text-2xl mb-2">🤖</p>
+          <h2 className="text-lg font-semibold text-text-primary mb-2 font-mono">Works with your AI agent</h2>
+          <p className="text-sm text-text-secondary mb-4">
+            Use devpick tools from Claude Code, Cursor, or Codex.<br />
+            PDF merge, subnet calc, regex testing — things your agent can&apos;t do alone.
+          </p>
+          <code className="inline-block bg-[var(--dp-bg)] text-emerald-400 text-sm px-4 py-2 rounded-lg border border-[var(--dp-border)] font-mono mb-3">
+            npx @devpick/mcp-server
+          </code>
+          <p className="text-xs text-text-dimmed">
+            43 tools · 100% local · No API keys · Works offline
+          </p>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-border-subtle py-8 text-center space-y-2">
         <p className="text-sm text-text-muted">
