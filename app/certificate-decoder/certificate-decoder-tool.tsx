@@ -212,7 +212,7 @@ const KEY_USAGE_BITS = [
 function parseKeyUsage(bytes: Uint8Array): string {
   // BIT STRING: first byte = unused bits count
   if (bytes.length < 2) return "";
-  const unusedBits = bytes[0];
+  const _unusedBits = bytes[0]; // eslint-disable-line @typescript-eslint/no-unused-vars
   const usages: string[] = [];
   for (let byteIdx = 1; byteIdx < bytes.length; byteIdx++) {
     for (let bit = 7; bit >= 0; bit--) {
@@ -446,7 +446,7 @@ async function parseCertificate(pem: string): Promise<CertInfo> {
   }
 
   const serialNode = tbsChildren[idx++]; // INTEGER
-  const algNode = tbsChildren[idx++]; // AlgorithmIdentifier (in tbs)
+  idx++; // AlgorithmIdentifier (in tbs) — skip
   const issuerNode = tbsChildren[idx++]; // Name
   const validityNode = tbsChildren[idx++]; // Validity
   const subjectNode = tbsChildren[idx++]; // Name

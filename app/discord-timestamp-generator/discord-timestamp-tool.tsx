@@ -2,7 +2,7 @@
 
 import { useWebMCP } from "@/lib/use-webmcp";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton, copyToClipboard } from "@/components/copy-button";
 import { Check } from "lucide-react";
@@ -17,6 +17,8 @@ const FORMATS = [
   { code: "R", label: "Relative Time", example: "2 months ago" },
 ];
 
+const pad = (n: number) => String(n).padStart(2, "0");
+
 function toEpoch(dateStr: string, timeStr: string): number {
   const dt = new Date(`${dateStr}T${timeStr}`);
   return Math.floor(dt.getTime() / 1000);
@@ -24,7 +26,6 @@ function toEpoch(dateStr: string, timeStr: string): number {
 
 function formatPreview(epoch: number, code: string): string {
   const d = new Date(epoch * 1000);
-  const opts: Intl.DateTimeFormatOptions = {};
   switch (code) {
     case "t":
       return d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
@@ -69,20 +70,21 @@ export function DiscordTimestampTool() {
     },
   });
 
-  const now = new Date();
-  const pad = (n: number) => String(n).padStart(2, "0");
-  const defaultDate = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
-  const defaultTime = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
-
-  const [date, setDate] = useState(defaultDate);
-  const [time, setTime] = useState(defaultTime);
+  const [date, setDate] = useState(() => {
+    const now = new Date();
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  });
+  const [time, setTime] = useState(() => {
+    const now = new Date();
+    return `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  });
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const epoch = (() => {
     try {
       return toEpoch(date, time);
     } catch {
-      return Math.floor(Date.now() / 1000);
+      return 0;
     }
   })();
   const isValid = !isNaN(epoch);
