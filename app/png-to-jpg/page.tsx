@@ -21,68 +21,60 @@ export default function PngToJpgPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebApplication",
-            name: "PNG to JPG Converter",
-            description: "Convert PNG images to JPG/JPEG online for free",
-            url: "https://devpick.sh/png-to-jpg",
-            applicationCategory: "DeveloperApplication",
-            operatingSystem: "Web Browser",
-            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
+            "@graph": [
               {
-                "@type": "Question",
-                name: "Does PNG to JPG conversion lose quality?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "JPG uses lossy compression, so some quality may be lost compared to PNG. You can control the quality level (1–100%) when converting. For photos, 80–90% quality is usually indistinguishable from the original.",
-                },
+                "@type": "WebApplication",
+                name: "PNG to JPG Converter",
+                description: "Convert PNG images to JPG/JPEG online for free",
+                url: "https://devpick.sh/png-to-jpg",
+                applicationCategory: "DeveloperApplication",
+                operatingSystem: "Web Browser",
+                offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
               },
               {
-                "@type": "Question",
-                name: "What happens to PNG transparency when converting to JPG?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "JPG does not support transparency. This converter replaces transparent areas with a white background by default, which you can customize.",
-                },
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "Does PNG to JPG conversion lose quality?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "JPG uses lossy compression, so some quality may be lost compared to PNG. You can control the quality level (1–100%) when converting. For photos, 80–90% quality is usually indistinguishable from the original.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "What happens to PNG transparency when converting to JPG?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "JPG does not support transparency. This converter replaces transparent areas with a white background by default, which you can customize.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Is my image uploaded to a server?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "No. All conversion happens entirely in your browser using the HTML5 Canvas API. Your images never leave your device.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Why is my JPG larger than the PNG?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "For images with large solid-color areas (like screenshots or graphics), PNG's lossless compression is often more efficient. JPG excels at compressing photos with complex gradients. Try lowering the quality slider to reduce file size.",
+                    },
+                  },
+                ],
               },
               {
-                "@type": "Question",
-                name: "Is my image uploaded to a server?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "No. All conversion happens entirely in your browser using the HTML5 Canvas API. Your images never leave your device.",
-                },
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
+                  { "@type": "ListItem", position: 2, name: "PNG to JPG", item: "https://devpick.sh/png-to-jpg" },
+                ],
               },
-              {
-                "@type": "Question",
-                name: "Why is my JPG larger than the PNG?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "For images with large solid-color areas (like screenshots or graphics), PNG's lossless compression is often more efficient. JPG excels at compressing photos with complex gradients. Try lowering the quality slider to reduce file size.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "PNG to JPG", item: "https://devpick.sh/png-to-jpg" },
             ],
           }),
         }}
