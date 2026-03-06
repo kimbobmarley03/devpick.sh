@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { QrTool } from "./qr-tool";
 
 export const metadata: Metadata = {
-  title: "QR Code Generator Online — Free QR Code Maker",
+  title: "QR Code Generator — Free Online, No Sign Up | devpick.sh",
   description:
-    "Generate QR codes from any text or URL instantly. Choose size, download as PNG. Free online QR code generator.",
+    "Generate QR codes from text or URLs instantly. Free online QR code generator, download as PNG. No sign up required, unlimited use.",
   openGraph: {
-    title: "QR Code Generator Online | devpick.sh",
-    description: "Generate QR codes from text or URLs. Download as PNG.",
+    title: "QR Code Generator — Free Online, No Sign Up | devpick.sh",
+    description: "Generate QR codes from text or URLs. Free, instant, no sign up.",
     url: "https://devpick.sh/qr-code-generator",
   },
   alternates: { canonical: "https://devpick.sh/qr-code-generator" },

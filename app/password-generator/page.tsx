@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { PasswordTool } from "./password-tool";
 
 export const metadata: Metadata = {
-  title: "Password Generator Online — Secure Random Passwords",
+  title: "Password Generator Online — Free, Strong, No Sign Up | devpick.sh",
   description:
-    "Generate strong, secure random passwords online. Customize length, character sets, and generate multiple passwords at once. Uses crypto.getRandomValues().",
+    "Generate strong, secure random passwords online. Customize length and characters. Free, secure, runs locally in your browser — no sign up needed.",
   openGraph: {
-    title: "Password Generator Online | devpick.sh",
-    description: "Generate strong, secure random passwords. Customizable length and character sets. Free.",
+    title: "Password Generator Online — Free, No Sign Up | devpick.sh",
+    description: "Generate strong, secure passwords instantly. Customizable, free, client-side.",
     url: "https://devpick.sh/password-generator",
   },
   alternates: { canonical: "https://devpick.sh/password-generator" },

@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { JsonFormatter } from "./json-formatter";
 
 export const metadata: Metadata = {
-  title: "JSON Formatter Online — Free JSON Beautifier",
+  title: "JSON Formatter Online — Free, No Sign Up | devpick.sh",
   description:
-    "Format, validate, and minify JSON online. Free JSON beautifier with syntax highlighting, error detection, and instant formatting. No sign-up needed.",
+    "Format, validate, and minify JSON online. Free JSON beautifier with syntax highlighting and error detection. No sign up required, runs in your browser.",
   openGraph: {
-    title: "JSON Formatter Online — Free JSON Beautifier | devpick.sh",
-    description:
-      "Format, validate, and minify JSON online. Free JSON beautifier with syntax highlighting.",
+    title: "JSON Formatter Online — Free, No Sign Up | devpick.sh",
+    description: "Format, validate, and minify JSON online. Free beautifier, instant output, no signup.",
     url: "https://devpick.sh/json-formatter",
   },
   alternates: {

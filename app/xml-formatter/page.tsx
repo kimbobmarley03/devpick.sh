@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { XmlTool } from "./xml-tool";
 
 export const metadata: Metadata = {
-  title: "XML Formatter & Beautifier Online — Free | devpick.sh",
+  title: "XML Formatter Online — Free, No Sign Up | devpick.sh",
   description:
-    "Format, beautify, or minify XML online. Free XML formatter and beautifier with syntax validation. No server, no data sent — 100% client-side.",
+    "Format, beautify, or minify XML online. Free XML formatter with validation. No server, no data sent — 100% client-side, no sign up required.",
   openGraph: {
-    title: "XML Formatter & Beautifier | devpick.sh",
-    description: "Format, beautify and minify XML online. Validates XML and shows errors. Free, instant.",
+    title: "XML Formatter Online — Free, No Sign Up | devpick.sh",
+    description: "Format, beautify and minify XML online. Validates XML. Free, instant, no signup.",
     url: "https://devpick.sh/xml-formatter",
   },
   alternates: { canonical: "https://devpick.sh/xml-formatter" },

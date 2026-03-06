@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { SqlTool } from "./sql-tool";
 
 export const metadata: Metadata = {
-  title: "SQL Formatter & Beautifier Online — Free | devpick.sh",
+  title: "SQL Formatter Online — Free, No Sign Up | devpick.sh",
   description:
-    "Format, beautify, or minify SQL queries online. Free SQL formatter and beautifier that capitalizes keywords and adds proper indentation. 100% client-side.",
+    "Format, beautify, or minify SQL queries online. Free SQL formatter with proper indentation and keyword capitalization. No sign up required, runs locally.",
   openGraph: {
-    title: "SQL Formatter & Beautifier | devpick.sh",
-    description: "Format, beautify and minify SQL queries online. Free, instant, no server.",
+    title: "SQL Formatter Online — Free, No Sign Up | devpick.sh",
+    description: "Format, beautify and minify SQL queries. Free, instant, no server.",
     url: "https://devpick.sh/sql-formatter",
   },
   alternates: { canonical: "https://devpick.sh/sql-formatter" },

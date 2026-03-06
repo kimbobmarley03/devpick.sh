@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { UtmBuilderTool } from "./utm-builder-tool";
 
 export const metadata: Metadata = {
-  title: "UTM Builder — Free Campaign URL Generator | devpick.sh",
+  title: "UTM Builder Online — Free, No Sign Up | devpick.sh",
   description:
-    "Build UTM tracking URLs for Google Analytics campaigns. Add utm_source, utm_medium, utm_campaign, utm_term, and utm_content parameters with live preview. Free, 100% client-side.",
+    "Build UTM tracking URLs for Google Analytics campaigns. Add utm_source, utm_medium, and more with live preview. Free, 100% client-side, no sign up required.",
   openGraph: {
-    title: "UTM Builder — Free Campaign URL Generator | devpick.sh",
-    description: "Build UTM tracking URLs instantly. Live preview, copy button, and history of recent URLs.",
+    title: "UTM Builder Online — Free, No Sign Up | devpick.sh",
+    description: "Build UTM tracking URLs instantly. Live preview, copy button, and history. Free, no sign up.",
     url: "https://devpick.sh/utm-builder",
   },
   alternates: { canonical: "https://devpick.sh/utm-builder" },

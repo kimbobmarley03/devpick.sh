@@ -220,6 +220,23 @@ export function UtmBuilderTool() {
           ))}
         </div>
       </div>
+
+      {/* Related Tools */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "URL Encoder", href: "/url-encoder" },
+            { name: "QR Code Generator", href: "/qr-code-generator" },
+            { name: "Slug Generator", href: "/slug-generator" },
+            { name: "Open Graph Preview", href: "/og-preview" },
+          ].map((t) => (
+            <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-surface-subtle">
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }

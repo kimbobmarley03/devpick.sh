@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { GitignoreGeneratorTool } from "./gitignore-generator-tool";
 
 export const metadata: Metadata = {
-  title: ".gitignore Generator — Create Git Ignore Files | devpick.sh",
+  title: ".gitignore Generator Online — Free, No Sign Up | devpick.sh",
   description:
-    "Generate .gitignore files for Node.js, Python, Java, Go, Rust, macOS, Windows, VS Code, JetBrains and more. Select multiple templates, merge them, and download instantly.",
+    "Generate .gitignore files for Node.js, Python, Java, Go, Rust, and more. Select templates, merge them, and download instantly. Free online, no sign up required.",
   openGraph: {
-    title: ".gitignore Generator | devpick.sh",
-    description: "Select templates, merge, copy or download your .gitignore. 100% client-side, free.",
+    title: ".gitignore Generator Online — Free, No Sign Up | devpick.sh",
+    description: "Generate and merge .gitignore templates for any project. Free, 100% client-side.",
     url: "https://devpick.sh/gitignore-generator",
   },
   alternates: { canonical: "https://devpick.sh/gitignore-generator" },

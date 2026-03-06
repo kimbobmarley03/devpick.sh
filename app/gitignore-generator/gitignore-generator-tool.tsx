@@ -501,6 +501,23 @@ export function GitignoreGeneratorTool() {
           </div>
         </div>
       </div>
+
+      {/* Related Tools */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "README Generator", href: "/readme-generator" },
+            { name: "License Generator", href: "/license-generator" },
+            { name: "Docker Compose Generator", href: "/docker-compose-generator" },
+            { name: "Nginx Config Generator", href: "/nginx-config-generator" },
+          ].map((t) => (
+            <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-surface-subtle">
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }
