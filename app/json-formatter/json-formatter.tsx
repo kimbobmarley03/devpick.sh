@@ -189,12 +189,17 @@ export function JsonFormatter() {
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-dimmed mb-3 leading-relaxed">
+          Working with APIs or config files? Keep the full JSON workflow in one place: validate structure,
+          query fields, convert between YAML and JSON, then generate TypeScript types.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "JSON → TypeScript", href: "/json-to-ts" },
-            { name: "JSONPath Tester", href: "/jsonpath" },
-            { name: "CSV to JSON", href: "/csv-formatter" },
             { name: "JSON Schema Validator", href: "/json-schema" },
+            { name: "JSONPath Tester", href: "/jsonpath" },
+            { name: "JSON → YAML", href: "/json-to-yaml" },
+            { name: "YAML → JSON", href: "/yaml-to-json" },
+            { name: "JSON → TypeScript", href: "/json-to-ts" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}
