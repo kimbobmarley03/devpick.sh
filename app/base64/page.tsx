@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Base64Tool } from "./base64-tool";
 
 export const metadata: Metadata = {
-  title: "Base64 Encoder/Decoder Online — Free Base64 Tool",
+  title: "Base64 Decode & Encode Online — Free, Fast, Secure | devpick.sh",
   description:
-    "Encode and decode Base64 online. Free, instant Base64 encoder and decoder. No sign-up, works in your browser.",
+    "Decode Base64 to text or encode text to Base64 instantly. Free Base64 decoder/encoder with UTF-8 support, no upload, and 100% client-side processing.",
   openGraph: {
-    title: "Base64 Encoder/Decoder Online | devpick.sh",
-    description: "Encode and decode Base64 online. Free, instant, client-side.",
+    title: "Base64 Decode & Encode Online — Free Tool | devpick.sh",
+    description:
+      "Decode Base64 strings or encode text instantly. Secure, browser-based Base64 tool with no data upload.",
     url: "https://devpick.sh/base64",
   },
   alternates: { canonical: "https://devpick.sh/base64" },
