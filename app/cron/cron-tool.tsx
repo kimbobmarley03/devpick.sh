@@ -405,6 +405,57 @@ n-m   = range of values`}</pre>
           ))}
         </div>
       </div>
+
+      {/* SEO Content & FAQ */}
+      <div className="mt-12 pt-8 border-t border-border-subtle prose prose-invert max-w-none text-sm text-text-secondary">
+        <h2 className="text-lg font-semibold text-text-primary mb-4">What is a Cron Expression?</h2>
+        <p className="mb-4">
+          A <strong>cron expression</strong> is a string consisting of five or six fields separated by white space that represents a set of times, normally as a schedule to execute some routine. It is widely used in Unix-like operating systems to schedule jobs (commands or shell scripts) to run periodically at fixed times, dates, or intervals using the <code>cron</code> daemon.
+        </p>
+
+        <h3 className="text-md font-semibold text-text-primary mt-6 mb-2">How to read a cron schedule</h3>
+        <div className="mb-4">
+          Standard cron expressions consist of 5 fields: <code>Minute Hour Day-of-month Month Day-of-week</code>. 
+          <ul>
+            <li><strong>* (Asterisk):</strong> Indicates all possible values for a field. E.g., an asterisk in the hour time field would be equivalent to every hour.</li>
+            <li><strong>, (Comma):</strong> Used to separate items of a list. E.g., using &quot;MON,WED,FRI&quot; in the 5th field (day of week) means Mondays, Wednesdays and Fridays.</li>
+            <li><strong>- (Hyphen):</strong> Defines ranges. E.g., &quot;9-17&quot; indicates every hour between 9 AM and 5 PM inclusive.</li>
+            <li><strong>/ (Slash):</strong> Specifies increments. E.g., &quot;*/15&quot; in the minute field means &quot;every 15 minutes&quot;.</li>
+          </ul>
+        </div>
+
+        <h3 className="text-md font-semibold text-text-primary mt-6 mb-2">Common Cron Job Use Cases</h3>
+        <div className="mb-4">
+          Developers and system administrators use cron jobs for various automated tasks:
+          <ul>
+            <li><strong>Database Backups:</strong> Scheduling daily or weekly database dumps to a secure location (e.g., <code>0 2 * * *</code> for 2:00 AM daily).</li>
+            <li><strong>Log Rotation:</strong> Compressing and archiving old log files to free up disk space.</li>
+            <li><strong>Email Notifications:</strong> Sending out daily summaries or weekly newsletters to users.</li>
+            <li><strong>System Maintenance:</strong> Running cleanup scripts to delete temporary files or clear caches.</li>
+            <li><strong>Data Syncing:</strong> Pulling or pushing data between APIs on a regular interval (e.g., <code>*/5 * * * *</code> for every 5 minutes).</li>
+          </ul>
+        </div>
+
+        <h3 className="text-md font-semibold text-text-primary mt-6 mb-2">Frequently Asked Questions</h3>
+        <div className="space-y-4">
+          <div>
+            <h4 className="font-semibold text-text-primary">What does <code>0 0 * * *</code> mean?</h4>
+            <p>It means the job will run at minute 0 past hour 0 (midnight) every single day. This is one of the most common cron schedules for daily tasks like backups or log rotation.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-text-primary">How do I run a cron job every 5 minutes?</h4>
+            <p>Use the expression <code>*/5 * * * *</code>. The <code>*/5</code> in the first field means &quot;every 5th minute&quot;.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-text-primary">Are cron times in UTC or local time?</h4>
+            <p>Cron runs based on the system time of the server where the cron daemon is executing. Often servers are set to UTC, but you should always verify your server&apos;s timezone configuration.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-text-primary">Can I schedule tasks down to the second?</h4>
+            <p>Standard Unix cron does not support seconds. The smallest unit of time is 1 minute. If you need sub-minute scheduling, you would typically write a script that sleeps and loops, or use an advanced job scheduler like systemd timers or a specialized application runner.</p>
+          </div>
+        </div>
+      </div>
     </ToolLayout>
   );
 }
