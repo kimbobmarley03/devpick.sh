@@ -73,7 +73,7 @@ export function UrlTool() {
     <ToolLayout
       agentReady
       title="URL Encoder / Decoder"
-      description="Encode or decode URL components with percent-encoding"
+      description="URL encode or decode query strings, path segments, and full URLs with percent-encoding"
       kbdHint="⌘↵ swap"
     >
       <div className="flex items-center gap-2 mb-4">
@@ -142,10 +142,11 @@ export function UrlTool() {
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "Base64", href: "/base64" },
+            { name: "UTM Builder", href: "/utm-builder" },
             { name: "HTML Entities", href: "/html-entities" },
             { name: "Escape / Unescape", href: "/escape" },
-            { name: "Slug Generator", href: "/slug-generator" },
+            { name: "Meta Tags Generator", href: "/meta-tags" },
+            { name: "Base64", href: "/base64" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}
@@ -153,6 +154,31 @@ export function UrlTool() {
           ))}
         </div>
       </div>
+
+      {/* SEO Content: FAQ */}
+      <section className="mt-8 pt-6 border-t border-border-subtle space-y-4">
+        <h2 className="text-sm font-semibold text-text-secondary">URL Encoding FAQ</h2>
+        <div className="space-y-3 text-xs text-text-secondary leading-relaxed">
+          <p>
+            <strong className="text-text-primary">What is URL encoding?</strong> URL encoding (percent encoding)
+            converts reserved characters like spaces, <code>?</code>, <code>&amp;</code>, and <code>#</code> into a
+            safe format (for example, space becomes <code>%20</code>) so URLs can be transmitted correctly.
+          </p>
+          <p>
+            <strong className="text-text-primary">When should I encode a URL?</strong> Encode query parameter
+            values, dynamic path segments, and any user-provided text before appending it to a URL.
+          </p>
+          <p>
+            <strong className="text-text-primary">What is URL decoding?</strong> URL decoding reverses
+            percent-encoded text back into readable characters, which is useful for debugging query strings and
+            inspecting redirects.
+          </p>
+          <p>
+            <strong className="text-text-primary">Should I encode the full URL or only parts?</strong> Usually
+            encode components (like parameter values) rather than the entire URL to avoid double encoding.
+          </p>
+        </div>
+      </section>
     </ToolLayout>
   );
 }
