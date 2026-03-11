@@ -278,12 +278,17 @@ export function YamlToJsonTool() {
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-dimmed mb-3 leading-relaxed">
+          Working through JSON data workflows? Validate and clean data first, query nested paths,
+          then convert across formats and generate strongly typed interfaces.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "JSON to YAML", href: "/json-to-yaml" },
             { name: "JSON Formatter", href: "/json-formatter" },
-            { name: "TOML to JSON", href: "/toml" },
-            { name: "XML to JSON", href: "/xml-to-json" },
+            { name: "JSON Schema Validator", href: "/json-schema" },
+            { name: "JSONPath Tester", href: "/jsonpath" },
+            { name: "JSON → YAML", href: "/json-to-yaml" },
+            { name: "JSON → TypeScript", href: "/json-to-ts" },
           ].map((t) => (
             <a
               key={t.href}
