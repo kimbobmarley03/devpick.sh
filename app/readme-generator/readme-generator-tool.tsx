@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
 import { Plus, Trash2 } from "lucide-react";
+import Link from "next/link";
 
 const LICENSES = ["MIT", "Apache 2.0", "GPL 3.0", "BSD", "ISC", "Unlicense"];
 
@@ -15,6 +16,14 @@ const LICENSE_BADGE: Record<string, string> = {
   "ISC": "ISC-blue",
   "Unlicense": "Unlicense-blue",
 };
+
+const RELATED_DOC_TOOLS = [
+  { name: "License Generator", href: "/license-generator" },
+  { name: "Markdown to HTML", href: "/markdown-to-html" },
+  { name: "Markdown to PDF", href: "/markdown-to-pdf" },
+  { name: "JSON Formatter", href: "/json-formatter" },
+  { name: "Case Converter", href: "/case-converter" },
+];
 
 function generateReadme(config: {
   projectName: string;
@@ -328,6 +337,21 @@ export function ReadmeGeneratorTool() {
           <div className="bg-card-bg border border-card-border rounded-xl p-4 flex-1 overflow-auto">
             <pre className="text-xs font-mono text-text-secondary whitespace-pre-wrap leading-relaxed">{markdown}</pre>
           </div>
+        </div>
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <div className="flex flex-wrap gap-2">
+          {RELATED_DOC_TOOLS.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]"
+            >
+              {tool.name}
+            </Link>
+          ))}
         </div>
       </div>
     </ToolLayout>
