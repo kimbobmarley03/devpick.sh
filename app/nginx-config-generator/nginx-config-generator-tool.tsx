@@ -303,6 +303,27 @@ export function NginxConfigGeneratorTool() {
           </p>
         </div>
       </div>
+
+      {/* Related Tools */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "htaccess Generator", href: "/htaccess-generator" },
+            { name: "Docker Compose Generator", href: "/docker-compose-generator" },
+            { name: "robots.txt Generator", href: "/robots-txt" },
+            { name: "HTTP Status Checker", href: "/http-status" },
+          ].map((tool) => (
+            <a
+              key={tool.href}
+              href={tool.href}
+              className="text-xs text-accent hover:underline px-2 py-1 rounded bg-surface-subtle"
+            >
+              {tool.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }
