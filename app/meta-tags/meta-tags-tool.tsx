@@ -233,8 +233,10 @@ export function MetaTagsTool() {
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "Robots.txt Generator", href: "/robots-txt" },
+            { name: "UTM Builder", href: "/utm-builder" },
+            { name: "URL Encoder", href: "/url-encoder" },
             { name: "QR Code Generator", href: "/qr-code-generator" },
+            { name: "Robots.txt Generator", href: "/robots-txt" },
             { name: "Slug Generator", href: "/slug-generator" },
             { name: "Word Counter", href: "/character-counter" },
           ].map((t) => (

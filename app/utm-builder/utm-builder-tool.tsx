@@ -45,6 +45,24 @@ const UTM_PARAMS = [
 const HISTORY_KEY = "utm-builder-history";
 const MAX_HISTORY = 10;
 
+const UTM_EXAMPLES = [
+  {
+    channel: "Email newsletter",
+    example: "utm_source=newsletter&utm_medium=email&utm_campaign=product_launch&utm_content=cta_button",
+    note: "Use utm_content to compare button vs text link performance in the same email.",
+  },
+  {
+    channel: "Social post",
+    example: "utm_source=linkedin&utm_medium=social&utm_campaign=q2_webinar",
+    note: "Keep source/medium naming consistent across all social channels for cleaner GA4 reports.",
+  },
+  {
+    channel: "Paid ads",
+    example: "utm_source=google&utm_medium=cpc&utm_campaign=brand_search&utm_term=crm+software",
+    note: "Use utm_term for keyword-level analysis and align campaign names with ad platform naming.",
+  },
+];
+
 function buildUrl(base: string, params: Record<string, string>): string {
   if (!base) return "";
   try {
@@ -221,6 +239,59 @@ export function UtmBuilderTool() {
         </div>
       </div>
 
+      {/* SEO Content */}
+      <section className="mt-8 pt-6 border-t border-border-subtle space-y-4">
+        <h2 className="text-sm font-semibold text-text-secondary">What is a UTM parameter?</h2>
+        <div className="space-y-3 text-xs text-text-secondary leading-relaxed">
+          <p>
+            UTM parameters are tracking tags added to a URL (for example <code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code>).
+            They help you see exactly where clicks and conversions come from in Google Analytics (GA4) and other attribution tools.
+          </p>
+          <p>
+            If you run campaigns across email, social, paid ads, or partnerships, a UTM builder keeps your naming consistent so traffic data does not get fragmented.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-6 bg-card-bg border border-card-border rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-border-subtle bg-surface-subtle">
+          <h2 className="text-sm font-semibold text-text-secondary font-mono uppercase tracking-wide">When to use UTM links</h2>
+        </div>
+        <div className="p-5 space-y-3 text-xs text-text-secondary leading-relaxed">
+          <p><strong className="text-text-primary">Email marketing:</strong> measure which newsletter, sequence, or CTA drives signups and revenue.</p>
+          <p><strong className="text-text-primary">Social posts:</strong> compare traffic from LinkedIn, X, Instagram, and creator partnerships.</p>
+          <p><strong className="text-text-primary">Paid campaigns:</strong> unify attribution across Google Ads, Meta Ads, and other ad platforms.</p>
+          <p><strong className="text-text-primary">QR campaigns:</strong> append UTM tags before creating a QR code so offline scans are attributable online.</p>
+        </div>
+      </section>
+
+      <section className="mt-6 bg-card-bg border border-card-border rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-border-subtle bg-surface-subtle">
+          <h2 className="text-sm font-semibold text-text-secondary font-mono uppercase tracking-wide">UTM examples by channel</h2>
+        </div>
+        <div className="divide-y divide-border-subtle">
+          {UTM_EXAMPLES.map((item) => (
+            <div key={item.channel} className="px-5 py-3 space-y-1.5">
+              <p className="text-xs font-semibold text-text-secondary">{item.channel}</p>
+              <code className="block text-[11px] font-mono text-accent break-all">{item.example}</code>
+              <p className="text-xs text-text-muted">{item.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-6 bg-card-bg border border-card-border rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-border-subtle bg-surface-subtle">
+          <h2 className="text-sm font-semibold text-text-secondary font-mono uppercase tracking-wide">Common UTM mistakes to avoid</h2>
+        </div>
+        <ul className="p-5 space-y-2 text-xs text-text-secondary list-disc list-inside leading-relaxed">
+          <li><strong className="text-text-primary">Inconsistent naming:</strong> <code>Facebook</code> vs <code>facebook</code> creates split reports.</li>
+          <li><strong className="text-text-primary">Using UTM tags on internal links:</strong> this can overwrite original attribution sessions.</li>
+          <li><strong className="text-text-primary">Missing required fields:</strong> always set source, medium, and campaign for useful reporting.</li>
+          <li><strong className="text-text-primary">Not encoding messy URLs:</strong> use the <a href="/url-encoder" className="text-accent hover:underline">URL Encoder</a> when values include spaces or special characters.</li>
+        </ul>
+      </section>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
@@ -228,7 +299,7 @@ export function UtmBuilderTool() {
           {[
             { name: "URL Encoder", href: "/url-encoder" },
             { name: "QR Code Generator", href: "/qr-code-generator" },
-            { name: "Slug Generator", href: "/slug-generator" },
+            { name: "Meta Tags Generator", href: "/meta-tags" },
             { name: "Open Graph Preview", href: "/og-preview" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-surface-subtle">

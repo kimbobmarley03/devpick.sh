@@ -158,10 +158,11 @@ export function QrTool() {
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
         <div className="flex flex-wrap gap-2">
           {[
+            { name: "UTM Builder", href: "/utm-builder" },
+            { name: "URL Encoder", href: "/url-encoder" },
             { name: "Barcode Generator", href: "/barcode-generator" },
             { name: "Password Generator", href: "/password-generator" },
             { name: "Slug Generator", href: "/slug-generator" },
-            { name: "URL Encoder", href: "/url-encoder" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}
