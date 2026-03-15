@@ -292,6 +292,30 @@ export function UtmBuilderTool() {
         </ul>
       </section>
 
+      <section className="mt-6 bg-card-bg border border-card-border rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-border-subtle bg-surface-subtle">
+          <h2 className="text-sm font-semibold text-text-secondary font-mono uppercase tracking-wide">Questions people usually have</h2>
+        </div>
+        <div className="p-5 space-y-4 text-xs text-text-secondary leading-relaxed">
+          <div>
+            <h3 className="text-text-primary font-semibold mb-1">What is the difference between utm_source and utm_medium?</h3>
+            <p><code>utm_source</code> tells you where the click came from, like google, linkedin, or newsletter. <code>utm_medium</code> tells you the channel type, like cpc, email, social, or referral.</p>
+          </div>
+          <div>
+            <h3 className="text-text-primary font-semibold mb-1">Can I use UTM links in QR codes?</h3>
+            <p>Yes. Add the UTM tags first, then turn the final URL into a QR code. That lets you measure scans from flyers, events, packaging, or in-store promos inside GA4.</p>
+          </div>
+          <div>
+            <h3 className="text-text-primary font-semibold mb-1">Should I use UTM parameters on internal links?</h3>
+            <p>No. UTM tags are for external campaign links. Putting them on internal site links can overwrite the original session source and make attribution messier.</p>
+          </div>
+          <div>
+            <h3 className="text-text-primary font-semibold mb-1">Do I need every UTM field?</h3>
+            <p>No. In practice, source, medium, and campaign are the core fields. Term and content are optional, but useful when you want to compare keywords, creatives, or button variations.</p>
+          </div>
+        </div>
+      </section>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
