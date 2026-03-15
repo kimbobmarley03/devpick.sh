@@ -431,13 +431,18 @@ ${data.notes ? `<div class="footer"><div class="footer-label">Notes</div><div cl
 
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
-        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <h2 className="text-sm font-semibold text-text-secondary mb-2">Related Tools</h2>
+        <p className="text-xs text-text-ghost mb-3">
+          Building an invoice workflow? Use these tools to set rates, format totals, and prep final client-ready PDFs.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
+            { name: "Freelance Rate Calculator", href: "/freelance-rate-calculator" },
+            { name: "Number Format", href: "/number-format" },
+            { name: "Word to PDF", href: "/word-to-pdf" },
+            { name: "Merge PDF", href: "/merge-pdf" },
+            { name: "PDF Watermark", href: "/pdf-watermark" },
             { name: "QR Code Generator", href: "/qr-code-generator" },
-            { name: "Lorem Ipsum", href: "/lorem-ipsum-generator" },
-            { name: "UUID Generator", href: "/uuid-generator" },
-            { name: "Slug Generator", href: "/slug-generator" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}
