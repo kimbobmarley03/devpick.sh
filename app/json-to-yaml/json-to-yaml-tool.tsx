@@ -301,10 +301,12 @@ export function JsonToYamlTool() {
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "YAML to JSON", href: "/yaml-formatter" },
-            { name: "JSON Formatter", href: "/json-formatter" },
-            { name: "TOML to JSON", href: "/toml" },
+            { name: "YAML to JSON", href: "/yaml-to-json" },
+            { name: "JSON to XML", href: "/json-to-xml" },
             { name: "XML to JSON", href: "/xml-to-json" },
+            { name: "JSONPath Tester", href: "/jsonpath" },
+            { name: "JSON Diff", href: "/json-diff" },
+            { name: "JSON Formatter", href: "/json-formatter" },
           ].map((t) => (
             <a
               key={t.href}
