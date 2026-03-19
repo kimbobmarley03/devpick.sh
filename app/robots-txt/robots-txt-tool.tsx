@@ -241,14 +241,54 @@ export function RobotsTxtTool() {
           </div>
         </div>
       </div>
+      {/* SEO Content */}
+      <section className="mt-8 pt-6 border-t border-border-subtle space-y-4">
+        <h2 className="text-sm font-semibold text-text-secondary">How to use this robots.txt generator</h2>
+        <div className="space-y-3 text-xs text-text-secondary leading-relaxed">
+          <p>
+            A <code>robots.txt</code> file tells search engine crawlers which paths they can or cannot crawl.
+            Use this generator to create valid rules for <code>User-agent</code>, <code>Allow</code>, <code>Disallow</code>,
+            optional <code>Crawl-delay</code>, and your sitemap URL.
+          </p>
+          <p>
+            Start with one group for <code>*</code>, then add bot-specific groups only when needed.
+            Keep rules minimal and test them in Google Search Console before deploying.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-lg border p-5" style={{ background: "var(--dp-bg-card)", borderColor: "var(--dp-border)" }}>
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Robots.txt examples</h2>
+        <div className="space-y-4 text-xs leading-relaxed" style={{ color: "var(--dp-text-secondary)" }}>
+          <div>
+            <p className="font-semibold" style={{ color: "var(--dp-text-primary)" }}>Block admin pages, allow everything else</p>
+            <pre className="mt-1 p-3 rounded text-[11px] overflow-x-auto" style={{ background: "var(--dp-bg-output)", color: "var(--dp-text-primary)" }}>{`User-agent: *\nDisallow: /admin/\nDisallow: /private/\n\nSitemap: https://example.com/sitemap.xml`}</pre>
+          </div>
+          <div>
+            <p className="font-semibold" style={{ color: "var(--dp-text-primary)" }}>Allow one folder for Googlebot while blocking others</p>
+            <pre className="mt-1 p-3 rounded text-[11px] overflow-x-auto" style={{ background: "var(--dp-bg-output)", color: "var(--dp-text-primary)" }}>{`User-agent: Googlebot\nAllow: /blog/\nDisallow: /\n\nUser-agent: *\nDisallow:`}</pre>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-lg border p-5" style={{ background: "var(--dp-bg-card)", borderColor: "var(--dp-border)" }}>
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Common robots.txt mistakes</h2>
+        <ul className="space-y-2 text-xs list-disc list-inside" style={{ color: "var(--dp-text-secondary)" }}>
+          <li><strong style={{ color: "var(--dp-text-primary)" }}>Blocking important pages by accident:</strong> double-check <code>Disallow: /</code> rules before publish.</li>
+          <li><strong style={{ color: "var(--dp-text-primary)" }}>Using robots.txt to hide sensitive content:</strong> robots.txt is public, so it is not a security control.</li>
+          <li><strong style={{ color: "var(--dp-text-primary)" }}>Forgetting sitemap links:</strong> add a sitemap so crawlers discover new pages faster.</li>
+          <li><strong style={{ color: "var(--dp-text-primary)" }}>Confusing crawl vs index:</strong> if you need de-indexing, use <a href="/meta-tags" className="text-accent hover:underline">meta robots</a> or headers too.</li>
+        </ul>
+      </section>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
         <div className="flex flex-wrap gap-2">
           {[
             { name: "Meta Tag Generator", href: "/meta-tags" },
-            { name: "Slug Generator", href: "/slug-generator" },
-            { name: "Chmod Calculator", href: "/chmod" },
+            { name: "HTTP Status Checker", href: "/http-status" },
+            { name: "XML Formatter", href: "/xml-formatter" },
             { name: "URL Encoder", href: "/url-encoder" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
