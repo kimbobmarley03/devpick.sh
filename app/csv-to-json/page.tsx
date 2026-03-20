@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { CsvToJsonTool } from "./csv-to-json-tool";
 
 export const metadata: Metadata = {
-  title: "CSV to JSON Converter Online — Free | devpick.sh",
+  title: "CSV to JSON Converter Online (Headers, Delimiter, Arrays) | devpick.sh",
   description:
-    "Convert CSV data to JSON instantly in your browser. Handles headers, custom delimiters, and nested arrays. 100% client-side, free.",
+    "Free CSV to JSON converter with header row support, custom delimiters, and array parsing. Convert spreadsheet exports to clean JSON instantly in your browser.",
   openGraph: {
-    title: "CSV to JSON Converter | devpick.sh",
-    description: "Convert CSV to JSON online for free. Handles custom delimiters. Client-side.",
+    title: "CSV to JSON Converter Online (Headers + Custom Delimiter) | devpick.sh",
+    description:
+      "Convert CSV files to JSON with header mapping, custom delimiter support, and array parsing. Fast, free, and fully client-side.",
     url: "https://devpick.sh/csv-to-json",
   },
   alternates: { canonical: "https://devpick.sh/csv-to-json" },
