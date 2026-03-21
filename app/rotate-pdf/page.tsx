@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { RotatePdfTool } from "./rotate-pdf-tool";
 
 export const metadata: Metadata = {
-  title: "Rotate PDF — Free, No Upload | devpick.sh",
+  title: "Rotate PDF Online — Rotate Pages 90°, 180°, 270° (Free) | devpick.sh",
   description:
-    "Rotate PDF pages online. Choose per-page or bulk rotation. 100% client-side, free.",
+    "Rotate PDF pages online in seconds. Rotate single pages or entire documents by 90°, 180°, or 270°. Free, browser-based, and no file upload required.",
   openGraph: {
-    title: "Rotate PDF | devpick.sh",
-    description: "Rotate PDF pages. Runs entirely in your browser.",
+    title: "Rotate PDF Online — 90°, 180°, 270° | devpick.sh",
+    description:
+      "Rotate one page or all PDF pages instantly. Free and private — files stay in your browser.",
     url: "https://devpick.sh/rotate-pdf",
   },
   alternates: { canonical: "https://devpick.sh/rotate-pdf" },
