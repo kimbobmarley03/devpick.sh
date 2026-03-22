@@ -281,6 +281,70 @@ export function EmailSignatureGeneratorTool() {
           </div>
         </div>
       </div>
+
+      {/* SEO Content: Best Practices */}
+      <section className="mt-8 pt-6 border-t border-border-subtle space-y-4">
+        <h2 className="text-sm font-semibold text-text-secondary">Email signature best practices</h2>
+        <div className="space-y-3 text-xs text-text-secondary leading-relaxed">
+          <p>
+            A good email signature should be easy to scan, mobile-friendly, and focused on trust signals.
+            Keep it short: name, role, company, and 1-2 contact methods are usually enough.
+          </p>
+          <p>
+            If you include links, use clear labels and test them in Gmail and Outlook.
+            Most email clients strip advanced CSS, so simple table-based HTML signatures are the safest option.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-6 bg-card-bg border border-card-border rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-border-subtle bg-surface-subtle">
+          <h2 className="text-sm font-semibold text-text-secondary font-mono uppercase tracking-wide">Common email signature mistakes</h2>
+        </div>
+        <ul className="p-5 space-y-2 text-xs text-text-secondary list-disc list-inside leading-relaxed">
+          <li><strong className="text-text-primary">Too much text:</strong> avoid long quotes, disclaimers, or stacked phone numbers in every message.</li>
+          <li><strong className="text-text-primary">Huge images:</strong> oversized logos slow down email rendering and can get blocked by clients.</li>
+          <li><strong className="text-text-primary">Broken social links:</strong> always test LinkedIn/X links before rolling out company-wide.</li>
+          <li><strong className="text-text-primary">Inconsistent branding:</strong> standardize colors, title format, and CTA links across your team.</li>
+        </ul>
+      </section>
+
+      <section className="mt-6 bg-card-bg border border-card-border rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-border-subtle bg-surface-subtle">
+          <h2 className="text-sm font-semibold text-text-secondary font-mono uppercase tracking-wide">FAQ</h2>
+        </div>
+        <div className="p-5 space-y-4 text-xs text-text-secondary leading-relaxed">
+          <div>
+            <h3 className="text-text-primary font-semibold mb-1">Does this generator work for Gmail and Outlook?</h3>
+            <p>Yes. Use <strong>Copy to Clipboard</strong> for rich-text paste in Gmail/Outlook. If formatting shifts, use the HTML source method in your email client signature settings.</p>
+          </div>
+          <div>
+            <h3 className="text-text-primary font-semibold mb-1">Should I include social icons in my email signature?</h3>
+            <p>Only include links you actively use. Too many icons can distract from your core CTA and make the signature look noisy.</p>
+          </div>
+          <div>
+            <h3 className="text-text-primary font-semibold mb-1">What image size is best for a logo?</h3>
+            <p>For most signatures, a square logo around 120×120 px (or smaller) is enough. Keep file size low to improve email load performance.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Related internal links for SEO cluster */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "UTM Builder", href: "/utm-builder" },
+            { name: "Open Graph Preview", href: "/og-preview" },
+            { name: "Meta Tag Generator", href: "/meta-tags" },
+            { name: "Markdown Editor", href: "/markdown-editor" },
+          ].map((t) => (
+            <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-surface-subtle">
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }
