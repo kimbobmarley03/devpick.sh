@@ -2,12 +2,22 @@ import type { Metadata } from "next";
 import { UrlTool } from "./url-tool";
 
 export const metadata: Metadata = {
-  title: "URL Encoder/Decoder Online — Free URL Encode Decode Tool",
+  title:
+    "URL Encoder & Decoder (Percent Encoding) — Free Online Tool | devpick.sh",
   description:
-    "Encode and decode URL components online. Free URL encoder and decoder tool. Handles percent encoding, query strings, and special characters.",
+    "Encode or decode URL strings instantly. Convert spaces, query params, and special characters with a fast client-side percent-encoding tool.",
+  keywords: [
+    "url encoder",
+    "url decoder",
+    "percent encoding",
+    "encode url online",
+    "decode url parameters",
+    "url encode decode tool",
+  ],
   openGraph: {
-    title: "URL Encoder/Decoder Online | devpick.sh",
-    description: "Encode and decode URL components. Free, instant, client-side.",
+    title: "URL Encoder & Decoder (Percent Encoding) | devpick.sh",
+    description:
+      "Encode and decode URL parameters, query strings, and special characters instantly in your browser.",
     url: "https://devpick.sh/url-encoder",
   },
   alternates: { canonical: "https://devpick.sh/url-encoder" },
