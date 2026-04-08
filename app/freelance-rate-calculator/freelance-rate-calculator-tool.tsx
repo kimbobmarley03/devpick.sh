@@ -285,6 +285,27 @@ export function FreelanceRateCalculatorTool() {
           </div>
         </div>
       </div>
+
+      {/* Related Tools */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "Invoice Generator", href: "/invoice-generator" },
+            { name: "Words Counter", href: "/words" },
+            { name: "Link in Bio Generator", href: "/link-in-bio-generator" },
+            { name: "Recipe Cost Calculator", href: "/recipe-cost-calculator" },
+          ].map((t) => (
+            <a
+              key={t.href}
+              href={t.href}
+              className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]"
+            >
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }
