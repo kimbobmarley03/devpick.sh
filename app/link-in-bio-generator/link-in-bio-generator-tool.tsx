@@ -396,6 +396,31 @@ ${linksHTML}
           </p>
         </div>
       </div>
+
+      {/* Related Tools */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-ghost mb-3">
+          Build a full creator growth stack with tracking links, social previews, and campaign-ready assets.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "UTM Builder", href: "/utm-builder" },
+            { name: "QR Code Generator", href: "/qr-code-generator" },
+            { name: "OG Preview", href: "/og-preview" },
+            { name: "Meta Tags Generator", href: "/meta-tags" },
+            { name: "Favicon Generator", href: "/favicon-generator" },
+          ].map((t) => (
+            <a
+              key={t.href}
+              href={t.href}
+              className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]"
+            >
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }
