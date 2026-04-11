@@ -239,10 +239,11 @@ export function Mp4ToMp3Tool() {
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "WebP to PNG", href: "/webp-to-png" },
-            { name: "Image → Base64", href: "/image-base64" },
-            { name: "Favicon Generator", href: "/favicon-generator" },
-            { name: "Color Picker from Image", href: "/color-from-image" },
+            { name: "Merge PDF", href: "/merge-pdf" },
+            { name: "Compress PDF", href: "/compress-pdf" },
+            { name: "Split PDF", href: "/split-pdf" },
+            { name: "PDF to JPG", href: "/pdf-to-jpg" },
+            { name: "JPG to PDF", href: "/jpg-to-pdf" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}
