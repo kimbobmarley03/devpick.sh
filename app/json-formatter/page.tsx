@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { JsonFormatter } from "./json-formatter";
 
 export const metadata: Metadata = {
-  title: "JSON Formatter, Beautifier & Validator Online | devpick.sh",
+  title: "JSON Formatter, Beautifier, Validator & JSON Lint Online | devpick.sh",
   description:
-    "JSON formatter and validator to pretty print, beautify, and minify JSON online. Detect syntax errors instantly and format API payloads in your browser.",
+    "Free JSON formatter, JSON beautifier, and JSON lint validator online. Pretty print or minify JSON, catch syntax errors instantly, and clean API payloads in your browser.",
   openGraph: {
-    title: "JSON Formatter, Beautifier & Validator Online | devpick.sh",
+    title: "JSON Formatter, Beautifier, Validator & JSON Lint Online | devpick.sh",
     description:
-      "Pretty print, beautify, validate, and minify JSON instantly. Fix syntax errors fast without uploading files.",
+      "Pretty print, validate, lint, and minify JSON instantly. Fix API payload syntax errors fast without uploading files.",
     url: "https://devpick.sh/json-formatter",
   },
   alternates: {

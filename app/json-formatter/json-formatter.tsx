@@ -166,8 +166,23 @@ export function JsonFormatter() {
           </div>
         }
       />
-      {/* FAQ Section */}
+
+      {/* SEO Content */}
       <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-3">JSON formatter online for API debugging</h2>
+        <p className="text-sm text-text-dimmed leading-relaxed mb-3">
+          Use this free JSON formatter and JSON validator to clean API responses, lint malformed payloads,
+          and convert messy one-line JSON into readable structured data. Everything runs locally in your browser.
+        </p>
+        <ul className="list-disc pl-5 text-sm text-text-dimmed space-y-1">
+          <li>Pretty print JSON for logs, docs, and code reviews</li>
+          <li>Minify JSON before sending payloads over the network</li>
+          <li>Validate syntax and spot errors before shipping requests</li>
+        </ul>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-lg font-semibold text-text-primary mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {[
