@@ -154,6 +154,29 @@ export function WordsTool() {
           )}
         </div>
       </div>
+
+      {/* Related Tools */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "Readability Checker", href: "/readability-checker" },
+            { name: "Case Converter", href: "/case-converter" },
+            { name: "Slug Generator", href: "/slug-generator" },
+            { name: "Lorem Ipsum Generator", href: "/lorem-ipsum-generator" },
+            { name: "Markdown to HTML", href: "/markdown-to-html" },
+            { name: "Regex Cheat Sheet", href: "/regex-cheat-sheet" },
+          ].map((t) => (
+            <a
+              key={t.href}
+              href={t.href}
+              className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]"
+            >
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }
