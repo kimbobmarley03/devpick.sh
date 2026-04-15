@@ -144,6 +144,54 @@ export function UuidTool() {
       <p className="text-xs text-text-muted mt-3 text-right font-mono">
         {uuids.length} UUID{uuids.length !== 1 ? "s" : ""} · v4 (random)
       </p>
+
+      {/* SEO Content */}
+      <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-3">UUID v4 generator for API IDs, database keys, and trace IDs</h2>
+        <p className="text-sm text-text-dimmed leading-relaxed mb-3">
+          Generate random UUID v4 values instantly for backend services, database records, event streams,
+          and request correlation IDs. This free UUID and GUID generator runs in your browser and supports
+          bulk output for fixtures, seeds, and testing.
+        </p>
+        <ul className="list-disc pl-5 text-sm text-text-dimmed space-y-1">
+          <li>Create unique UUID v4 identifiers for APIs and microservices</li>
+          <li>Generate up to 100 UUIDs at once for load tests and mock data</li>
+          <li>Copy UUIDs instantly in lowercase or uppercase format</li>
+        </ul>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {[
+            {
+              q: "Is UUID the same as GUID?",
+              a: "Yes. UUID and GUID describe the same identifier format. GUID is commonly used in Microsoft ecosystems, while UUID is the standards-based term.",
+            },
+            {
+              q: "What kind of UUID does this tool generate?",
+              a: "It generates UUID v4, a randomly generated 128-bit identifier that is widely used for IDs in modern applications.",
+            },
+            {
+              q: "Can I use these UUIDs in production systems?",
+              a: "Yes. UUID v4 is suitable for most production use cases where globally unique IDs are needed, including API resources, database primary keys, and event IDs.",
+            },
+            {
+              q: "Are my UUIDs sent to a server?",
+              a: "No. UUIDs are generated locally in your browser using built-in Web APIs, so nothing is uploaded.",
+            },
+          ].map((faq, i) => (
+            <details key={i} className="group">
+              <summary className="cursor-pointer text-sm font-medium text-text-secondary hover:text-text-primary">
+                {faq.q}
+              </summary>
+              <p className="mt-2 text-sm text-text-dimmed pl-4">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
