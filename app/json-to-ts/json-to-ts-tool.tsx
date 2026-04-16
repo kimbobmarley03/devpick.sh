@@ -201,12 +201,16 @@ export function JsonToTsTool() {
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-dimmed mb-3">
+          Working with API payloads? Format, validate, and convert your JSON across the full workflow.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
             { name: "JSON Formatter", href: "/json-formatter" },
             { name: "JSONPath Tester", href: "/jsonpath" },
             { name: "JSON Schema Validator", href: "/json-schema" },
-            { name: "CSV to JSON", href: "/csv-formatter" },
+            { name: "JSON to YAML", href: "/json-to-yaml" },
+            { name: "CSV to JSON", href: "/csv-to-json" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}
