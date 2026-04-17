@@ -508,6 +508,67 @@ export function LicenseGeneratorTool() {
           </div>
         </div>
       </div>
+
+      <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-3">Open source license generator for GitHub projects</h2>
+        <p className="text-sm text-text-dimmed leading-relaxed mb-3">
+          Use this free open source license generator to create a LICENSE file for your repo in seconds.
+          Compare MIT, Apache 2.0, GPL, BSD, ISC, and Creative Commons options, then copy or download
+          the exact text with your name and year pre-filled.
+        </p>
+        <ul className="list-disc pl-5 text-sm text-text-dimmed space-y-1">
+          <li>Pick a license with clear permissions, conditions, and limitations</li>
+          <li>Generate a ready-to-commit LICENSE file for GitHub or GitLab</li>
+          <li>Review key differences before publishing your project</li>
+        </ul>
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {[
+            {
+              q: "Which license should I pick for a side project?",
+              a: "MIT is a common default if you want maximum reuse with minimal restrictions. Apache 2.0 is a strong alternative when you want explicit patent grants.",
+            },
+            {
+              q: "When should I use GPL or AGPL instead of MIT?",
+              a: "Use GPL/AGPL when you want copyleft terms so derivatives must stay open under similar conditions. AGPL is stricter for software used over a network.",
+            },
+            {
+              q: "Does this tool upload my LICENSE content?",
+              a: "No. License text generation runs in your browser, and you can copy or download the output directly.",
+            },
+          ].map((faq, i) => (
+            <details key={i} className="group">
+              <summary className="cursor-pointer text-sm font-medium text-text-secondary hover:text-text-primary">
+                {faq.q}
+              </summary>
+              <p className="mt-2 text-sm text-text-dimmed pl-4">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-dimmed mb-3 leading-relaxed">
+          Finishing project setup? Use these tools for README polishing, config cleanup, and release prep.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "Diff Checker", href: "/diff-checker" },
+            { name: "Markdown to HTML", href: "/markdown-to-html" },
+            { name: "Words Counter", href: "/words" },
+            { name: "JSON Formatter", href: "/json-formatter" },
+            { name: "HTML Formatter", href: "/html-formatter" },
+          ].map((t) => (
+            <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }
