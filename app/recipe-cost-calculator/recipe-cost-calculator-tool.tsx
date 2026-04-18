@@ -368,6 +368,31 @@ export function RecipeCostCalculatorTool() {
               <li>Saved recipes persist across browser sessions</li>
             </ul>
           </div>
+
+          {/* Related Tools */}
+          <div className="bg-card-bg border border-card-border rounded-xl p-5">
+            <h2 className="text-sm font-semibold text-text-primary mb-2">Related Tools</h2>
+            <p className="text-xs text-text-muted mb-3">
+              Build a full pricing workflow from ingredient costing to client billing and final documents.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { name: "Freelance Rate Calculator", href: "/freelance-rate-calculator" },
+                { name: "Invoice Generator", href: "/invoice-generator" },
+                { name: "Number Formatter", href: "/number-format" },
+                { name: "Word to PDF", href: "/word-to-pdf" },
+                { name: "PDF Watermark", href: "/pdf-watermark" },
+              ].map((tool) => (
+                <a
+                  key={tool.href}
+                  href={tool.href}
+                  className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]"
+                >
+                  {tool.name}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </ToolLayout>
