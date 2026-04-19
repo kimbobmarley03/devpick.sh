@@ -63,6 +63,21 @@ export default function RegexCheatSheetPage() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Regex Cheat Sheet & Tester",
+            description: "Regex reference with live testing, syntax examples, and copy-ready patterns.",
+            url: "https://devpick.sh/regex-cheat-sheet",
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "Web Browser",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        }}
+      />
       <RegexCheatSheetTool />
     </>
   );
