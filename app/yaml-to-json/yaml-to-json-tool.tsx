@@ -275,12 +275,26 @@ export function YamlToJsonTool() {
         }
       />
 
+      {/* SEO Content */}
+      <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-3">YAML to JSON converter for config and API workflows</h2>
+        <p className="text-sm text-text-dimmed leading-relaxed mb-3">
+          Convert YAML files to valid JSON for Kubernetes manifests, CI/CD pipelines, API configs, and app settings.
+          This YAML to JSON converter validates structure and formats clean output instantly in your browser.
+        </p>
+        <ul className="list-disc pl-5 text-sm text-text-dimmed space-y-1">
+          <li>Convert nested YAML objects and arrays into parseable JSON</li>
+          <li>Validate YAML syntax before pushing config changes</li>
+          <li>Pretty-print JSON output for debugging and code reviews</li>
+        </ul>
+      </div>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
         <p className="text-xs text-text-dimmed mb-3 leading-relaxed">
-          Working through JSON data workflows? Validate and clean data first, query nested paths,
-          then convert across formats and generate strongly typed interfaces.
+          Continue your YAML/JSON workflow: format and validate JSON, query nested keys, and convert between XML, CSV,
+          and typed TypeScript interfaces.
         </p>
         <div className="flex flex-wrap gap-2">
           {[
@@ -288,6 +302,7 @@ export function YamlToJsonTool() {
             { name: "JSON Schema Validator", href: "/json-schema" },
             { name: "JSONPath Tester", href: "/jsonpath" },
             { name: "JSON → YAML", href: "/json-to-yaml" },
+            { name: "JSON → XML", href: "/json-to-xml" },
             { name: "JSON → TypeScript", href: "/json-to-ts" },
           ].map((t) => (
             <a
