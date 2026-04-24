@@ -32,6 +32,41 @@ export default function Base64Page() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is Base64 encoding used for?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Base64 is used to represent binary or text data as ASCII-safe text for APIs, email attachments, and data transport.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is Base64 encryption?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "No. Base64 is encoding, not encryption. It does not protect data confidentiality.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Does this Base64 tool upload my data?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "No. All Base64 encode/decode operations run locally in your browser.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
       <Base64Tool />
     </>
   );

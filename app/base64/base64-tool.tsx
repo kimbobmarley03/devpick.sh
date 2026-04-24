@@ -138,6 +138,53 @@ export function Base64Tool() {
           </div>
         }
       />
+
+      {/* SEO Content */}
+      <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-3">Base64 encoder/decoder for API payloads and debugging</h2>
+        <p className="text-sm text-text-dimmed leading-relaxed mb-3">
+          Use this free Base64 tool to quickly encode plain text or decode Base64 strings while debugging APIs,
+          auth tokens, and app configs. Everything runs locally in your browser.
+        </p>
+        <ul className="list-disc pl-5 text-sm text-text-dimmed space-y-1">
+          <li>Encode UTF-8 text to Base64 for transport-safe payloads</li>
+          <li>Decode Base64 strings to inspect token claims and request bodies</li>
+          <li>No upload, no account, and no server-side processing</li>
+        </ul>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {[
+            {
+              q: "What is Base64 encoding used for?",
+              a: "Base64 converts text/binary data into ASCII-safe text, commonly used in APIs, email attachments, data URLs, and auth headers.",
+            },
+            {
+              q: "Does Base64 encryption protect my data?",
+              a: "No. Base64 is encoding, not encryption. Anyone can decode it. Use encryption if you need confidentiality.",
+            },
+            {
+              q: "Can I decode UTF-8 characters with this tool?",
+              a: "Yes. This tool supports UTF-8 text so non-English characters are preserved when encoding/decoding.",
+            },
+            {
+              q: "Is my data uploaded to a server?",
+              a: "No. Encoding and decoding happen entirely in your browser.",
+            },
+          ].map((faq, i) => (
+            <details key={i} className="group">
+              <summary className="cursor-pointer text-sm font-medium text-text-secondary hover:text-text-primary">
+                {faq.q}
+              </summary>
+              <p className="mt-2 text-sm text-text-dimmed pl-4">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
