@@ -31,6 +31,24 @@ export default function JsonPage() {
           __html: JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is JSON?","acceptedAnswer":{"@type":"Answer","text":"JSON (JavaScript Object Notation) is a lightweight data format using key-value pairs. It supports strings, numbers, booleans, arrays, objects, and null values."}},{"@type":"Question","name":"How do I validate JSON?","acceptedAnswer":{"@type":"Answer","text":"Paste your JSON into the input box. Invalid JSON turns red and shows an error message. Common issues include missing quotes around keys and trailing commas."}},{"@type":"Question","name":"What is the difference between JSON and XML?","acceptedAnswer":{"@type":"Answer","text":"JSON uses a compact key-value syntax native to JavaScript. XML uses verbose opening and closing tags. JSON is generally faster to parse and easier to read."}}]}),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "JSON Formatter",
+                item: "https://devpick.sh/json-formatter",
+              },
+            ],
+          }),
+        }}
+      />
       <JsonFormatter />
     </>
   );
