@@ -181,6 +181,21 @@ export function JsonFormatter() {
         </ul>
       </div>
 
+      {/* Internal links: JSON workflow cluster */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Continue your JSON workflow</h2>
+        <p className="text-xs text-text-dimmed leading-relaxed">
+          After formatting JSON, validate against a schema with{" "}
+          <a href="/json-schema" className="text-accent hover:underline">JSON Schema Validator</a>,
+          inspect nested paths in{" "}
+          <a href="/json-viewer" className="text-accent hover:underline">JSON Viewer</a>,
+          query fields with{" "}
+          <a href="/jsonpath" className="text-accent hover:underline">JSONPath Tester</a>,
+          or convert payloads using{" "}
+          <a href="/json-to-yaml" className="text-accent hover:underline">JSON → YAML</a>.
+        </p>
+      </div>
+
       {/* FAQ Section */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-lg font-semibold text-text-primary mb-4">Frequently Asked Questions</h2>
@@ -211,6 +226,7 @@ export function JsonFormatter() {
         <div className="flex flex-wrap gap-2">
           {[
             { name: "JSON Schema Validator", href: "/json-schema" },
+            { name: "JSON Viewer", href: "/json-viewer" },
             { name: "JSONPath Tester", href: "/jsonpath" },
             { name: "JSON → YAML", href: "/json-to-yaml" },
             { name: "YAML → JSON", href: "/yaml-to-json" },
