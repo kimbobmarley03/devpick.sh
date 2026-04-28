@@ -2,12 +2,20 @@ import type { Metadata } from "next";
 import { GuidTool } from "./guid-tool";
 
 export const metadata: Metadata = {
-  title: "GUID Generator — Free Online GUID / UUID Generator | devpick.sh",
+  title: "GUID Generator (UUID v4) — Free Online Bulk GUID Tool | devpick.sh",
   description:
-    "Generate GUIDs (Globally Unique Identifiers) online. Bulk generate, format as uppercase, braces, no-hyphens, or C# Guid. 100% client-side, free, no sign-up. Same as UUID v4.",
+    "Free GUID Generator to create UUID v4 values instantly. Bulk-generate GUIDs, output uppercase/braces/no-hyphens/C# format, and copy in one click. Client-side, no sign-up.",
+  keywords: [
+    "guid generator",
+    "uuid v4 generator",
+    "bulk guid generator",
+    "online guid tool",
+    "c# guid format",
+  ],
   openGraph: {
-    title: "GUID Generator | devpick.sh",
-    description: "Generate random GUIDs online. Multiple formats, bulk generate, one-click copy. Free, client-side.",
+    title: "GUID Generator (UUID v4) — Free Online | devpick.sh",
+    description:
+      "Generate UUID v4 / GUID values online with bulk output and formatting options (uppercase, braces, no hyphens, C#). Free and client-side.",
     url: "https://devpick.sh/guid-generator",
   },
   alternates: { canonical: "https://devpick.sh/guid-generator" },
