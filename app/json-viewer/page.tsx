@@ -2,12 +2,21 @@ import type { Metadata } from "next";
 import { JsonViewerTool } from "./json-viewer-tool";
 
 export const metadata: Metadata = {
-  title: "JSON Viewer & Tree Explorer Online — Free | devpick.sh",
+  title: "JSON Viewer Online (Tree + Search + Path Copy) — Free | devpick.sh",
   description:
-    "Interactive JSON tree viewer with expand/collapse, data type color coding, path copying, and search. 100% client-side, free.",
+    "View JSON in a clean tree, search keys/values, and copy JSON paths instantly. Free JSON viewer for large API payloads. No sign up, no upload.",
+  keywords: [
+    "json viewer",
+    "json tree viewer",
+    "json explorer",
+    "view json online",
+    "json path viewer",
+    "api json viewer",
+  ],
   openGraph: {
-    title: "JSON Viewer & Tree Explorer | devpick.sh",
-    description: "Interactive JSON tree viewer with expand/collapse and path copying. Free, client-side.",
+    title: "JSON Viewer Online (Tree + Search + Path Copy) | devpick.sh",
+    description:
+      "Free JSON viewer to explore nested JSON, search keys/values, and copy JSON paths. Private and browser-only.",
     url: "https://devpick.sh/json-viewer",
   },
   alternates: { canonical: "https://devpick.sh/json-viewer" },
