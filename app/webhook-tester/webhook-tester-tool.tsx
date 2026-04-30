@@ -314,6 +314,36 @@ export function WebhookTesterTool() {
         </div>
       )}
 
+      {/* FAQ / SEO copy */}
+      <div className="mt-8 pt-6 border-t border-border-subtle space-y-3">
+        <h2 className="text-sm font-semibold text-text-secondary">Webhook Tester FAQ</h2>
+        <div className="space-y-2 text-sm text-text-secondary">
+          <p>
+            <span className="font-medium text-text-primary">Can I test webhooks without Postman?</span>{" "}
+            Yes — this free webhook tester lets you send HTTP requests directly from your browser.
+          </p>
+          <p>
+            <span className="font-medium text-text-primary">Does devpick.sh store my payloads?</span>{" "}
+            Nope. Request building happens client-side, and we do not store your request body or headers.
+          </p>
+          <p>
+            <span className="font-medium text-text-primary">Can I generate cURL from a request?</span>{" "}
+            Yep. Open “Show cURL equivalent” to copy a terminal-ready command.
+          </p>
+          <p>
+            <span className="font-medium text-text-primary">What should I check when a webhook returns 401, 403, or 422?</span>{" "}
+            Verify your auth header, payload shape, and endpoint path. Use
+            <a href="/jwt-decoder" className="text-accent hover:underline"> JWT Decoder</a> to inspect bearer tokens and
+            <a href="/json-formatter" className="text-accent hover:underline"> JSON Formatter</a> to validate request bodies.
+          </p>
+          <p>
+            <span className="font-medium text-text-primary">How do I troubleshoot redirects or server errors fast?</span>{" "}
+            Pair this builder with
+            <a href="/http-status" className="text-accent hover:underline"> HTTP Status Codes</a> for quick 3xx/4xx/5xx diagnosis and retry with adjusted headers or payload.
+          </p>
+        </div>
+      </div>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
