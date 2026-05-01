@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Word Counter Online — Count Words, Characters & Reading Time",
   description:
     "Count words, characters, sentences, paragraphs, and lines in real time. Get reading time, speaking time, and keyword density. Free online word counter.",
+  keywords: [
+    "word counter",
+    "character counter",
+    "word count checker",
+    "essay word counter",
+    "reading time calculator",
+  ],
   openGraph: {
     title: "Word Counter | devpick.sh",
     description: "Real-time word, character, sentence, and paragraph counter with reading time.",

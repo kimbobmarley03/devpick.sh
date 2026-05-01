@@ -155,6 +155,41 @@ export function WordsTool() {
         </div>
       </div>
 
+      {/* SEO Content */}
+      <section className="mt-8 pt-6 border-t border-border-subtle space-y-4">
+        <h2 className="text-sm font-semibold text-text-secondary">Why use this word counter?</h2>
+        <div className="space-y-3 text-xs text-text-secondary leading-relaxed">
+          <p>
+            This online word counter helps you track <strong className="text-text-primary">word count</strong>, <strong className="text-text-primary">character count</strong>,
+            and estimated reading time while you write. It is useful for essays, blog posts, LinkedIn drafts, and ad copy
+            where length limits matter.
+          </p>
+          <p>
+            Need a quick <strong className="text-text-primary">character counter</strong> for social copy? Paste your text and watch
+            the stats update in real time. You can also check top keywords to quickly spot overused words before publishing.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-lg border p-5" style={{ background: "var(--dp-bg-card)", borderColor: "var(--dp-border)" }}>
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Common word count use cases</h2>
+        <ul className="space-y-2 text-xs list-disc list-inside" style={{ color: "var(--dp-text-secondary)" }}>
+          <li><strong style={{ color: "var(--dp-text-primary)" }}>Essay and assignment limits:</strong> stay within school or scholarship word caps.</li>
+          <li><strong style={{ color: "var(--dp-text-primary)" }}>SEO content drafting:</strong> balance article length and readability before publish.</li>
+          <li><strong style={{ color: "var(--dp-text-primary)" }}>Social posts and ad copy:</strong> keep short-form writing clear and concise.</li>
+          <li><strong style={{ color: "var(--dp-text-primary)" }}>Speech prep:</strong> estimate talking time from your script.</li>
+        </ul>
+      </section>
+
+      <section className="mt-6 rounded-lg border p-5" style={{ background: "var(--dp-bg-card)", borderColor: "var(--dp-border)" }}>
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Word Counter FAQ</h2>
+        <div className="space-y-3 text-xs leading-relaxed" style={{ color: "var(--dp-text-secondary)" }}>
+          <p><strong style={{ color: "var(--dp-text-primary)" }}>Does this tool count characters with and without spaces?</strong> Yes — both values are shown separately.</p>
+          <p><strong style={{ color: "var(--dp-text-primary)" }}>Is this word counter free?</strong> Yes, it is free and runs in your browser.</p>
+          <p><strong style={{ color: "var(--dp-text-primary)" }}>How accurate is reading time?</strong> It is an estimate based on average reading speed, useful for quick planning.</p>
+        </div>
+      </section>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
