@@ -194,13 +194,17 @@ export function SqlTool() {
       />
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
-        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <h2 className="text-sm font-semibold text-text-secondary mb-2">Related Tools</h2>
+        <p className="text-xs text-text-ghost mb-3">
+          Working on API payloads or DB migrations? Clean SQL first, then validate related JSON/CSV data and regex filters.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "XML Formatter", href: "/xml-formatter" },
-            { name: "Code Minifier", href: "/js-minifier" },
-            { name: "Markdown Preview", href: "/markdown-preview" },
             { name: "JSON Formatter", href: "/json-formatter" },
+            { name: "CSV Formatter", href: "/csv-formatter" },
+            { name: "Regex Tester", href: "/regex" },
+            { name: "XML Formatter", href: "/xml-formatter" },
+            { name: "JWT Decoder", href: "/jwt-decoder" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}
