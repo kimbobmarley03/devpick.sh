@@ -175,14 +175,64 @@ export function CsvToJsonTool() {
         }
       />
 
+      {/* SEO Content */}
+      <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-3">CSV to JSON converter for APIs, ETL, and frontend apps</h2>
+        <p className="text-sm text-text-dimmed leading-relaxed mb-3">
+          Use this free CSV to JSON converter to turn spreadsheet exports into clean JSON for REST APIs,
+          seed scripts, and frontend mock data. Parsing runs in your browser, so your data stays local.
+        </p>
+        <ul className="list-disc pl-5 text-sm text-text-dimmed space-y-1">
+          <li>Supports quoted fields, escaped quotes, and custom delimiters</li>
+          <li>Optional header mapping to create JSON objects by column name</li>
+          <li>Auto-detects booleans, numbers, and null values for faster cleanup</li>
+        </ul>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {[
+            {
+              q: "How do I convert CSV with headers to JSON objects?",
+              a: "Keep 'First row is header' enabled. The first line becomes object keys, and each next row maps to a JSON object.",
+            },
+            {
+              q: "Can this parse semicolon or tab-delimited files?",
+              a: "Yes. Switch the delimiter to semicolon, tab, pipe, or comma before converting.",
+            },
+            {
+              q: "Will this tool preserve quoted commas inside fields?",
+              a: "Yes. Quoted values like \"New York, NY\" stay as a single field during parsing.",
+            },
+            {
+              q: "Is my CSV uploaded to a server?",
+              a: "No. Conversion happens fully client-side in your browser.",
+            },
+          ].map((faq, i) => (
+            <details key={i} className="group">
+              <summary className="cursor-pointer text-sm font-medium text-text-secondary hover:text-text-primary">
+                {faq.q}
+              </summary>
+              <p className="mt-2 text-sm text-text-dimmed pl-4">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-ghost mb-3">
+          Continue your data conversion workflow with CSV cleanup, JSON validation, and schema generation tools.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "JSON to CSV", href: "/csv-formatter" },
+            { name: "CSV Formatter", href: "/csv-formatter" },
+            { name: "CSV Viewer", href: "/csv-viewer" },
             { name: "JSON Formatter", href: "/json-formatter" },
-            { name: "XML to JSON", href: "/xml-to-json" },
+            { name: "JSON Schema Validator", href: "/json-schema" },
             { name: "JSON → TypeScript", href: "/json-to-ts" },
           ].map((t) => (
             <a
