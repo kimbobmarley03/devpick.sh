@@ -31,6 +31,49 @@ export default function PasswordPage() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How long should a generated password be?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Use at least 16 characters for important accounts. For admin, developer, or financial accounts, 20 or more random characters is safer.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is this password generator secure?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Passwords are generated locally in your browser with crypto.getRandomValues(), and the generated passwords are not uploaded or stored.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What characters should a strong password include?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "A strong random password should use a mix of uppercase letters, lowercase letters, numbers, and symbols, unless a website has specific character restrictions.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Should I reuse generated passwords?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "No. Generate a unique password for every website or app and save it in a password manager to reduce damage if one account is breached.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
       <PasswordTool />
     </>
   );

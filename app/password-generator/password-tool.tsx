@@ -269,8 +269,39 @@ export function PasswordTool() {
         {passwords.length} password{passwords.length !== 1 ? "s" : ""} ·{" "}
         crypto.getRandomValues()
       </p>
-      {/* FAQ Section */}
+
+      {/* SEO Content */}
       <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-3">Secure random password generator</h2>
+        <p className="text-sm text-text-dimmed leading-relaxed mb-3">
+          Use this free online password generator to create strong random passwords for developer tools,
+          admin panels, databases, API dashboards, and personal accounts. Passwords are generated locally
+          with the browser crypto API, so nothing is uploaded to devpick.sh.
+        </p>
+        <ul className="list-disc pl-5 text-sm text-text-dimmed space-y-1">
+          <li>Create 16-character, 20-character, or longer passwords for high-risk accounts</li>
+          <li>Include uppercase letters, lowercase letters, numbers, and symbols for better entropy</li>
+          <li>Generate multiple unique passwords at once before saving them in a password manager</li>
+        </ul>
+      </div>
+
+      {/* Internal links: security workflow cluster */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Continue your security workflow</h2>
+        <p className="text-xs text-text-dimmed leading-relaxed">
+          After creating a secure password, generate identifiers with the{" "}
+          <a href="/uuid-generator" className="text-accent hover:underline">UUID Generator</a>,
+          calculate file checksums in the{" "}
+          <a href="/hash-generator" className="text-accent hover:underline">Hash Generator</a>,
+          encode secrets safely for transport with{" "}
+          <a href="/base64" className="text-accent hover:underline">Base64 Encoder</a>,
+          or inspect access tokens in the{" "}
+          <a href="/jwt-decoder" className="text-accent hover:underline">JWT Decoder</a>.
+        </p>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-lg font-semibold text-text-primary mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {[
@@ -292,10 +323,15 @@ export function PasswordTool() {
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-dimmed mb-3 leading-relaxed">
+          Security-adjacent tools for credentials, identifiers, tokens, and encoded data.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
             { name: "Hash Generator", href: "/hash-generator" },
             { name: "UUID Generator", href: "/uuid-generator" },
+            { name: "JWT Decoder", href: "/jwt-decoder" },
+            { name: "Base64 Encoder", href: "/base64" },
             { name: "QR Code Generator", href: "/qr-code-generator" },
             { name: "Slug Generator", href: "/slug-generator" },
           ].map((t) => (
