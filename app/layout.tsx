@@ -67,6 +67,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -82,7 +83,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-background text-text-primary antialiased">
-        <GoogleAnalytics />
         {children}
       </body>
     </html>
