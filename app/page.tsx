@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Globe2, LayoutGrid } from "lucide-react";
 import { ToolCard } from "@/components/tool-card";
@@ -8,7 +9,29 @@ import { GlobeLayout } from "@/components/globe-layout";
 import { TreemapLayout } from "@/components/treemap-layout";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { tools, categories } from "@/lib/tools";
+import { trackEvent } from "@/lib/analytics";
 import type { ToolCategory } from "@/lib/tools";
+
+const featuredTools = [
+  {
+    name: "Hex Calculator",
+    href: "/hex-calculator",
+    description: "Arithmetic, masks, shifts, and explicit 32-bit unary operations with hex, decimal, and binary output.",
+    signal: "Bitwise + arithmetic",
+  },
+  {
+    name: "WebP to PNG",
+    href: "/webp-to-png",
+    description: "Batch-convert images locally, preserve transparency, and inspect the output size before download.",
+    signal: "Batch + transparency",
+  },
+  {
+    name: ".gitignore Generator",
+    href: "/gitignore-generator",
+    description: "Compose reviewed language, framework, OS, and editor rules into one clean file.",
+    signal: "Reviewed stack presets",
+  },
+];
 
 export default function Home() {
   const [filterQuery, setFilterQuery] = useState("");
@@ -60,6 +83,38 @@ export default function Home() {
         </p>
         <SearchBar onFilter={setFilterQuery} />
       </header>
+
+      {/* Concentrate discovery and internal authority on the tools we actively improve. */}
+      {!isSearching && (
+        <section className="max-w-5xl mx-auto px-6 pb-10" aria-labelledby="featured-tools-heading">
+          <div className="flex items-end justify-between gap-4 mb-4">
+            <div>
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-accent mb-1">Actively maintained</p>
+              <h2 id="featured-tools-heading" className="text-xl font-semibold text-text-primary">
+                Flagship developer workflows
+              </h2>
+            </div>
+            <p className="hidden sm:block text-xs text-text-dimmed">Specific, tested, and private by default</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {featuredTools.map((tool) => (
+              <Link
+                key={tool.href}
+                href={tool.href}
+                onClick={() => trackEvent("featured_tool_open", { tool_path: tool.href })}
+                className="group rounded-xl border border-card-border bg-card-bg p-4 no-underline hover:border-accent transition-colors"
+              >
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <h3 className="font-semibold text-text-primary group-hover:text-accent transition-colors">{tool.name}</h3>
+                  <span className="text-accent" aria-hidden="true">→</span>
+                </div>
+                <p className="text-sm text-text-secondary leading-relaxed mb-3">{tool.description}</p>
+                <span className="text-[11px] font-mono text-text-muted">{tool.signal}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Desktop view: treemap (default) or globe */}
       {!isSearching && (

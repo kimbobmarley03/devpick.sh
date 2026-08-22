@@ -5,6 +5,7 @@ import { useWebMCP } from "@/lib/use-webmcp";
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
+import { trackEvent } from "@/lib/analytics";
 import { Trash2 } from "lucide-react";
 
 type Op = "+" | "-" | "*" | "/" | "AND" | "OR" | "XOR" | "SHL" | "SHR";
@@ -212,29 +213,18 @@ export function HexCalculatorTool() {
 
   const compute = () => {
     try {
+      let nextResult: CalcResult;
       if (mode === "binary") {
-        setResult(calculate(inputA, op, inputB));
+        nextResult = calculate(inputA, op, inputB);
       } else {
-        setResult(calculateUnary(inputA, unaryOp));
+        nextResult = calculateUnary(inputA, unaryOp);
       }
+      setResult(nextResult);
       setError("");
-    } catch (e) {
-      setResult(null);
-      setError((e as Error).message);
-    }
-  };
-
-  // Live compute
-  const tryCompute = () => {
-    try {
-      if (mode === "binary") {
-        if (!inputA.trim() || !inputB.trim()) { setResult(null); setError(""); return; }
-        setResult(calculate(inputA, op, inputB));
-      } else {
-        if (!inputA.trim()) { setResult(null); setError(""); return; }
-        setResult(calculateUnary(inputA, unaryOp));
-      }
-      setError("");
+      trackEvent("tool_complete", {
+        tool_id: "hex-calculator",
+        operation: mode === "binary" ? op : unaryOp,
+      });
     } catch (e) {
       setResult(null);
       setError((e as Error).message);
@@ -327,7 +317,7 @@ export function HexCalculatorTool() {
 
         <div className="flex gap-2 mt-4">
           <button
-            onClick={() => { tryCompute(); compute(); }}
+            onClick={compute}
             className="action-btn primary"
           >
             Calculate
@@ -352,6 +342,59 @@ export function HexCalculatorTool() {
           <div>0x01 &lt;&lt; 4 = 0x10</div>
         </div>
       </div>
+
+      <section className="mt-10 space-y-8" aria-labelledby="hex-field-guide">
+        <div>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-accent mb-2">Field guide · verified August 2026</p>
+          <h2 id="hex-field-guide" className="text-xl font-semibold text-text-primary mb-3">
+            Hex arithmetic without the ambiguous parts
+          </h2>
+          <p className="text-sm text-text-secondary leading-relaxed max-w-3xl">
+            This calculator uses arbitrary-precision integers for binary arithmetic. Negative output is displayed as a
+            64-bit two&apos;s-complement value; NOT, NEG, and byte reversal intentionally operate on 32 bits. Those width
+            rules matter when you are debugging masks, registers, colors, binary protocols, or file headers.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            {
+              id: "hex-mask-example",
+              title: "Extract a byte",
+              expression: "0xA1B2C3D4 AND 0xFF → 0xD4",
+              detail: "AND with FF keeps the lowest eight bits and clears every higher bit.",
+            },
+            {
+              id: "hex-shift-example",
+              title: "Build a bit flag",
+              expression: "0x01 SHL 0x08 → 0x0100",
+              detail: "A left shift by eight moves the set bit into the ninth bit position.",
+            },
+            {
+              id: "hex-reverse-example",
+              title: "Reverse byte order",
+              expression: "REV(0x12345678) → 0x78563412",
+              detail: "Useful when comparing 32-bit values across big-endian and little-endian representations.",
+            },
+          ].map((example) => (
+            <article key={example.id} id={example.id} className="rounded-xl border border-card-border bg-card-bg p-4 scroll-mt-6">
+              <h3 className="text-sm font-semibold text-text-primary mb-2">{example.title}</h3>
+              <code className="block text-xs text-accent bg-surface-raised rounded-lg p-2 mb-3 overflow-x-auto">{example.expression}</code>
+              <p className="text-xs text-text-secondary leading-relaxed">{example.detail}</p>
+            </article>
+          ))}
+        </div>
+
+        <div id="hex-limitations" className="scroll-mt-6 rounded-xl border border-border-subtle bg-surface-subtle p-5">
+          <h3 className="text-sm font-semibold text-text-primary mb-2">Behavior and limitations</h3>
+          <ul className="text-sm text-text-secondary leading-relaxed list-disc pl-5 space-y-1">
+            <li>Inputs may include an optional <code>0x</code> prefix; spaces are ignored.</li>
+            <li>Division is integer division, so any fractional remainder is discarded.</li>
+            <li>Shift counts are entered in hexadecimal too: <code>0x10</code> means sixteen bit positions.</li>
+            <li>The calculator does not infer a CPU&apos;s signedness, overflow rules, or register width.</li>
+          </ul>
+        </div>
+      </section>
 
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">

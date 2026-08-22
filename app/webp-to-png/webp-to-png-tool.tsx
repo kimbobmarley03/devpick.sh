@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/tool-layout";
+import { trackEvent } from "@/lib/analytics";
 import { Download, Upload, X } from "lucide-react";
 
 interface ConvertedFile {
@@ -78,6 +79,13 @@ export function WebpToPngTool() {
     setFiles(prev => [...prev, ...results]);
     setErrors(errs);
     setConverting(false);
+    if (results.length > 0) {
+      trackEvent("tool_complete", {
+        tool_id: "webp-to-png",
+        file_count: results.length,
+        had_errors: errs.length > 0,
+      });
+    }
   }, []);
 
   const onDrop = useCallback((e: React.DragEvent) => {
@@ -97,6 +105,7 @@ export function WebpToPngTool() {
   };
 
   const downloadAll = () => {
+    trackEvent("tool_download", { tool_id: "webp-to-png", file_count: files.length });
     files.forEach(f => {
       const a = document.createElement("a");
       a.href = f.pngUrl;
@@ -184,6 +193,7 @@ export function WebpToPngTool() {
                 <a
                   href={f.pngUrl}
                   download={f.name}
+                  onClick={() => trackEvent("tool_download", { tool_id: "webp-to-png", file_count: 1 })}
                   className="action-btn text-xs"
                   style={{ padding: "4px 10px" }}
                 >
@@ -209,6 +219,51 @@ export function WebpToPngTool() {
           </button>
         </div>
       )}
+
+      <section className="mt-10 space-y-8" aria-labelledby="webp-png-guide">
+        <div>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-accent mb-2">Conversion notes · verified August 2026</p>
+          <h2 id="webp-png-guide" className="text-xl font-semibold text-text-primary mb-3">
+            What changes when WebP becomes PNG?
+          </h2>
+          <p className="text-sm text-text-secondary leading-relaxed max-w-3xl">
+            Each image is decoded by your browser and redrawn to an in-memory canvas before PNG encoding. The pixel
+            dimensions and transparency are preserved for ordinary still images, and the preview reports the actual
+            output dimensions and byte size. The original file and converted pixels never leave this device.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <article id="webp-batch-conversion" className="rounded-xl border border-card-border bg-card-bg p-4 scroll-mt-6">
+            <h3 className="text-sm font-semibold text-text-primary mb-2">Batch conversion</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Drop several WebP files at once. Each is converted independently, so one unreadable file does not discard successful results.
+            </p>
+          </article>
+          <article id="webp-transparency" className="rounded-xl border border-card-border bg-card-bg p-4 scroll-mt-6">
+            <h3 className="text-sm font-semibold text-text-primary mb-2">Transparent pixels</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              PNG supports full alpha transparency. Transparent WebP backgrounds remain transparent rather than being flattened to white.
+            </p>
+          </article>
+          <article id="webp-file-size" className="rounded-xl border border-card-border bg-card-bg p-4 scroll-mt-6">
+            <h3 className="text-sm font-semibold text-text-primary mb-2">File-size tradeoff</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              PNG is lossless but often larger than WebP. Compare the before-and-after sizes shown beside each result before replacing production assets.
+            </p>
+          </article>
+        </div>
+
+        <div id="webp-limitations" className="scroll-mt-6 rounded-xl border border-border-subtle bg-surface-subtle p-5">
+          <h3 className="text-sm font-semibold text-text-primary mb-2">Known limitations</h3>
+          <ul className="text-sm text-text-secondary leading-relaxed list-disc pl-5 space-y-1">
+            <li>Animated WebP frames are not preserved; use this converter for still images.</li>
+            <li>EXIF, XMP, and other source metadata are not copied into the generated PNG.</li>
+            <li>Very large images are limited by your browser&apos;s available memory and maximum canvas size.</li>
+            <li>Conversion changes the container format; it cannot restore detail already lost by lossy WebP compression.</li>
+          </ul>
+        </div>
+      </section>
 
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-[var(--dp-border)]">

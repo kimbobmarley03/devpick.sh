@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
 import { CopyButton } from "@/components/copy-button";
+import { trackEvent } from "@/lib/analytics";
 
 const TEMPLATES: Record<string, { label: string; emoji: string; patterns: string[] }> = {
   nodejs: {
@@ -83,7 +84,6 @@ const TEMPLATES: Record<string, { label: string; emoji: string; patterns: string
       "*.test",
       "*.out",
       "vendor/",
-      "go.sum",
     ],
   },
   rust: {
@@ -92,7 +92,6 @@ const TEMPLATES: Record<string, { label: string; emoji: string; patterns: string
     patterns: [
       "# Rust",
       "target/",
-      "Cargo.lock",
       "**/*.rs.bk",
       "*.pdb",
     ],
@@ -369,6 +368,13 @@ const TEMPLATES: Record<string, { label: string; emoji: string; patterns: string
   },
 };
 
+const STACK_PRESETS = [
+  { label: "Next.js app", keys: ["nodejs", "nextjs", "macos", "vscode"] },
+  { label: "Python service", keys: ["python", "macos", "vscode"] },
+  { label: "Rust CLI", keys: ["rust", "macos", "vscode"] },
+  { label: "Java service", keys: ["java", "macos", "jetbrains"] },
+];
+
 function mergeTemplates(selected: string[], custom: string): string {
   const sections: string[] = [];
   for (const key of selected) {
@@ -418,7 +424,22 @@ export function GitignoreGeneratorTool() {
     });
   };
 
+  const applyPreset = (label: string, keys: string[]) => {
+    setSelected(new Set(keys));
+    trackEvent("tool_preset_applied", { tool_id: "gitignore-generator", preset: label });
+  };
+
   const output = selected.size > 0 || custom.trim() ? mergeTemplates([...selected], custom) : "";
+
+  const downloadGitignore = () => {
+    if (!output) return;
+    downloadFile(output, ".gitignore");
+    trackEvent("tool_download", {
+      tool_id: "gitignore-generator",
+      template_count: selected.size,
+      has_custom_patterns: Boolean(custom.trim()),
+    });
+  };
 
   const groups = [
     { label: "Languages", keys: ["nodejs", "python", "java", "go", "rust", "ruby", "swift", "kotlin", "cpp", "dotnet"] },
@@ -432,6 +453,22 @@ export function GitignoreGeneratorTool() {
       title=".gitignore Generator"
       description="Select templates for your stack, merge them, and download a clean .gitignore file."
     >
+      <section className="mb-5" aria-labelledby="stack-presets-heading">
+        <div className="flex items-center gap-3 flex-wrap">
+          <h2 id="stack-presets-heading" className="text-xs font-mono uppercase tracking-wide text-text-muted">Stack presets</h2>
+          {STACK_PRESETS.map((preset) => (
+            <button
+              key={preset.label}
+              type="button"
+              onClick={() => applyPreset(preset.label, preset.keys)}
+              className="text-xs px-2.5 py-1.5 rounded-lg border border-border-subtle text-text-secondary hover:border-accent hover:text-accent bg-surface-raised transition-colors"
+            >
+              {preset.label}
+            </button>
+          ))}
+        </div>
+      </section>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Template Selector */}
         <div className="space-y-4">
@@ -487,7 +524,7 @@ export function GitignoreGeneratorTool() {
               <div className="flex items-center gap-2">
                 <CopyButton text={output} label="Copy" />
                 <button
-                  onClick={() => output && downloadFile(output, ".gitignore")}
+                  onClick={downloadGitignore}
                   disabled={!output}
                   className="action-btn text-xs"
                 >
@@ -501,6 +538,49 @@ export function GitignoreGeneratorTool() {
           </div>
         </div>
       </div>
+
+      <section className="mt-10 space-y-8" aria-labelledby="gitignore-guide">
+        <div>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-accent mb-2">Template notes · reviewed August 2026</p>
+          <h2 id="gitignore-guide" className="text-xl font-semibold text-text-primary mb-3">
+            Build a .gitignore you can explain in code review
+          </h2>
+          <p className="text-sm text-text-secondary leading-relaxed max-w-3xl">
+            The generator merges only the stacks you choose, keeps section comments, and removes repeated non-comment
+            rules. Templates are maintained locally by DevPick rather than fetched at runtime, so the generated result is
+            deterministic and your project details stay in the browser.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <article id="gitignore-lockfiles" className="rounded-xl border border-card-border bg-card-bg p-4 scroll-mt-6">
+            <h3 className="text-sm font-semibold text-text-primary mb-2">Commit dependency locks</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              The Go template keeps <code>go.sum</code>, and the Rust template keeps <code>Cargo.lock</code>. Reproducible dependency resolution is safer than blanket lockfile ignores.
+            </p>
+          </article>
+          <article id="gitignore-negation" className="rounded-xl border border-card-border bg-card-bg p-4 scroll-mt-6">
+            <h3 className="text-sm font-semibold text-text-primary mb-2">Order affects negation</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              A later rule beginning with <code>!</code> can re-include a file. Review custom rules after merging when a parent directory is ignored.
+            </p>
+          </article>
+          <article id="gitignore-secrets" className="rounded-xl border border-card-border bg-card-bg p-4 scroll-mt-6">
+            <h3 className="text-sm font-semibold text-text-primary mb-2">Ignoring is not secret management</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Ignore local environment files, but rotate any credential that was committed. A .gitignore cannot erase a secret from Git history.
+            </p>
+          </article>
+        </div>
+
+        <div id="gitignore-troubleshooting" className="scroll-mt-6 rounded-xl border border-border-subtle bg-surface-subtle p-5">
+          <h3 className="text-sm font-semibold text-text-primary mb-2">If Git still tracks an ignored file</h3>
+          <p className="text-sm text-text-secondary leading-relaxed mb-3">
+            Ignore rules only affect untracked files. Remove an already tracked file from the index while keeping the local copy, then commit the change:
+          </p>
+          <code className="block text-xs text-accent bg-surface-raised rounded-lg p-3 overflow-x-auto">git rm --cached path/to/file</code>
+        </div>
+      </section>
 
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
