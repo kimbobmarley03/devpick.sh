@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { GitignoreGeneratorTool } from "./gitignore-generator-tool";
 
 export const metadata: Metadata = {
-  title: ".gitignore Generator & Auditor for Monorepos | devpick.sh",
+  title: ".gitignore Generator & Auditor for Monorepos",
   description:
     "Generate or audit a .gitignore for Node.js, Python, Rust, Next.js, Nx, and Turborepo. Find missing rules, duplicates, and risky lockfile ignores locally.",
   openGraph: {
