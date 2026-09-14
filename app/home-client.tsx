@@ -28,8 +28,8 @@ const featuredTools = [
   {
     name: ".gitignore Generator",
     href: "/gitignore-generator",
-    description: "Compose reviewed language, framework, OS, and editor rules into one clean file.",
-    signal: "Reviewed stack presets",
+    description: "Generate or audit stack rules, find duplicates, and flag risky lockfile ignores before code review.",
+    signal: "Monorepo audit workflow",
   },
 ];
 

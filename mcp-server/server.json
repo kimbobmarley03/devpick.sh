@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.kimbobmarley03/devpick",
-  "description": "Developer tools for AI agents. Merge PDFs, calculate subnets, test regex, diff JSON — things your agent can't do alone. 43 tools, 100% local, no API keys.",
+  "description": "43 local developer tools for AI agents: PDF, subnet, regex, JSON, conversion, and more.",
   "repository": {
     "url": "https://github.com/kimbobmarley03/devpick.sh",
     "source": "github"

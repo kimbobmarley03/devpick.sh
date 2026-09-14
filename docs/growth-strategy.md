@@ -1,6 +1,6 @@
 # DevPick Growth Strategy
 
-Last updated: 2026-08-22
+Last updated: 2026-09-13
 
 ## Decision
 
@@ -105,6 +105,12 @@ The goal is a portfolio of durable, high-intent pages with more than one revenue
 1. Added a prominent homepage flagship section to concentrate internal links and user attention on the three active experiments.
 2. Added visible, deep-linkable field guides with examples, tested behavior, and honest limitations to Hex Calculator, WebP to PNG, and .gitignore Generator; also corrected the default treatment of `go.sum` and `Cargo.lock`.
 3. Added privacy-safe analytics for successful calculations/conversions, downloads, presets, and flagship opens without collecting tool inputs, filenames, or generated output.
+
+### Distribution and product release on 2026-09-13
+
+1. Turned the .gitignore flagship into a complete pre-review workflow: users can select a stack, audit an existing file, find missing and duplicate rules, flag risky source or lockfile ignores, and append the missing rules without sending file contents off-device.
+2. Added official MCP Registry metadata and an OIDC-authenticated publishing workflow so the existing `@devpick/mcp-server` package can be discovered by the registry and its downstream aggregators without maintaining a publishing secret.
+3. Started a four-week measurement hold. Reviews run each Saturday from September 19 through October 10, comparing Search Console, GA4, flagship completions, MCP adoption, backlinks, and the live Cloudflare deployment. Do not change target pages during this window unless indexing or production is broken.
 
 ## Weekly scoreboard
 
