@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SqlTool } from "./sql-tool";
 
 export const metadata: Metadata = {
-  title: "SQL Formatter & Beautifier Online — Free, No Sign Up | devpick.sh",
+  title: "SQL Formatter & Beautifier Online — Free, No Sign Up",
   description:
-    "Free online SQL formatter and beautifier. Pretty print SQL with clean indentation, uppercase keywords, and minify mode. No sign up, runs locally in your browser.",
+    "Format and beautify SQL with clean indentation, uppercase keywords, and a minify mode. Free, private, and entirely browser-based.",
   openGraph: {
     title: "SQL Formatter & Beautifier Online — Free, No Sign Up | devpick.sh",
     description:

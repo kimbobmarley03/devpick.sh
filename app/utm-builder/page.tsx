@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { UtmBuilderTool } from "./utm-builder-tool";
 
 export const metadata: Metadata = {
-  title: "Free UTM Builder & Campaign URL Generator for GA4 | devpick.sh",
+  title: "Free UTM Builder & Campaign URL Generator for GA4",
   description:
     "Create clean UTM tracking links in seconds. This free UTM builder adds utm_source, utm_medium, utm_campaign, and more for Google Analytics campaign attribution.",
   openGraph: {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PasswordTool } from "./password-tool";
 
 export const metadata: Metadata = {
-  title: "Password Generator Online — Free, Strong, No Sign Up | devpick.sh",
+  title: "Password Generator Online — Free, Strong, No Sign Up",
   description:
     "Generate strong, secure random passwords online. Customize length and characters. Free, secure, runs locally in your browser — no sign up needed.",
   openGraph: {

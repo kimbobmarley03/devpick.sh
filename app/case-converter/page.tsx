@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CaseTool } from "./case-tool";
 
 export const metadata: Metadata = {
-  title: "Text Case Converter Online — camelCase, snake_case, PascalCase & More",
+  title: "Text Case Converter — camelCase, snake_case & More",
   description:
     "Convert text between UPPERCASE, lowercase, Title Case, camelCase, snake_case, kebab-case, PascalCase, and CONSTANT_CASE. Free online text case converter.",
   openGraph: {

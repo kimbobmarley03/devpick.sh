@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SvgToPngTool } from "./svg-to-png-tool";
 
 export const metadata: Metadata = {
-  title: "SVG to PNG Converter Online — Free | devpick.sh",
+  title: "SVG to PNG Converter Online — Free",
   description:
     "Convert SVG files to PNG images at any resolution using the Canvas API. Supports custom dimensions. 100% client-side, no upload.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function SvgToPngPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "SVG to PNG", item: "https://devpick.sh/svg-to-png" },
-            ],
           }),
         }}
       />

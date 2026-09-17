@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { WebhookTesterTool } from "./webhook-tester-tool";
 
 export const metadata: Metadata = {
-  title: "Webhook Request Builder — Free Online | devpick.sh",
+  title: "Webhook Request Builder — Free Online",
   description:
     "Build and send HTTP webhook requests with custom headers, body, and method. Test APIs and webhooks right from your browser. 100% client-side.",
   openGraph: {

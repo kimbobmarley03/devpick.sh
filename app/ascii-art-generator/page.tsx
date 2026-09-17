@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AsciiTool } from "./ascii-tool";
 
 export const metadata: Metadata = {
-  title: "ASCII Table — Full ASCII Chart with Hex, Octal & Descriptions",
+  title: "ASCII Table — Hex, Octal & Character Reference",
   description:
     "Complete ASCII table (0-127) with decimal, hex, octal, character, and description. Search, filter, and copy any value. Free online ASCII reference.",
   openGraph: {

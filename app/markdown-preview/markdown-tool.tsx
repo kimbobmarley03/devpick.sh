@@ -6,31 +6,31 @@ import { SplitPane } from "@/components/split-pane";
 import { CopyButton } from "@/components/copy-button";
 import { Trash2 } from "lucide-react";
 
-const SAMPLE_MD = `# Hello, Markdown!
+const SAMPLE_MD = `## Hello, Markdown!
 
 Welcome to the **Markdown Preview** tool. Write markdown on the left, see the rendered output on the right.
 
-## Features
+### Features
 
 - **Bold text** with double asterisks
 - *Italic text* with single asterisks
 - \`inline code\` with backticks
 - [Links](https://devpick.sh) with brackets
 
-## Code Block
+### Code Block
 
 \`\`\`
 const hello = "world";
 console.log(hello);
 \`\`\`
 
-## Blockquote
+### Blockquote
 
 > This is a blockquote. Great for highlighting important notes.
 
 ---
 
-## Lists
+### Lists
 
 1. First item
 2. Second item
@@ -40,7 +40,7 @@ console.log(hello);
 - Another item
   - Nested item
 
-## Table-less formatting
+### Table-less formatting
 
 Use **bold** for emphasis and *italic* for style.
 `;

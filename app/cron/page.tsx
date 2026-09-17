@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CronTool } from "./cron-tool";
 
 export const metadata: Metadata = {
-  title: "Cron Expression Generator Online — Build & Explain Cron Jobs",
+  title: "Cron Expression Generator & Explainer",
   description:
     "Build, test, and explain cron expressions visually. Generate cron schedules with a visual editor. See next run times. Free cron generator.",
   openGraph: {

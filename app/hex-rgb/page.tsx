@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HexRgbTool } from "./hex-rgb-tool";
 
 export const metadata: Metadata = {
-  title: "Hex to RGB / RGB to Hex Converter — Free Color Converter",
+  title: "HEX to RGB & RGB to HEX Converter",
   description:
     "Convert hex color codes to RGB and HSL online. Supports 3-digit and 6-digit hex, with/without #. Free, instant, client-side.",
   openGraph: {

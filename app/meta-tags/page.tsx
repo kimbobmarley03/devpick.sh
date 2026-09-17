@@ -4,7 +4,7 @@ import { MetaTagsTool } from "./meta-tags-tool";
 export const metadata: Metadata = {
   title: "Meta Tag Generator — Open Graph & Twitter Card Tags",
   description:
-    "Generate meta tags, Open Graph tags, and Twitter Card tags for your website. Preview how your page looks in Google search and social media. Free, instant, client-side.",
+    "Generate title, description, canonical, Open Graph, and Twitter Card tags, then preview how the page can appear in search and social shares.",
   openGraph: {
     title: "Meta Tag Generator | devpick.sh",
     description: "Generate meta, Open Graph, and Twitter Card tags. Free, instant, client-side.",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { UnlockPdfTool } from "./unlock-pdf-tool";
 
 export const metadata: Metadata = {
-  title: "Unlock PDF — Free, No Upload | devpick.sh",
+  title: "Unlock PDF — Free, No Upload",
   description:
     "Remove password protection from PDF files online. You must know the password. 100% client-side, free.",
   openGraph: {

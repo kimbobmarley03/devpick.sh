@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { HtaccessGeneratorTool } from "./htaccess-generator-tool";
 
 export const metadata: Metadata = {
-  title: "htaccess Generator — Apache Configuration Builder | devpick.sh",
+  title: "htaccess Generator — Apache Configuration Builder",
   description:
-    "Build .htaccess rules visually. Configure redirects, URL rewriting, error pages, hotlink protection, CORS, Gzip, caching, Force HTTPS, block IPs, and more. 100% client-side, free.",
+    "Build Apache .htaccess rules for redirects, HTTPS, rewrites, caching, CORS, compression, error pages, hotlink protection, and blocked IPs.",
   openGraph: {
     title: "htaccess Generator — Apache Configuration Builder | devpick.sh",
     description: "Build .htaccess rules visually. Generate complete Apache configuration files instantly.",

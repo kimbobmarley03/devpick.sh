@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { HexCalculatorTool } from "./hex-calculator-tool";
 
 export const metadata: Metadata = {
-  title: "Hex Calculator — Hexadecimal Arithmetic & Bitwise Online | devpick.sh",
+  title: "Hex Calculator — Arithmetic & Bitwise",
   description:
-    "Hex calculator for add, subtract, multiply, divide, AND, OR, XOR, NOT, and bit shifts. Input in hex, see results in hex, decimal, and binary. 100% client-side, free.",
+    "Calculate hexadecimal arithmetic, bitwise operations, and shifts. See each result in hex, decimal, and binary, entirely in your browser.",
   openGraph: {
     title: "Hex Calculator | devpick.sh",
     description: "Hexadecimal arithmetic and bitwise operations online. Free, instant, client-side.",

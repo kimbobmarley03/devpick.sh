@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { TextToHexTool } from "./text-to-hex-tool";
 
 export const metadata: Metadata = {
-  title: "Text to Hex Converter Online — Free | devpick.sh",
+  title: "Text to Hex Converter Online — Free",
   description:
     "Convert text to hexadecimal and back. Encode any string to hex or decode hex back to readable text. 100% client-side, free.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function TextToHexPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "Text to Hex", item: "https://devpick.sh/text-to-hex" },
-            ],
           }),
         }}
       />

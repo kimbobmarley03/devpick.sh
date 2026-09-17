@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { DockerComposeGeneratorTool } from "./docker-compose-generator-tool";
 
 export const metadata: Metadata = {
-  title: "Docker Compose Generator — Visual YAML Builder | devpick.sh",
+  title: "Docker Compose Generator — Visual YAML Builder",
   description:
-    "Generate docker-compose.yml files visually. Add services, ports, environment variables, volumes, networks and more. Copy or download valid YAML. 100% client-side, free.",
+    "Build docker-compose.yml files visually with services, ports, environment variables, volumes, and networks. Copy or download valid YAML.",
   openGraph: {
     title: "Docker Compose Generator — Visual YAML Builder | devpick.sh",
     description: "Build docker-compose.yml files visually with multi-service support. Free, instant, no sign-up.",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CsvToJsonTool } from "./csv-to-json-tool";
 
 export const metadata: Metadata = {
-  title: "CSV to JSON Converter Online (Headers, Delimiter, Arrays) | devpick.sh",
+  title: "CSV to JSON Converter — Headers & Delimiters",
   description:
     "Free CSV to JSON converter with header row support, custom delimiters, and array parsing. Convert spreadsheet exports to clean JSON instantly in your browser.",
   openGraph: {
@@ -29,19 +29,6 @@ export default function CsvToJsonPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "CSV to JSON", item: "https://devpick.sh/csv-to-json" },
-            ],
           }),
         }}
       />

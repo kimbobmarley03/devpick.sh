@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JsonViewerTool } from "./json-viewer-tool";
 
 export const metadata: Metadata = {
-  title: "JSON Viewer Online (Tree + Search + Path Copy) — Free | devpick.sh",
+  title: "JSON Viewer — Tree, Search & Path Copy",
   description:
     "View JSON in a clean tree, search keys/values, and copy JSON paths instantly. Free JSON viewer for large API payloads. No sign up, no upload.",
   keywords: [

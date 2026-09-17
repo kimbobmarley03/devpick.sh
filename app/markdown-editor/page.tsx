@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MarkdownEditorTool } from "./markdown-editor-tool";
 
 export const metadata: Metadata = {
-  title: "Markdown Editor Online — Live Preview | devpick.sh",
+  title: "Markdown Editor Online — Live Preview",
   description:
     "Free online Markdown editor with live split-pane preview. Formatting toolbar, export as .md file, copy as HTML. 100% client-side, no sign-up, works offline.",
   openGraph: {

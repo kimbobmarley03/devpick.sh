@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JsonToTsTool } from "./json-to-ts-tool";
 
 export const metadata: Metadata = {
-  title: "JSON to TypeScript Interface Generator — Free Online Tool",
+  title: "JSON to TypeScript Interface Generator",
   description:
     "Convert JSON to TypeScript interfaces online. Handles nested objects, arrays, and optional fields. Free, instant, client-side.",
   openGraph: {

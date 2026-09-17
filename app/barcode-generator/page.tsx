@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BarcodeTool } from "./barcode-tool";
 
 export const metadata: Metadata = {
-  title: "Barcode Generator Online — Free Code 128, EAN-13 | devpick.sh",
+  title: "Barcode Generator Online — Free Code 128, EAN-13",
   description:
     "Generate barcodes online free. Supports Code 128, EAN-13, and Code 39. Enter text or number, download barcode as PNG. Instant, client-side, no signup.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function BarcodePage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "Barcode Generator", item: "https://devpick.sh/barcode-generator" },
-            ],
           }),
         }}
       />

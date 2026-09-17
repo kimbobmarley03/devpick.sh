@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { UuidTool } from "./uuid-tool";
 
 export const metadata: Metadata = {
-  title: "Free UUID Generator Online (v4) and GUID Generator, Bulk 1 to 100",
+  title: "UUID & GUID Generator — Bulk UUID v4",
   description:
     "Generate secure UUID v4 and GUID values instantly in your browser. Free online UUID generator with bulk generation (1 to 100), one-click copy, and no sign up.",
   openGraph: {

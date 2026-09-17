@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { TextToBinaryTool } from "./text-to-binary-tool";
 
 export const metadata: Metadata = {
-  title: "Text to Binary Converter Online — Free | devpick.sh",
+  title: "Text to Binary Converter Online — Free",
   description:
     "Convert text to binary, hex, octal, and decimal — and back. Includes character-by-character reference table. Free, instant, 100% client-side.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function TextToBinaryPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "Text to Binary", item: "https://devpick.sh/text-to-binary" },
-            ],
           }),
         }}
       />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JpgToPdfTool } from "./jpg-to-pdf-tool";
 
 export const metadata: Metadata = {
-  title: "JPG to PDF — Free, No Upload | devpick.sh",
+  title: "JPG to PDF — Free, No Upload",
   description:
     "Convert JPG images to a PDF document online. Free, 100% client-side — your files never leave your browser.",
   openGraph: {

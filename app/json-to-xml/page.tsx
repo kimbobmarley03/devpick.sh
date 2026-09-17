@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JsonToXmlTool } from "./json-to-xml-tool";
 
 export const metadata: Metadata = {
-  title: "JSON to XML Converter — Free Online | devpick.sh",
+  title: "JSON to XML Converter — Free Online",
   description:
     "Convert JSON to XML online for free. Instant conversion with proper formatting. 100% client-side, private.",
   openGraph: {

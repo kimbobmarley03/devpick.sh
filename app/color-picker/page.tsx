@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ColorTool } from "./color-tool";
 
 export const metadata: Metadata = {
-  title: "Color Picker & Converter Online — HEX, RGB, HSL Converter",
+  title: "Color Picker & Converter — HEX, RGB & HSL",
   description:
     "Pick colors and convert between HEX, RGB, and HSL formats. Free online color picker with copy-to-clipboard and recent colors history.",
   openGraph: {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { WebpToPngTool } from "./webp-to-png-tool";
 
 export const metadata: Metadata = {
-  title: "WebP to PNG Converter — Free Online, No Sign Up | devpick.sh",
+  title: "WebP to PNG Converter — Free Online, No Sign Up",
   description:
     "Convert WebP images to PNG online for free. Drag & drop WebP files, convert instantly in your browser, download PNG. No upload, no sign up required.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function WebpToPngPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "WebP to PNG Converter", item: "https://devpick.sh/webp-to-png" },
-            ],
           }),
         }}
       />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CsvToSqlTool } from "./csv-to-sql-tool";
 
 export const metadata: Metadata = {
-  title: "CSV to SQL Converter — Free Online | devpick.sh",
+  title: "CSV to SQL Converter — Free Online",
   description:
     "Convert CSV data to SQL CREATE TABLE and INSERT statements instantly. Paste your CSV and get ready-to-run SQL. 100% client-side, free, no upload.",
   openGraph: {

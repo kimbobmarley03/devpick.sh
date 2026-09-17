@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JsonSchemaTool } from "./json-schema-tool";
 
 export const metadata: Metadata = {
-  title: "JSON Schema Validator Online — Free JSON Schema Checker | devpick.sh",
+  title: "JSON Schema Validator Online",
   description:
     "Validate JSON data against a JSON Schema (draft-07). Checks types, required fields, patterns, min/max, enum, and more. Free, instant, client-side.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function JsonSchemaPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "JSON Schema Validator", item: "https://devpick.sh/json-schema" },
-            ],
           }),
         }}
       />

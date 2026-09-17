@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { XmlToCsvTool } from "./xml-to-csv-tool";
 
 export const metadata: Metadata = {
-  title: "XML to CSV Converter — Free Online | devpick.sh",
+  title: "XML to CSV Converter — Free Online",
   description:
     "Convert XML to CSV online for free. Paste XML data and get a flattened CSV with auto-detected columns. 100% client-side, no upload.",
   openGraph: {

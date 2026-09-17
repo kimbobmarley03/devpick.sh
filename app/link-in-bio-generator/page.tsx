@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { LinkInBioGeneratorTool } from "./link-in-bio-generator-tool";
 
 export const metadata: Metadata = {
-  title: "Link in Bio Generator — Free Linktree Alternative | devpick.sh",
+  title: "Link in Bio Generator — Free Linktree Alternative",
   description:
-    "Build a beautiful link-in-bio page for Instagram and social media. Add links, customize colors, preview in a mobile frame, and export a self-contained HTML file you can host anywhere. Free, no sign-up.",
+    "Build a customizable link-in-bio page, preview it on mobile, and export a self-contained HTML file to host anywhere. Free with no sign-up.",
   openGraph: {
     title: "Link in Bio Generator — Free Linktree Alternative | devpick.sh",
     description: "Create your link-in-bio page. Customize and export a self-hosted HTML file. No Linktree needed.",

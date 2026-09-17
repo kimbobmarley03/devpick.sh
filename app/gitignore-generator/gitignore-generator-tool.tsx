@@ -592,7 +592,7 @@ export function GitignoreGeneratorTool() {
                       onClick={() => toggle(key)}
                       className={`text-xs px-2.5 py-1.5 rounded-lg border font-mono transition-colors flex items-center gap-1.5 ${
                         active
-                          ? "bg-accent text-white border-accent"
+                          ? "bg-blue-600 text-white border-blue-600 font-semibold"
                           : "border-border-subtle text-text-secondary hover:border-accent hover:text-accent bg-surface-raised"
                       }`}
                     >

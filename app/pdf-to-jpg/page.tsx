@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PdfToJpgTool } from "./pdf-to-jpg-tool";
 
 export const metadata: Metadata = {
-  title: "PDF to JPG — Free, No Upload | devpick.sh",
+  title: "PDF to JPG — Free, No Upload",
   description:
     "Convert PDF pages to JPG images online. Free, 100% client-side — your files never leave your browser.",
   openGraph: {

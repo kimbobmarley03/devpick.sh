@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { RecipeCostCalculatorTool } from "./recipe-cost-calculator-tool";
 
 export const metadata: Metadata = {
-  title: "Recipe Cost Calculator — Price Per Serving Calculator | devpick.sh",
+  title: "Recipe Cost & Price Per Serving Calculator",
   description:
-    "Calculate the exact cost of any recipe per serving. Add ingredients with quantities and prices, get a full cost breakdown. Save recipes to compare costs. Free, no sign-up.",
+    "Calculate recipe cost per serving from ingredient quantities and prices. See a complete cost breakdown and save recipes for comparison.",
   openGraph: {
     title: "Recipe Cost Calculator — Price Per Serving Calculator | devpick.sh",
     description: "Calculate recipe costs and cost-per-serving. Add ingredients, get a full cost breakdown instantly.",

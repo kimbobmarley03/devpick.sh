@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PngToJpgTool } from "./png-to-jpg-tool";
 
 export const metadata: Metadata = {
-  title: "PNG to JPG Converter Online — Free | devpick.sh",
+  title: "PNG to JPG Converter Online — Free",
   description:
     "Convert PNG images to JPG/JPEG instantly in your browser. Handles transparency (white background). No upload, 100% client-side, free.",
   openGraph: {

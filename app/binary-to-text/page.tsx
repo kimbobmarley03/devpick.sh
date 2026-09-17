@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BinaryToTextTool } from "./binary-to-text-tool";
 
 export const metadata: Metadata = {
-  title: "Binary to Text Converter Online — Free | devpick.sh",
+  title: "Binary to Text Converter Online — Free",
   description:
     "Decode binary, hex, or octal back to text. Supports space-separated binary, hex, and octal encoding. 100% client-side, free.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function BinaryToTextPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "Binary to Text", item: "https://devpick.sh/binary-to-text" },
-            ],
           }),
         }}
       />

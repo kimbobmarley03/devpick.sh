@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CounterTool } from "./counter-tool";
 
 export const metadata: Metadata = {
-  title: "Character & Word Counter Online — Free Text Counter Tool",
+  title: "Character & Word Counter Online",
   description:
     "Count characters, words, sentences, paragraphs, and lines in real time. Includes reading time estimate and character frequency analysis.",
   openGraph: {

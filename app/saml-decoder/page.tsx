@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SamlDecoderTool } from "./saml-decoder-tool";
 
 export const metadata: Metadata = {
-  title: "SAML Decoder — Decode SAML Response Online | devpick.sh",
+  title: "SAML Decoder — Decode SAML Response Online",
   description:
-    "Decode base64-encoded SAML responses and assertions online. Supports POST binding (base64) and Redirect binding (URL-encoded + deflated). Highlights Issuer, NameID, Conditions, and Attribute assertions. 100% client-side, private.",
+    "Decode SAML responses and assertions online. Inspect POST and Redirect bindings, issuer, NameID, conditions, and attributes privately in your browser.",
   openGraph: {
     title: "SAML Decoder | devpick.sh",
     description: "Decode SAML responses online. Supports base64, URL-encoded, and deflated SAML. Free, private, client-side.",

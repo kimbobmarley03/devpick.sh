@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CsvViewerTool } from "./csv-viewer-tool";
 
 export const metadata: Metadata = {
-  title: "CSV Viewer — Free Online Sortable Table | devpick.sh",
+  title: "CSV Viewer — Free Online Sortable Table",
   description:
     "Paste or upload CSV data and view it as a sortable, filterable table. No server, no upload. 100% client-side, free.",
   openGraph: {

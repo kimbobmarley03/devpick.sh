@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { RegexCheatSheetTool } from "./regex-cheat-sheet-tool";
 
 export const metadata: Metadata = {
-  title: "Regex Cheat Sheet & Tester (JS/Python) — Quick Reference | devpick.sh",
+  title: "Regex Cheat Sheet & Tester — JS & Python",
   description:
     "Free regex cheat sheet and live tester. Learn regex syntax, quantifiers, lookaheads, and common patterns for JavaScript, Python, and PCRE.",
   openGraph: {

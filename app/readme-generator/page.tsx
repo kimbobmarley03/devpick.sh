@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ReadmeGeneratorTool } from "./readme-generator-tool";
 
 export const metadata: Metadata = {
-  title: "README Generator — Create GitHub README Files | devpick.sh",
+  title: "README Generator — Create GitHub README Files",
   description:
-    "Generate professional GitHub README files instantly. Add project name, description, tech stack, features, installation steps, and more. Live markdown preview. 100% client-side, free.",
+    "Create a professional GitHub README with project details, installation steps, features, tech stack, and a live Markdown preview. Free and client-side.",
   openGraph: {
     title: "README Generator — Create GitHub README Files | devpick.sh",
     description: "Generate professional GitHub README files with live preview. Free, instant, no sign-up.",

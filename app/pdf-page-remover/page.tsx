@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PdfPageRemoverTool } from "./pdf-page-remover-tool";
 
 export const metadata: Metadata = {
-  title: "PDF Page Remover — Free, No Upload | devpick.sh",
+  title: "PDF Page Remover — Free, No Upload",
   description:
     "Delete specific pages from a PDF online. 100% client-side, free, no signup required.",
   openGraph: {

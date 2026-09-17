@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { WordsTool } from "./words-tool";
 
 export const metadata: Metadata = {
-  title: "Word Counter Online — Count Words, Characters & Reading Time",
+  title: "Word Counter — Characters & Reading Time",
   description:
     "Count words, characters, sentences, paragraphs, and lines in real time. Get reading time, speaking time, and keyword density. Free online word counter.",
   keywords: [

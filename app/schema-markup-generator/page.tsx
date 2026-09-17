@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SchemaMarkupGeneratorTool } from "./schema-markup-generator-tool";
 
 export const metadata: Metadata = {
-  title: "Schema Markup Generator — Free JSON-LD | devpick.sh",
+  title: "Schema Markup Generator — Free JSON-LD",
   description:
     "Generate JSON-LD schema markup for Article, FAQ, LocalBusiness, Product, Person, Organization, Event, HowTo, Recipe, Video, and more. Free, no signup.",
   openGraph: {

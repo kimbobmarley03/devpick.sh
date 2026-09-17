@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { EmailTemplateTool } from "./email-template-tool";
 
 export const metadata: Metadata = {
-  title: "Email Template Builder — Free HTML Email Generator | devpick.sh",
+  title: "Email Template Builder — Free HTML Email Generator",
   description: "Build responsive HTML email templates with a visual editor. Add headers, text, buttons, images, and dividers. Export clean inline-styled HTML. Free, no sign-up.",
   openGraph: {
     title: "Email Template Builder | devpick.sh",

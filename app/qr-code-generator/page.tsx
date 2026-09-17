@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { QrTool } from "./qr-tool";
 
 export const metadata: Metadata = {
-  title: "Free QR Code Generator for URL, WiFi, vCard (PNG Download) | devpick.sh",
+  title: "QR Code Generator — URL, WiFi & vCard",
   description:
     "Create QR codes for links, WiFi credentials, contact cards (vCard), and plain text. Free online QR code generator with instant PNG download. No sign up.",
   openGraph: {

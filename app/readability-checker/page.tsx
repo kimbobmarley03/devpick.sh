@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ReadabilityCheckerTool } from "./readability-checker-tool";
 
 export const metadata: Metadata = {
-  title: "Readability Checker — Flesch-Kincaid & More | devpick.sh",
+  title: "Readability Checker — Flesch-Kincaid & More",
   description:
     "Check text readability with Flesch-Kincaid, Gunning Fog, Coleman-Liau, SMOG, ARI scores. Free readability analyzer for writers and SEOs.",
   openGraph: {

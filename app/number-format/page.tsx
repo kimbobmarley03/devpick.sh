@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { NumberFormatTool } from "./number-format-tool";
 
 export const metadata: Metadata = {
-  title: "Number Formatter — Format Numbers as Currency, Binary, Words & More",
+  title: "Number Formatter — Currency, Binary & Words",
   description:
     "Format any number as commas, currency, scientific notation, words, binary, hex, Roman numerals, and file size. Free online number formatter.",
   openGraph: {

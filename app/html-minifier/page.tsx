@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HtmlMinifierTool } from "./html-minifier-tool";
 
 export const metadata: Metadata = {
-  title: "HTML Minifier — Free Online | devpick.sh",
+  title: "HTML Minifier — Free Online",
   description:
     "Minify HTML code online for free. Remove comments, whitespace, and optional tags to reduce file size. 100% client-side.",
   openGraph: {

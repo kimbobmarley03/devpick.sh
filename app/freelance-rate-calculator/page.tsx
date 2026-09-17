@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { FreelanceRateCalculatorTool } from "./freelance-rate-calculator-tool";
 
 export const metadata: Metadata = {
-  title: "Freelance Rate Calculator — Find Your Hourly Rate | devpick.sh",
+  title: "Freelance Rate Calculator — Find Your Hourly Rate",
   description:
-    "Calculate your freelance hourly rate based on desired salary, expenses, taxes, and billable hours. Includes industry benchmarks for web developers, designers, copywriters, and consultants.",
+    "Calculate a sustainable freelance hourly rate from your salary goal, expenses, taxes, and billable hours, with benchmarks for common creative roles.",
   openGraph: {
     title: "Freelance Rate Calculator — Find Your Hourly Rate | devpick.sh",
     description: "Find your ideal freelance rate. Factor in salary, expenses, taxes, and utilization. Free calculator.",

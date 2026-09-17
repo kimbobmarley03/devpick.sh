@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HttpStatusTool } from "./http-status-tool";
 
 export const metadata: Metadata = {
-  title: "HTTP Status Codes List (200, 301, 404, 500) — Free Online Checker | devpick.sh",
+  title: "HTTP Status Codes — 200, 301, 404 & 500",
   description:
     "Free HTTP status code checker with the complete 1xx–5xx list. Quickly find meanings for 200, 301, 404, 500, redirects, and server errors with debugging tips.",
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BaseTool } from "./base-tool";
 
 export const metadata: Metadata = {
-  title: "Number Base Converter Online — Binary, Octal, Hex, Decimal",
+  title: "Number Base Converter — Binary, Octal & Hex",
   description:
     "Convert numbers between any base (2-36) online. Binary, octal, decimal, hex conversions in real-time. Free, instant, client-side.",
   openGraph: {

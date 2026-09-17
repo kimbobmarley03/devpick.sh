@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Mp4ToMp3Tool } from "./mp4-to-mp3-tool";
 
 export const metadata: Metadata = {
-  title: "MP4 to MP3 Converter Online — Free Audio Extractor | devpick.sh",
+  title: "MP4 to MP3 Converter Online — Free Audio Extractor",
   description:
     "Extract audio from MP4, WebM, MOV and other video files. Download as WebM audio. Free, instant, 100% client-side — your files never leave your browser.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function Mp4ToMp3Page() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "MP4 to Audio Converter", item: "https://devpick.sh/mp4-to-mp3" },
-            ],
           }),
         }}
       />

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CertificateDecoderTool } from "./certificate-decoder-tool";
 
 export const metadata: Metadata = {
-  title: "Certificate Decoder & CSR Decoder — Free Online | devpick.sh",
+  title: "Certificate Decoder & CSR Decoder — Free Online",
   description:
-    "Decode X.509 PEM certificates and CSRs online. Parses Subject, Issuer, SANs, validity dates, key usage, extensions, and SHA-256 fingerprint. 100% client-side, private, no data sent.",
+    "Decode X.509 PEM certificates and CSRs. Inspect subject, issuer, SANs, validity, key usage, extensions, and fingerprint privately in your browser.",
   openGraph: {
     title: "Certificate Decoder & CSR Decoder | devpick.sh",
     description: "Decode PEM certificates and CSRs online. Parses all fields including SANs, key usage, and extensions. Free, private.",

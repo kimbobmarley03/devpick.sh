@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { OgPreviewTool } from "./og-preview-tool";
 
 export const metadata: Metadata = {
-  title: "Open Graph Preview — See How Your Page Looks on Social Media | devpick.sh",
+  title: "Open Graph Preview for Social Media",
   description:
     "Preview how your page looks when shared on Twitter, Facebook, LinkedIn, and Discord. Paste your HTML head section and see preview cards instantly.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function OgPreviewPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "Open Graph Preview", item: "https://devpick.sh/og-preview" },
-            ],
           }),
         }}
       />

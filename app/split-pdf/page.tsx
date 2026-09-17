@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SplitPdfTool } from "./split-pdf-tool";
 
 export const metadata: Metadata = {
-  title: "Split PDF — Free, No Upload | devpick.sh",
+  title: "Split PDF — Free, No Upload",
   description:
     "Split a PDF into individual pages or custom page ranges. 100% client-side, free, no upload needed.",
   openGraph: {

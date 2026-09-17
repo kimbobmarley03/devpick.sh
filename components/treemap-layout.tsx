@@ -159,7 +159,7 @@ export function TreemapLayout({ tools }: TreemapLayoutProps) {
 
             return (
               <g key={tool.id}>
-                <a href={tool.route}>
+                <a href={tool.route} aria-label={`${tool.name}: ${tool.description}`}>
                   <rect
                     x={x + 1.5}
                     y={y + 1.5}

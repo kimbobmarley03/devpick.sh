@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CompressPdfTool } from "./compress-pdf-tool";
 
 export const metadata: Metadata = {
-  title: "Compress PDF Online — Free, No Sign Up, No Upload | devpick.sh",
+  title: "Compress PDF Online — Free, No Sign Up, No Upload",
   description:
     "Reduce PDF file size online. Free, 100% client-side compression — your files stay private. No sign up required, no upload.",
   openGraph: {

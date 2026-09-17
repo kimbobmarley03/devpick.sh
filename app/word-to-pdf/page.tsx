@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { WordToPdfTool } from "./word-to-pdf-tool";
 
 export const metadata: Metadata = {
-  title: "Text to PDF — Free, No Upload | devpick.sh",
+  title: "Text to PDF — Free, No Upload",
   description:
     "Convert text files (.txt) to PDF online. Free, 100% client-side — your files never leave your browser.",
   openGraph: {

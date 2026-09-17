@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JsonDiffTool } from "./json-diff-tool";
 
 export const metadata: Metadata = {
-  title: "JSON Diff — Compare JSON Objects Online | devpick.sh",
+  title: "JSON Diff — Compare JSON Objects Online",
   description:
     "Compare two JSON objects and see added, removed, and changed keys. Color-coded tree view diff. 100% client-side, free.",
   openGraph: {

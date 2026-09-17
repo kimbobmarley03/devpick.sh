@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { KeywordDensityCheckerTool } from "./keyword-density-checker-tool";
 
 export const metadata: Metadata = {
-  title: "Keyword Density Checker — Free SEO Tool | devpick.sh",
+  title: "Keyword Density Checker — Free SEO Tool",
   description:
     "Check keyword density and frequency in your text. See top keywords, word count, and density percentages for SEO optimization. Free, client-side.",
   openGraph: {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { TimestampTool } from "./timestamp-tool";
 
 export const metadata: Metadata = {
-  title: "Unix Timestamp Converter & Epoch Converter — Free Online | devpick.sh",
+  title: "Unix Timestamp & Epoch Converter",
   description:
     "Convert Unix/epoch timestamps to human-readable dates and back. Epoch converter with live current time display. Free, instant, no sign-up.",
   openGraph: {

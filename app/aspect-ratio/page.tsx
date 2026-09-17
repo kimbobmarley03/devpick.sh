@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AspectRatioTool } from "./aspect-ratio-tool";
 
 export const metadata: Metadata = {
-  title: "Aspect Ratio Calculator Online — Free Width Height Tool | devpick.sh",
+  title: "Aspect Ratio Calculator — Width & Height",
   description:
     "Calculate aspect ratio from width and height. Lock ratio and scale dimensions. Common presets: 16:9, 4:3, 1:1, 9:16, 21:9. Free online aspect ratio calculator.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function AspectRatioPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "Aspect Ratio Calculator", item: "https://devpick.sh/aspect-ratio" },
-            ],
           }),
         }}
       />

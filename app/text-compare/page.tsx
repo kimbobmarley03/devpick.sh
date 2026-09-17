@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { TextCompareTool } from "./text-compare-tool";
 
 export const metadata: Metadata = {
-  title: "Text Compare — Compare Two Texts Online | devpick.sh",
+  title: "Text Compare — Compare Two Texts Online",
   description:
     "Compare two texts online and see line-by-line differences. Find added, removed, and changed lines instantly. Free, no upload.",
   openGraph: {

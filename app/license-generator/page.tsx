@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { LicenseGeneratorTool } from "./license-generator-tool";
 
 export const metadata: Metadata = {
-  title: "License Generator — Open Source License Creator | devpick.sh",
+  title: "License Generator — Open Source License Creator",
   description:
-    "Generate open source licenses for your projects. Choose from MIT, Apache 2.0, GPL, BSD, ISC, and more. Fill in your name and year, get the full license text instantly. 100% client-side, free.",
+    "Generate MIT, Apache 2.0, GPL, BSD, ISC, and other open source licenses with your name and year. Instant, free, and client-side.",
   openGraph: {
     title: "License Generator — Open Source License Creator | devpick.sh",
     description: "Generate open source license files instantly. MIT, Apache, GPL, and more. Free, no sign-up.",

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SlugTool } from "./slug-tool";
 
 export const metadata: Metadata = {
-  title: "Slug Generator Online — URL Slug & Filename Converter",
+  title: "Slug Generator — URLs & Filenames",
   description:
-    "Generate URL-safe slugs from text online. Convert to slug, filename-safe, and variable names. Handles unicode, separators, max length. Free, instant, client-side.",
+    "Turn text into URL slugs, safe filenames, and variable names with Unicode handling, custom separators, and maximum-length controls.",
   openGraph: {
     title: "Slug Generator | devpick.sh",
     description: "Generate URL-safe slugs from text online. Handles unicode, multiple formats.",

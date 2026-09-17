@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MarkdownToPdfTool } from "./markdown-to-pdf-tool";
 
 export const metadata: Metadata = {
-  title: "Markdown to PDF — Free Online Converter | devpick.sh",
+  title: "Markdown to PDF — Free Online Converter",
   description:
     "Convert Markdown to PDF online for free. Preview your Markdown and download as a PDF. Uses pdf-lib, 100% client-side.",
   openGraph: {

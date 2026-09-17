@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JavascriptObfuscatorTool } from "./javascript-obfuscator-tool";
 
 export const metadata: Metadata = {
-  title: "JavaScript Obfuscator — Free Online | devpick.sh",
+  title: "JavaScript Obfuscator — Free Online",
   description:
     "Obfuscate JavaScript code online for free. Renames variables, removes whitespace, and encodes strings. 100% client-side, private.",
   openGraph: {

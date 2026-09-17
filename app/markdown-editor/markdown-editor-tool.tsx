@@ -111,11 +111,11 @@ function insertLine(textarea: HTMLTextAreaElement, prefix: string, placeholder =
   return { newValue, newStart: lineStart + prefix.length, newEnd: lineStart + newLine.length };
 }
 
-const SAMPLE_MD = `# Welcome to Markdown Editor
+const SAMPLE_MD = `## Welcome to Markdown Editor
 
 A **fast, live** markdown editor that runs 100% in your browser.
 
-## Features
+### Features
 
 - Live split-pane preview
 - Formatting toolbar
@@ -123,14 +123,14 @@ A **fast, live** markdown editor that runs 100% in your browser.
 - Copy as HTML
 - **Zero server calls** — your content stays private
 
-## Code Example
+### Code Example
 
 \`\`\`javascript
 const greeting = "Hello, devpick!";
 console.log(greeting);
 \`\`\`
 
-## Blockquote
+### Blockquote
 
 > The best markdown editor is the one that gets out of your way.
 

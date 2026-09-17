@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MarkdownTool } from "./markdown-tool";
 
 export const metadata: Metadata = {
-  title: "Markdown Preview Online — Live Markdown Editor & Renderer",
+  title: "Markdown Preview & Editor Online",
   description:
     "Write and preview Markdown in real time. Supports headers, bold, italic, code, links, lists, blockquotes, and more. Free online Markdown editor.",
   openGraph: {

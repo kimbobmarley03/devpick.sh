@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ImageResizeTool } from "./image-resize-tool";
 
 export const metadata: Metadata = {
-  title: "Image Resize Online — Free, No Upload | devpick.sh",
+  title: "Image Resize Online — Free, No Upload",
   description:
     "Resize images by exact dimensions or percentage. Supports PNG, JPG, WebP. No upload — runs entirely in your browser with the Canvas API.",
   openGraph: {

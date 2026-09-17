@@ -1,16 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Globe2, LayoutGrid } from "lucide-react";
 import { ToolCard } from "@/components/tool-card";
 import { SearchBar } from "@/components/search-bar";
-import { GlobeLayout } from "@/components/globe-layout";
 import { TreemapLayout } from "@/components/treemap-layout";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { tools, categories } from "@/lib/tools";
 import { trackEvent } from "@/lib/analytics";
 import type { ToolCategory } from "@/lib/tools";
+
+const GlobeLayout = dynamic(
+  () => import("@/components/globe-layout").then((module) => module.GlobeLayout),
+  {
+    loading: () => (
+      <div className="h-[540px] flex items-center justify-center text-sm text-text-muted">
+        Loading globe…
+      </div>
+    ),
+  },
+);
 
 const featuredTools = [
   {
@@ -84,9 +95,10 @@ export function Home() {
         <SearchBar onFilter={setFilterQuery} />
       </header>
 
-      {/* Concentrate discovery and internal authority on the tools we actively improve. */}
-      {!isSearching && (
-        <section className="max-w-5xl mx-auto px-6 pb-10" aria-labelledby="featured-tools-heading">
+      <main>
+        {/* Concentrate discovery and internal authority on the tools we actively improve. */}
+        {!isSearching && (
+          <section className="max-w-5xl mx-auto px-6 pb-10" aria-labelledby="featured-tools-heading">
           <div className="flex items-end justify-between gap-4 mb-4">
             <div>
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-accent mb-1">Actively maintained</p>
@@ -113,17 +125,19 @@ export function Home() {
               </Link>
             ))}
           </div>
-        </section>
-      )}
+          </section>
+        )}
 
       {/* Desktop view: treemap (default) or globe */}
-      {!isSearching && (
-        <section className="hidden lg:block pb-4 px-6">
+        {!isSearching && (
+          <section className="hidden lg:block pb-4 px-6">
           {/* View toggle */}
           <div className="flex justify-center mb-4">
             <div className="inline-flex items-center gap-1 bg-[var(--dp-bg-subtle)] rounded-lg p-1 border border-[var(--dp-border)]">
               <button
+                type="button"
                 onClick={() => setView("treemap")}
+                aria-pressed={view === "treemap"}
                 className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 ${
                   view === "treemap"
                     ? "bg-[var(--dp-bg-card)] text-text-primary shadow-sm"
@@ -134,7 +148,9 @@ export function Home() {
                 Heatmap
               </button>
               <button
+                type="button"
                 onClick={() => setView("globe")}
+                aria-pressed={view === "globe"}
                 className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 ${
                   view === "globe"
                     ? "bg-[var(--dp-bg-card)] text-text-primary shadow-sm"
@@ -152,15 +168,15 @@ export function Home() {
           ) : (
             <GlobeLayout tools={tools} />
           )}
-        </section>
-      )}
+          </section>
+        )}
 
       {/* Category grid — mobile always, desktop only when searching */}
-      <main
-        className={`max-w-6xl mx-auto px-6 pb-20 ${
+        <div
+          className={`max-w-6xl mx-auto px-6 pb-20 ${
           !isSearching ? "lg:hidden" : ""
         }`}
-      >
+        >
         {visibleCategories.map((category) => {
           const catTools = toolsByCategory[category];
           if (!catTools || catTools.length === 0) return null;
@@ -188,10 +204,10 @@ export function Home() {
             <p className="text-sm">Try a different search term.</p>
           </div>
         )}
-      </main>
+        </div>
 
       {/* MCP Section */}
-      <section className="max-w-2xl mx-auto px-6 py-12 text-center">
+        <section className="max-w-2xl mx-auto px-6 py-12 text-center">
         <div className="rounded-xl border border-[var(--dp-border)] bg-[var(--dp-bg-subtle)] p-8">
           <p className="text-2xl mb-2">🤖</p>
           <h2 className="text-lg font-semibold text-text-primary mb-2 font-mono">Works with your AI agent</h2>
@@ -206,7 +222,8 @@ export function Home() {
             43 tools · 100% local · No API keys · Works offline
           </p>
         </div>
-      </section>
+        </section>
+      </main>
 
       {/* Footer */}
       <footer className="border-t border-border-subtle py-8 text-center space-y-2">

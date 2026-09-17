@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ColorPaletteTool } from "./color-palette-tool";
 
 export const metadata: Metadata = {
-  title: "Color Palette Generator Online — Free Harmonious Palettes | devpick.sh",
+  title: "Color Palette Generator — Harmonious Palettes",
   description:
     "Generate beautiful color palettes online. Enter a base color to create complementary, analogous, triadic, and monochromatic palettes. Copy HEX codes instantly.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function ColorPalettePage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "Color Palette Generator", item: "https://devpick.sh/color-palette" },
-            ],
           }),
         }}
       />

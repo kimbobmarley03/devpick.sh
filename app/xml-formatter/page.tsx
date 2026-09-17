@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { XmlTool } from "./xml-tool";
 
 export const metadata: Metadata = {
-  title: "XML Formatter & Validator Online (Beautify/Minify) — Free | devpick.sh",
+  title: "XML Formatter, Validator & Minifier",
   description:
     "Beautify, format, minify, and validate XML online. Free XML formatter for SOAP/API payloads with instant syntax checks. 100% client-side, no upload, no sign up.",
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SubnetCalculatorTool } from "./subnet-calculator-tool";
 
 export const metadata: Metadata = {
-  title: "Subnet Calculator — CIDR IP Range | devpick.sh",
+  title: "Subnet Calculator — CIDR IP Range",
   description:
     "Calculate subnet details from IP address and CIDR notation. Get network address, broadcast, host range, total hosts, wildcard mask, and binary. Free.",
   openGraph: {

@@ -4,7 +4,7 @@ import { FlexboxTool } from "./flexbox-tool";
 export const metadata: Metadata = {
   title: "Flexbox Playground — CSS Flexbox Generator",
   description:
-    "Interactive CSS Flexbox playground. Set flex-direction, justify-content, align-items, flex-wrap, gap. Add/remove items. Live preview and copy CSS. Free, client-side.",
+    "Experiment with flex direction, alignment, wrapping, gap, and items in a live CSS Flexbox playground, then copy the generated CSS.",
   openGraph: {
     title: "Flexbox Playground | devpick.sh",
     description: "Interactive CSS Flexbox playground with live preview and copy CSS. Free, client-side.",

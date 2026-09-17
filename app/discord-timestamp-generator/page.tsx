@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { DiscordTimestampTool } from "./discord-timestamp-tool";
 
 export const metadata: Metadata = {
-  title: "Discord Timestamp Generator — All Formats | devpick.sh",
+  title: "Discord Timestamp Generator — All Formats",
   description:
-    "Generate Discord timestamp tags for any date and time. Get all 7 Discord timestamp formats (<t:EPOCH:R>, <t:EPOCH:F>, etc.) with live preview. 100% client-side, free.",
+    "Generate all seven Discord timestamp formats for any date and time, with a live preview and copy-ready timestamp tags.",
   openGraph: {
     title: "Discord Timestamp Generator | devpick.sh",
     description: "Generate all Discord timestamp formats with live preview. Free, instant, no sign-up.",

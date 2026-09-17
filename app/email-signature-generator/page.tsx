@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { EmailSignatureGeneratorTool } from "./email-signature-generator-tool";
 
 export const metadata: Metadata = {
-  title: "Email Signature Generator — Free HTML Signatures | devpick.sh",
+  title: "Email Signature Generator — Free HTML Signatures",
   description:
-    "Create professional HTML email signatures for Gmail, Outlook, and Apple Mail. Choose from multiple templates, add social links, and copy HTML or rich text instantly.",
+    "Create HTML email signatures for Gmail, Outlook, and Apple Mail. Customize templates and social links, then copy the HTML or rich text.",
   openGraph: {
     title: "Email Signature Generator — Free HTML Signatures | devpick.sh",
     description: "Build beautiful HTML email signatures with live preview. Copy as HTML or rich text for Gmail, Outlook, and more.",

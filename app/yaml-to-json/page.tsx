@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { YamlToJsonTool } from "./yaml-to-json-tool";
 
 export const metadata: Metadata = {
-  title: "YAML to JSON Converter Online (Validate + Format) | devpick.sh",
+  title: "YAML to JSON Converter Online (Validate + Format)",
   description:
     "Free YAML to JSON converter with instant validation and pretty formatting. Convert YAML config files and API payloads safely in your browser — no upload needed.",
   openGraph: {
@@ -29,19 +29,6 @@ export default function YamlToJsonPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "YAML to JSON", item: "https://devpick.sh/yaml-to-json" },
-            ],
           }),
         }}
       />

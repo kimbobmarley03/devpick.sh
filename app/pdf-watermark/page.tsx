@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PdfWatermarkTool } from "./pdf-watermark-tool";
 
 export const metadata: Metadata = {
-  title: "Add Watermark to PDF — Free, No Upload | devpick.sh",
+  title: "Add Watermark to PDF — Free, No Upload",
   description:
     "Add a text watermark to every page of a PDF online. 100% client-side, free, no signup.",
   openGraph: {

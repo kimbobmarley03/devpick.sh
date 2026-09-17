@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MergePdfTool } from "./merge-pdf-tool";
 
 export const metadata: Metadata = {
-  title: "Merge PDF Online — Free, No Sign Up, No Upload | devpick.sh",
+  title: "Merge PDF Online — Free, No Sign Up, No Upload",
   description:
     "Combine multiple PDF files into one online. Free, 100% client-side — files never leave your browser. No sign up required.",
   openGraph: {

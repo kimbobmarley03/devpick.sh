@@ -3,7 +3,7 @@ import { UrlTool } from "./url-tool";
 
 export const metadata: Metadata = {
   title:
-    "URL Encoder & Decoder (Percent Encoding) — Free Online Tool | devpick.sh",
+    "URL Encoder & Decoder — Percent Encoding",
   description:
     "Encode or decode URL strings instantly. Convert spaces, query params, and special characters with a fast client-side percent-encoding tool.",
   keywords: [

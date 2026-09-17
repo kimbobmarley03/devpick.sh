@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CsvTool } from "./csv-tool";
 
 export const metadata: Metadata = {
-  title: "CSV Formatter & CSV to JSON Converter Online — Free | devpick.sh",
+  title: "CSV Formatter & CSV to JSON Converter Online — Free",
   description:
-    "Format CSV instantly and convert CSV to JSON or JSON to CSV. Supports headers, quoted fields, and comma/tab/semicolon delimiters. Free, browser-based, no sign up.",
+    "Format CSV or convert between CSV and JSON with headers, quoted fields, and comma, tab, or semicolon delimiters. Free and browser-based.",
   openGraph: {
     title: "CSV Formatter & Converter | devpick.sh",
     description:

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MarkdownToHtmlTool } from "./markdown-to-html-tool";
 
 export const metadata: Metadata = {
-  title: "Markdown to HTML Converter Online — Free | devpick.sh",
+  title: "Markdown to HTML Converter Online — Free",
   description:
     "Convert Markdown to HTML instantly in your browser. Handles headings, bold, italic, lists, code, links, and tables. 100% client-side, free.",
   openGraph: {
@@ -28,19 +28,6 @@ export default function MarkdownToHtmlPage() {
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Web Browser",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://devpick.sh" },
-              { "@type": "ListItem", position: 2, name: "Markdown to HTML", item: "https://devpick.sh/markdown-to-html" },
-            ],
           }),
         }}
       />

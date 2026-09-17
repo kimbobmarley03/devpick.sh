@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { GuidTool } from "./guid-tool";
 
 export const metadata: Metadata = {
-  title: "GUID Generator (UUID v4) — Free Online Bulk GUID Tool | devpick.sh",
+  title: "GUID Generator — Bulk UUID v4 Online",
   description:
-    "Free GUID Generator to create UUID v4 values instantly. Bulk-generate GUIDs, output uppercase/braces/no-hyphens/C# format, and copy in one click. Client-side, no sign-up.",
+    "Generate one or many UUID v4 GUIDs with uppercase, braces, no-hyphen, and C# formatting options. Instant, private, and client-side.",
   keywords: [
     "guid generator",
     "uuid v4 generator",

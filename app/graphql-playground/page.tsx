@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { GraphqlPlaygroundTool } from "./graphql-playground-tool";
 
 export const metadata: Metadata = {
-  title: "GraphQL Playground Online — Query Editor & Tester | devpick.sh",
+  title: "GraphQL Playground Online — Query Editor & Tester",
   description:
-    "Test GraphQL APIs directly from your browser. Enter an endpoint, write queries and mutations, add variables and headers, and see formatted JSON responses. Free, no sign-up.",
+    "Test GraphQL APIs in your browser. Write queries and mutations, add variables and headers, then inspect formatted JSON responses with no sign-up.",
   openGraph: {
     title: "GraphQL Playground Online | devpick.sh",
     description: "Execute GraphQL queries and mutations from your browser. Variables, headers, and formatted JSON output.",

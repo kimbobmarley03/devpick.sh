@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ImageCompressTool } from "./image-compress-tool";
 
 export const metadata: Metadata = {
-  title: "Image Compressor Online — Free, No Upload | devpick.sh",
+  title: "Image Compressor Online — Free, No Upload",
   description:
     "Compress images and reduce file size without external uploads. Adjust quality slider. Supports PNG, JPG, WebP. 100% client-side.",
   openGraph: {

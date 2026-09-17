@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { NginxConfigGeneratorTool } from "./nginx-config-generator-tool";
 
 export const metadata: Metadata = {
-  title: "Nginx Config Generator — Visual Configuration Builder | devpick.sh",
+  title: "Nginx Config Generator",
   description:
-    "Generate nginx server block configurations visually. Configure SSL, reverse proxy, gzip, caching, CORS, and rate limiting. Syntax-highlighted output. 100% client-side, free.",
+    "Build nginx server blocks for SSL, reverse proxies, gzip, caching, CORS, and rate limiting with syntax-highlighted output in your browser.",
   openGraph: {
     title: "Nginx Config Generator — Visual Configuration Builder | devpick.sh",
     description: "Build nginx server configurations visually with SSL, proxy, and caching options. Free, instant, no sign-up.",
