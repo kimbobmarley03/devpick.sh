@@ -1,10 +1,13 @@
 # devpick.sh
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Live](https://img.shields.io/badge/live-devpick.sh-brightgreen)](https://devpick.sh)
+
 > Developer tools that don't suck.
 
-Ultra-minimal, terminal-inspired developer tools collection. Built with Next.js 16, Tailwind CSS v4, and deployed on Cloudflare Pages.
+119 free developer tools. Everything runs 100% in your browser — no accounts, no tracking, your input never leaves your machine. Open source under MIT.
 
-- [Use the browser tools](https://devpick.sh)
+- [Use the tools](https://devpick.sh)
 - [Audit or generate a monorepo .gitignore](https://devpick.sh/gitignore-generator#gitignore-auditor)
 - [Install 43 local tools for AI agents](./mcp-server/README.md)
 
@@ -45,6 +48,20 @@ Build output: `./out` (static HTML/CSS/JS)
 - next/font (Inter + JetBrains Mono)
 - next-sitemap
 
-## Design
+## Privacy
 
-Dark theme, terminal aesthetic, bento grid layout. Tool inputs are processed client-side and are never sent to DevPick. Privacy-safe aggregate analytics measure page and tool outcomes without collecting inputs, filenames, or generated output.
+Tool inputs are processed client-side and are never sent to DevPick. Privacy-safe aggregate analytics measure page and tool outcomes without collecting inputs, filenames, or generated output.
+
+## Contributing
+
+Each tool is a self-contained route under `app/<tool-name>/page.tsx` — copy an existing one as a starting point. PRs welcome: new tools, better UX, bug fixes.
+
+```bash
+npm run dev     # start dev server
+npm run lint    # eslint
+npm run build   # production build (static export to /out)
+```
+
+## License
+
+MIT — see [LICENSE](./LICENSE). Fork it, self-host it, use it commercially. If you build something cool with it, a link back is appreciated but not required.
