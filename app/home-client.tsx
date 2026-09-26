@@ -87,7 +87,7 @@ export function Home() {
           <span className="blink text-accent font-mono text-3xl">█</span>
         </div>
         <p className="text-text-secondary text-lg mb-2 font-light">
-          119 free developer tools. 100% in your browser. Zero tracking.
+          118 free developer tools. 100% in your browser. Zero tracking.
         </p>
         <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
           <a

@@ -5,7 +5,7 @@
 
 > Developer tools that don't suck.
 
-119 free developer tools. Everything runs 100% in your browser — no accounts, no tracking, your input never leaves your machine. Open source under MIT.
+118 free developer tools. Everything runs 100% in your browser — no accounts, no tracking, your input never leaves your machine. Open source under MIT.
 
 - [Use the tools](https://devpick.sh)
 - [Audit or generate a monorepo .gitignore](https://devpick.sh/gitignore-generator#gitignore-auditor)
