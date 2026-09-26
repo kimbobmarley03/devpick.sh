@@ -25,22 +25,22 @@ const GlobeLayout = dynamic(
 
 const featuredTools = [
   {
-    name: "Hex Calculator",
-    href: "/hex-calculator",
-    description: "Arithmetic, masks, shifts, and explicit 32-bit unary operations with hex, decimal, and binary output.",
-    signal: "Bitwise + arithmetic",
-  },
-  {
-    name: "WebP to PNG",
-    href: "/webp-to-png",
-    description: "Batch-convert images locally, preserve transparency, and inspect the output size before download.",
-    signal: "Batch + transparency",
+    name: "UTM Builder",
+    href: "/utm-builder",
+    description: "Build campaign tracking URLs with shareable links, one-click presets, bulk tagging, and GA4 naming checks.",
+    signal: "Shareable builds + bulk mode",
   },
   {
     name: ".gitignore Generator",
     href: "/gitignore-generator",
     description: "Generate or audit stack rules, find duplicates, and flag risky lockfile ignores before code review.",
     signal: "Monorepo audit workflow",
+  },
+  {
+    name: "Unix Timestamp Converter",
+    href: "/unix-timestamp-converter",
+    description: "Convert between epoch timestamps and human-readable dates, in every timezone that matters.",
+    signal: "Every format, instantly",
   },
 ];
 
@@ -87,13 +87,37 @@ export function Home() {
           <span className="blink text-accent font-mono text-3xl">█</span>
         </div>
         <p className="text-text-secondary text-lg mb-2 font-light">
-          Developer tools that don&apos;t suck.
+          119 free developer tools. 100% in your browser. Zero tracking.
         </p>
-        <p className="text-emerald-400 text-sm mb-8 font-mono">
-          🤖 WebMCP ready — AI agents can use our tools directly
-        </p>
+        <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
+          <a
+            href="https://github.com/kimbobmarley03/devpick.sh"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent("github_star_click", { location: "hero" })}
+            className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-full border border-border-subtle bg-surface-subtle text-text-secondary hover:border-accent hover:text-text-primary transition-colors no-underline"
+          >
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            MIT open source — star it
+          </a>
+          <span className="text-xs font-mono px-3 py-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/5 text-emerald-400">
+            🤖 WebMCP ready — AI agents can use these tools directly
+          </span>
+        </div>
         <SearchBar onFilter={setFilterQuery} />
       </header>
+
+      {/* Trust strip */}
+      {!isSearching && (
+        <div className="max-w-5xl mx-auto px-6 pb-8">
+          <div className="flex items-center justify-center gap-x-8 gap-y-2 flex-wrap text-xs font-mono text-text-muted">
+            <span><span className="text-emerald-400">✓</span> No sign-up</span>
+            <span><span className="text-emerald-400">✓</span> No cookies</span>
+            <span><span className="text-emerald-400">✓</span> Input never leaves your browser</span>
+            <span><span className="text-emerald-400">✓</span> MIT licensed</span>
+          </div>
+        </div>
+      )}
 
       <main>
         {/* Concentrate discovery and internal authority on the tools we actively improve. */}

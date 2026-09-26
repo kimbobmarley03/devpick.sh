@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
-import { CopyButton } from "@/components/copy-button";
+import { CopyButton, copyToClipboard } from "@/components/copy-button";
 import { trackEvent } from "@/lib/analytics";
+import { Link2, Check } from "lucide-react";
 
 const TEMPLATES: Record<string, { label: string; emoji: string; patterns: string[] }> = {
   nodejs: {
@@ -488,10 +489,47 @@ function downloadFile(content: string, filename: string) {
 }
 
 export function GitignoreGeneratorTool() {
-  const [selected, setSelected] = useState<Set<string>>(new Set(["nodejs", "macos", "vscode"]));
-  const [custom, setCustom] = useState("");
+  const [selected, setSelected] = useState<Set<string>>(() => {
+    if (typeof window === "undefined") return new Set(["nodejs", "macos", "vscode"]);
+    try {
+      const t = new URLSearchParams(window.location.search).get("t");
+      if (t) {
+        const keys = t.split(",").filter((k) => k in TEMPLATES);
+        if (keys.length > 0) return new Set(keys);
+      }
+    } catch { /* fall through to default */ }
+    return new Set(["nodejs", "macos", "vscode"]);
+  });
+  const [custom, setCustom] = useState(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return new URLSearchParams(window.location.search).get("custom") ?? "";
+    } catch { return ""; }
+  });
   const [auditInput, setAuditInput] = useState("");
   const [audit, setAudit] = useState<GitignoreAudit | null>(null);
+  const [shared, setShared] = useState(false);
+
+  // Keep the page URL in sync with the generator state so every setup is shareable.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const q = new URLSearchParams();
+    if (selected.size > 0) q.set("t", [...selected].join(","));
+    if (custom.trim()) q.set("custom", custom.trim());
+    const next = q.toString() ? `?${q.toString()}` : "";
+    if (next !== window.location.search) {
+      window.history.replaceState(null, "", `${window.location.pathname}${next}`);
+    }
+  }, [selected, custom]);
+
+  const handleShare = async () => {
+    const ok = await copyToClipboard(window.location.href);
+    if (ok) {
+      setShared(true);
+      setTimeout(() => setShared(false), 1500);
+      trackEvent("tool_share", { tool_id: "gitignore-generator", template_count: selected.size });
+    }
+  };
 
   const toggle = (key: string) => {
     setSelected((prev) => {
@@ -558,7 +596,7 @@ export function GitignoreGeneratorTool() {
   return (
     <ToolLayout
       title=".gitignore Generator"
-      description="Select templates for your stack, merge them, and download a clean .gitignore file."
+      description="Select templates for your stack, merge them, and download a clean .gitignore file. Every setup gets a shareable link."
     >
       <section className="mb-5" aria-labelledby="stack-presets-heading">
         <div className="flex items-center gap-3 flex-wrap">
@@ -629,6 +667,15 @@ export function GitignoreGeneratorTool() {
                 )}
               </h2>
               <div className="flex items-center gap-2">
+                <button
+                  onClick={handleShare}
+                  disabled={!output}
+                  className="action-btn text-xs"
+                  title="Copy a link to this exact template setup"
+                >
+                  {shared ? <Check size={13} className="animate-pop-in" /> : <Link2 size={13} />}
+                  <span>{shared ? "Link copied!" : "Share"}</span>
+                </button>
                 <CopyButton text={output} label="Copy" />
                 <button
                   onClick={downloadGitignore}
