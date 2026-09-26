@@ -4,11 +4,11 @@ import { UtmBuilderTool } from "./utm-builder-tool";
 export const metadata: Metadata = {
   title: "Free UTM Builder & Campaign URL Generator for GA4",
   description:
-    "Create clean UTM tracking links in seconds. This free UTM builder adds utm_source, utm_medium, utm_campaign, and more for Google Analytics campaign attribution.",
+    "Build UTM tracking links in seconds — free UTM builder with shareable links, presets, bulk mode, and GA4 naming checks.",
   openGraph: {
     title: "UTM Builder & Campaign URL Generator (Free) | devpick.sh",
     description:
-      "Build UTM links for email, social, and ads with live preview and copy-ready URLs. Works with GA4 and any analytics tool.",
+      "Build UTM links for email, social, and ads with live preview, shareable links, presets, and bulk mode. Works with GA4 and any analytics tool.",
     url: "https://devpick.sh/utm-builder",
   },
   alternates: { canonical: "https://devpick.sh/utm-builder" },

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToolLayout } from "@/components/tool-layout";
-import { CopyButton } from "@/components/copy-button";
+import { CopyButton, copyToClipboard } from "@/components/copy-button";
+import { Link2, Check } from "lucide-react";
 
 const UTM_PARAMS = [
   {
@@ -42,6 +43,25 @@ const UTM_PARAMS = [
   },
 ];
 
+const PRESETS: { name: string; values: Record<string, string> }[] = [
+  {
+    name: "Email newsletter",
+    values: { utm_source: "newsletter", utm_medium: "email", utm_campaign: "", utm_term: "", utm_content: "cta_button" },
+  },
+  {
+    name: "Social post",
+    values: { utm_source: "linkedin", utm_medium: "social", utm_campaign: "", utm_term: "", utm_content: "" },
+  },
+  {
+    name: "Paid search",
+    values: { utm_source: "google", utm_medium: "cpc", utm_campaign: "", utm_term: "", utm_content: "" },
+  },
+  {
+    name: "QR / offline",
+    values: { utm_source: "qr", utm_medium: "offline", utm_campaign: "", utm_term: "", utm_content: "flyer" },
+  },
+];
+
 const HISTORY_KEY = "utm-builder-history";
 const MAX_HISTORY = 10;
 
@@ -64,9 +84,9 @@ const UTM_EXAMPLES = [
 ];
 
 function buildUrl(base: string, params: Record<string, string>): string {
-  if (!base) return "";
+  if (!base.trim()) return "";
   try {
-    const url = new URL(base.startsWith("http") ? base : `https://${base}`);
+    const url = new URL(base.trim().startsWith("http") ? base.trim() : `https://${base.trim()}`);
     for (const [key, val] of Object.entries(params)) {
       if (val.trim()) url.searchParams.set(key, val.trim());
     }
@@ -76,15 +96,100 @@ function buildUrl(base: string, params: Record<string, string>): string {
   }
 }
 
+function normalizeValue(v: string): string {
+  return v.toLowerCase().replace(/\s+/g, "_");
+}
+
+interface ToolState {
+  websiteUrl: string;
+  values: Record<string, string>;
+}
+
+function readStateFromUrl(): ToolState {
+  const fallback: ToolState = {
+    websiteUrl: "",
+    values: { utm_source: "", utm_medium: "", utm_campaign: "", utm_term: "", utm_content: "" },
+  };
+  if (typeof window === "undefined") return fallback;
+  try {
+    const q = new URLSearchParams(window.location.search);
+    const values: Record<string, string> = { ...fallback.values };
+    for (const { param } of UTM_PARAMS) {
+      const v = q.get(param);
+      if (v !== null) values[param] = v;
+    }
+    return { websiteUrl: q.get("url") ?? "", values };
+  } catch {
+    return fallback;
+  }
+}
+
+function stateToQuery(state: ToolState): string {
+  const q = new URLSearchParams();
+  if (state.websiteUrl.trim()) q.set("url", state.websiteUrl.trim());
+  for (const { param } of UTM_PARAMS) {
+    const v = state.values[param]?.trim();
+    if (v) q.set(param, v);
+  }
+  const s = q.toString();
+  return s ? `?${s}` : "";
+}
+
+function findIssues(values: Record<string, string>): string[] {
+  const issues: string[] = [];
+  const filled = UTM_PARAMS.filter(({ param }) => values[param]?.trim());
+  if (filled.some(({ param }) => /[A-Z]/.test(values[param]))) {
+    issues.push("Uppercase letters detected — GA4 treats “Email” and “email” as different values. Normalize to lowercase.");
+  }
+  if (filled.some(({ param }) => /\s/.test(values[param]))) {
+    issues.push("Spaces detected — they get URL-encoded and fragment your reports. Use underscores instead.");
+  }
+  const missing = UTM_PARAMS.filter(({ param, required }) => required && !values[param]?.trim()).map(({ param }) => param);
+  if (missing.length > 0 && filled.length > 0) {
+    issues.push(`Missing recommended fields: ${missing.join(", ")}.`);
+  }
+  return issues;
+}
+
+function HighlightedUrl({ url, base }: { url: string; base: string }) {
+  const cleanBase = base.trim().startsWith("http") ? base.trim().split("?")[0] : `https://${base.trim().split("?")[0]}`;
+  const queryPart = url.includes("?") ? url.split("?").slice(1).join("?") : "";
+  return (
+    <div className="min-h-[80px] p-3 rounded-lg bg-surface-raised border border-border-subtle font-mono text-xs text-text-primary break-all leading-relaxed">
+      {url ? (
+        <>
+          <span className="text-text-muted">{cleanBase}</span>
+          {queryPart && (
+            <>
+              <span className="text-text-muted">?</span>
+              {queryPart.split("&").map((part, i) => {
+                const idx = part.indexOf("=");
+                const key = idx >= 0 ? part.slice(0, idx) : part;
+                const val = idx >= 0 ? part.slice(idx + 1) : "";
+                return (
+                  <span key={i}>
+                    {i > 0 && <span className="text-text-muted">&amp;</span>}
+                    <span className="text-accent">{key}</span>
+                    <span className="text-text-muted">=</span>
+                    <span className="text-green-400">{val}</span>
+                  </span>
+                );
+              })}
+            </>
+          )}
+        </>
+      ) : (
+        <span className="text-text-muted">Fill in the fields above to generate your tracking URL…</span>
+      )}
+    </div>
+  );
+}
+
 export function UtmBuilderTool() {
-  const [websiteUrl, setWebsiteUrl] = useState("");
-  const [values, setValues] = useState<Record<string, string>>({
-    utm_source: "",
-    utm_medium: "",
-    utm_campaign: "",
-    utm_term: "",
-    utm_content: "",
-  });
+  const [mode, setMode] = useState<"single" | "bulk">("single");
+  const [state, setState] = useState<ToolState>(readStateFromUrl);
+  const [bulkInput, setBulkInput] = useState("");
+  const [shared, setShared] = useState(false);
   const [history, setHistory] = useState<string[]>(() => {
     if (typeof window === "undefined") return [];
     try {
@@ -92,43 +197,126 @@ export function UtmBuilderTool() {
     } catch { return []; }
   });
 
-  const generatedUrl = buildUrl(websiteUrl, values);
+  // Keep the page URL in sync with the tool state so every build is shareable.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const next = stateToQuery(state);
+    const current = window.location.search;
+    if (next !== current) {
+      window.history.replaceState(null, "", `${window.location.pathname}${next}`);
+    }
+  }, [state]);
 
-  const handleCopy = () => {
-    if (generatedUrl) {
-      const newHistory = [generatedUrl, ...history.filter((h) => h !== generatedUrl)].slice(0, MAX_HISTORY);
-      setHistory(newHistory);
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
+  const setValue = (param: string, val: string) =>
+    setState((prev) => ({ ...prev, values: { ...prev.values, [param]: val } }));
+
+  const applyPreset = (preset: (typeof PRESETS)[number]) =>
+    setState((prev) => ({
+      ...prev,
+      values: {
+        ...prev.values,
+        ...Object.fromEntries(
+          Object.entries(preset.values).map(([k, v]) => [k, k === "utm_campaign" ? prev.values[k] : v])
+        ),
+      },
+    }));
+
+  const normalizeAll = () =>
+    setState((prev) => ({
+      ...prev,
+      values: Object.fromEntries(Object.entries(prev.values).map(([k, v]) => [k, normalizeValue(v)])),
+    }));
+
+  const handleShare = async () => {
+    const ok = await copyToClipboard(window.location.href);
+    if (ok) {
+      setShared(true);
+      setTimeout(() => setShared(false), 1500);
     }
   };
 
-  const setValue = (param: string, val: string) => {
-    setValues((prev) => ({ ...prev, [param]: val }));
+  const generatedUrl = buildUrl(state.websiteUrl, state.values);
+  const issues = findIssues(state.values);
+
+  const recordHistory = (url: string) => {
+    if (!url) return;
+    const newHistory = [url, ...history.filter((h) => h !== url)].slice(0, MAX_HISTORY);
+    setHistory(newHistory);
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory)); } catch { /* noop */ }
   };
+
+  const bulkUrls = bulkInput
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((line) => ({ input: line, output: buildUrl(line, state.values) }));
 
   return (
     <ToolLayout
       title="UTM Builder"
-      description="Build campaign tracking URLs with UTM parameters for Google Analytics, GA4, and any analytics platform."
+      description="Build campaign tracking URLs with UTM parameters for Google Analytics, GA4, and any analytics platform. Every build gets a shareable link."
     >
+      {/* Mode tabs */}
+      <div className="flex gap-1 mb-5 p-1 rounded-lg bg-surface-subtle border border-border-subtle w-fit">
+        {(["single", "bulk"] as const).map((m) => (
+          <button
+            key={m}
+            onClick={() => setMode(m)}
+            className={`px-4 py-1.5 text-xs font-mono rounded-md transition-colors ${
+              mode === m
+                ? "bg-surface-raised text-text-primary border border-border-subtle"
+                : "text-text-muted hover:text-text-secondary"
+            }`}
+          >
+            {m === "single" ? "Single URL" : "Bulk mode"}
+          </button>
+        ))}
+      </div>
+
+      {/* Presets */}
+      <div className="flex flex-wrap items-center gap-2 mb-5">
+        <span className="text-xs text-text-muted font-mono mr-1">Presets:</span>
+        {PRESETS.map((p) => (
+          <button
+            key={p.name}
+            onClick={() => applyPreset(p)}
+            className="text-xs font-mono px-3 py-1.5 rounded-full border border-border-subtle bg-surface-subtle text-text-secondary hover:border-accent hover:text-text-primary transition-colors"
+          >
+            {p.name}
+          </button>
+        ))}
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Input Panel */}
         <div className="space-y-4">
           <div className="bg-card-bg border border-card-border rounded-xl p-5">
-            <h2 className="text-sm font-semibold text-text-secondary mb-4 font-mono uppercase tracking-wide">Campaign URL</h2>
+            <h2 className="text-sm font-semibold text-text-secondary mb-4 font-mono uppercase tracking-wide">
+              {mode === "single" ? "Campaign URL" : "URLs to tag (one per line)"}
+            </h2>
             <div className="space-y-3">
-              <div>
-                <label className="block text-xs text-text-muted font-mono mb-1.5">
-                  Website URL <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="url"
-                  value={websiteUrl}
-                  onChange={(e) => setWebsiteUrl(e.target.value)}
-                  placeholder="https://example.com/landing-page"
+              {mode === "single" ? (
+                <div>
+                  <label className="block text-xs text-text-muted font-mono mb-1.5">
+                    Website URL <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="url"
+                    value={state.websiteUrl}
+                    onChange={(e) => setState((prev) => ({ ...prev, websiteUrl: e.target.value }))}
+                    placeholder="https://example.com/landing-page"
+                    className="w-full px-3 py-2 text-sm border border-border-subtle rounded-lg bg-surface-raised text-text-primary focus:outline-none focus:ring-1 focus:ring-accent font-mono"
+                  />
+                </div>
+              ) : (
+                <textarea
+                  value={bulkInput}
+                  onChange={(e) => setBulkInput(e.target.value)}
+                  placeholder={"https://example.com/landing-a\nhttps://example.com/landing-b\nhttps://example.com/landing-c"}
+                  rows={5}
                   className="w-full px-3 py-2 text-sm border border-border-subtle rounded-lg bg-surface-raised text-text-primary focus:outline-none focus:ring-1 focus:ring-accent font-mono"
                 />
-              </div>
+              )}
               {UTM_PARAMS.map(({ param, label, required, placeholder }) => (
                 <div key={param}>
                   <label className="block text-xs text-text-muted font-mono mb-1.5">
@@ -136,55 +324,83 @@ export function UtmBuilderTool() {
                   </label>
                   <input
                     type="text"
-                    value={values[param]}
+                    value={state.values[param]}
                     onChange={(e) => setValue(param, e.target.value)}
                     placeholder={placeholder}
                     className="w-full px-3 py-2 text-sm border border-border-subtle rounded-lg bg-surface-raised text-text-primary focus:outline-none focus:ring-1 focus:ring-accent font-mono"
                   />
                 </div>
               ))}
+              <button
+                onClick={normalizeAll}
+                className="text-xs font-mono text-text-muted hover:text-accent transition-colors"
+              >
+                ↓ normalize: lowercase + underscores
+              </button>
             </div>
           </div>
+
+          {/* Convention checks */}
+          {issues.length > 0 && (
+            <div className="bg-amber-500/5 border border-amber-500/25 rounded-xl p-4 space-y-1.5">
+              <h3 className="text-xs font-semibold text-amber-400 font-mono uppercase tracking-wide">GA4 naming checks</h3>
+              {issues.map((issue, i) => (
+                <p key={i} className="text-xs text-text-secondary leading-relaxed">⚠ {issue}</p>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Output Panel */}
         <div className="space-y-4">
-          {/* Generated URL */}
           <div className="bg-card-bg border border-card-border rounded-xl p-5">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm font-semibold text-text-secondary font-mono uppercase tracking-wide">Generated URL</h2>
-              <div onClick={handleCopy}>
-                <CopyButton text={generatedUrl} label="Copy URL" />
+            <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+              <h2 className="text-sm font-semibold text-text-secondary font-mono uppercase tracking-wide">
+                {mode === "single" ? "Generated URL" : `Generated URLs (${bulkUrls.filter((b) => b.output).length})`}
+              </h2>
+              <div className="flex items-center gap-2">
+                {mode === "single" && (
+                  <button
+                    onClick={handleShare}
+                    disabled={!generatedUrl}
+                    className="action-btn"
+                    title="Copy a link to this exact build"
+                  >
+                    {shared ? <Check size={13} className="animate-pop-in" /> : <Link2 size={13} />}
+                    <span>{shared ? "Link copied!" : "Share this build"}</span>
+                  </button>
+                )}
+                <div onClick={() => recordHistory(generatedUrl)}>
+                  <CopyButton
+                    text={mode === "single" ? generatedUrl : bulkUrls.map((b) => b.output).filter(Boolean).join("\n")}
+                    label={mode === "single" ? "Copy URL" : "Copy all"}
+                  />
+                </div>
               </div>
             </div>
-            <div className="min-h-[80px] p-3 rounded-lg bg-surface-raised border border-border-subtle font-mono text-xs text-text-primary break-all leading-relaxed">
-              {generatedUrl ? (
-                <>
-                  <span className="text-text-muted">{websiteUrl.startsWith("http") ? websiteUrl.split("?")[0] : `https://${websiteUrl.split("?")[0]}`}</span>
-                  {generatedUrl.includes("?") && (
-                    <>
-                      <span className="text-text-muted">?</span>
-                      {generatedUrl
-                        .split("?")[1]
-                        .split("&")
-                        .map((part, i) => {
-                          const [key, val] = part.split("=");
-                          return (
-                            <span key={i}>
-                              {i > 0 && <span className="text-text-muted">&amp;</span>}
-                              <span className="text-accent">{key}</span>
-                              <span className="text-text-muted">=</span>
-                              <span className="text-green-400">{val}</span>
-                            </span>
-                          );
-                        })}
-                    </>
-                  )}
-                </>
-              ) : (
-                <span className="text-text-muted">Fill in the fields above to generate your tracking URL…</span>
-              )}
-            </div>
+            {mode === "single" ? (
+              <HighlightedUrl url={generatedUrl} base={state.websiteUrl} />
+            ) : (
+              <div className="space-y-2 max-h-[320px] overflow-y-auto">
+                {bulkUrls.length === 0 && (
+                  <p className="text-xs text-text-muted font-mono p-3">Paste URLs on the left to tag them all at once…</p>
+                )}
+                {bulkUrls.map((b, i) => (
+                  <div key={i} className="p-2.5 rounded-lg bg-surface-raised border border-border-subtle font-mono text-[11px] break-all leading-relaxed">
+                    {b.output ? (
+                      <span className="text-text-secondary">{b.output}</span>
+                    ) : (
+                      <span className="text-red-400">Invalid URL: {b.input}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+            {mode === "single" && generatedUrl && (
+              <p className="mt-3 text-[11px] text-text-muted font-mono">
+                🔗 This build lives in the page URL — bookmark it or send it to a teammate.
+              </p>
+            )}
           </div>
 
           {/* History */}
@@ -195,7 +411,7 @@ export function UtmBuilderTool() {
                 <button
                   onClick={() => {
                     setHistory([]);
-                    localStorage.removeItem(HISTORY_KEY);
+                    try { localStorage.removeItem(HISTORY_KEY); } catch { /* noop */ }
                   }}
                   className="text-xs text-text-muted hover:text-text-primary transition-colors"
                 >
@@ -204,10 +420,7 @@ export function UtmBuilderTool() {
               </div>
               <div className="space-y-2">
                 {history.map((url, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-2 p-2 rounded bg-surface-subtle border border-border-subtle group"
-                  >
+                  <div key={i} className="flex items-start gap-2 p-2 rounded bg-surface-subtle border border-border-subtle group">
                     <span className="font-mono text-[11px] text-text-secondary break-all flex-1 leading-relaxed">{url}</span>
                     <CopyButton text={url} label="Copy" />
                   </div>
@@ -249,6 +462,7 @@ export function UtmBuilderTool() {
           </p>
           <p>
             If you run campaigns across email, social, paid ads, or partnerships, a UTM builder keeps your naming consistent so traffic data does not get fragmented.
+            Every build on this page gets a shareable link, so teams can reuse the exact same tagging without copy-paste drift.
           </p>
         </div>
       </section>
