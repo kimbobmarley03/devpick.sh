@@ -62,6 +62,20 @@ npm run lint    # eslint
 npm run build   # production build (static export to /out)
 ```
 
+## Self-host
+
+There is no backend — the build produces a plain `out/` directory of static files. Serve it with anything:
+
+```bash
+docker compose up -d          # builds and serves on :8080
+# or
+npx serve out                 # zero-config static server
+# or
+docker run -d -p 8080:80 -v ./out:/usr/share/nginx/html nginx:alpine
+```
+
+No database, no env vars, no API keys. Every tool runs 100% client-side.
+
 ## License
 
 MIT — see [LICENSE](./LICENSE). Fork it, self-host it, use it commercially. If you build something cool with it, a link back is appreciated but not required.
