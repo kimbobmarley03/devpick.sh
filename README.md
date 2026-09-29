@@ -76,6 +76,10 @@ docker run -d -p 8080:80 -v ./out:/usr/share/nginx/html nginx:alpine
 
 No database, no env vars, no API keys. Every tool runs 100% client-side.
 
+## Writing
+
+- [I ship 118 dev tools as a single static export: here's the setup](https://dev.to/bob_kim_marley/i-ship-118-dev-tools-as-a-single-static-export-heres-the-setup-a2i) — how the repo's conventions, build-time SEO audit, and privacy-safe analytics work.
+
 ## License
 
 MIT — see [LICENSE](./LICENSE). Fork it, self-host it, use it commercially. If you build something cool with it, a link back is appreciated but not required.
