@@ -1,0 +1,152 @@
+# devpick.sh
+
+> 118 free developer tools for JSON, images, PDFs, encoding, debugging, and more. 100% client-side: everything runs in the browser, zero tracking, no sign-up. MIT open source.
+
+## Format & Validate
+
+- [JSON Formatter](https://devpick.sh/json-formatter): Format, validate & minify JSON
+- [SQL Formatter](https://devpick.sh/sql-formatter): Beautify SQL queries
+- [XML Formatter](https://devpick.sh/xml-formatter): Format & validate XML documents
+- [Case Converter](https://devpick.sh/case-converter): camelCase, snake_case, PascalCase & more
+- [Word Counter](https://devpick.sh/character-counter): Characters, words, sentences, reading time
+- [Markdown Preview](https://devpick.sh/markdown-preview): Live Markdown editor & renderer
+- [Number Formatter](https://devpick.sh/number-format): Format numbers as commas, currency, binary, words…
+- [Code Minifier](https://devpick.sh/js-minifier): Minify HTML, CSS, and JavaScript
+- [Text Sort & Dedupe](https://devpick.sh/text-sort): Sort lines, deduplicate, trim whitespace
+- [CSS Formatter](https://devpick.sh/css-formatter): Beautify & minify CSS code
+- [HTML Formatter](https://devpick.sh/html-formatter): Beautify & minify HTML
+- [JS/TS Formatter](https://devpick.sh/js-formatter): Beautify & minify JavaScript and TypeScript
+- [JSON Viewer](https://devpick.sh/json-viewer): Interactive JSON tree viewer with search & path copy
+- [CSV Viewer](https://devpick.sh/csv-viewer): View and sort CSV data as an interactive table
+- [JavaScript Obfuscator](https://devpick.sh/javascript-obfuscator): Obfuscate JS: rename vars, minify, encode strings
+- [HTML Minifier](https://devpick.sh/html-minifier): Minify HTML: remove comments, whitespace, optional tags
+- [Regex Cheat Sheet](https://devpick.sh/regex-cheat-sheet): Searchable regex reference: syntax, examples, patterns
+- [Markdown Editor](https://devpick.sh/markdown-editor): Live Markdown editor with split-pane preview and toolbar
+
+## Encode & Decode
+
+- [Base64](https://devpick.sh/base64): Encode & decode Base64
+- [URL Encoder](https://devpick.sh/url-encoder): Encode & decode URL components
+- [HTML Entities](https://devpick.sh/html-entities): Encode & decode HTML entities
+- [JWT Decoder](https://devpick.sh/jwt-decoder): Decode & inspect JWT tokens
+- [Escape / Unescape](https://devpick.sh/escape): Escape JSON, HTML, URL, XML, Regex
+- [Image → Base64](https://devpick.sh/image-base64): Convert images to Base64 data URIs
+- [Binary to Text](https://devpick.sh/binary-to-text): Decode binary, hex, octal back to text
+- [Text to Hex](https://devpick.sh/text-to-hex): Encode & decode text to hexadecimal
+- [SAML Decoder](https://devpick.sh/saml-decoder): Decode base64 SAML responses and assertions
+- [Certificate Decoder](https://devpick.sh/certificate-decoder): Decode PEM certificates and CSRs (Subject, SANs, validity)
+
+## Convert
+
+- [Unix Timestamp Converter](https://devpick.sh/unix-timestamp-converter): Convert unix/epoch timestamps to dates
+- [YAML to JSON](https://devpick.sh/yaml-formatter): Convert YAML to JSON and back
+- [Number Base](https://devpick.sh/base): Convert between number bases
+- [CSV to JSON](https://devpick.sh/csv-formatter): Convert CSV data to JSON
+- [Timezone Converter](https://devpick.sh/timezone): Convert time between IANA timezones
+- [Color Picker](https://devpick.sh/color-picker): Convert HEX ↔ RGB ↔ HSL
+- [Hex ↔ RGB](https://devpick.sh/hex-rgb): Convert hex colors to RGB/HSL and back
+- [ASCII Table](https://devpick.sh/ascii-art-generator): Full ASCII table with search & copy
+- [TOML to JSON](https://devpick.sh/toml): Convert TOML to JSON and back
+- [JSON → TypeScript](https://devpick.sh/json-to-ts): Convert JSON to TypeScript interfaces
+- [WebP to PNG](https://devpick.sh/webp-to-png): Convert WebP images to PNG format
+- [Color Picker from Image](https://devpick.sh/color-from-image): Click image pixels to get HEX, RGB, HSL
+- [Aspect Ratio Calculator](https://devpick.sh/aspect-ratio): Calculate & scale aspect ratios
+- [MP4 to Audio](https://devpick.sh/mp4-to-mp3): Extract audio from MP4 and video files
+- [HTML to Markdown](https://devpick.sh/html-to-markdown): Convert HTML to Markdown format
+- [Text to Binary](https://devpick.sh/text-to-binary): Convert text to binary, hex, octal, decimal
+- [XML to JSON](https://devpick.sh/xml-to-json): Convert XML documents to JSON
+- [JSON to YAML](https://devpick.sh/json-to-yaml): Convert between JSON and YAML
+- [CSV to JSON](https://devpick.sh/csv-to-json): Convert CSV data to JSON
+- [Markdown to HTML](https://devpick.sh/markdown-to-html): Convert Markdown to HTML
+- [PNG to JPG](https://devpick.sh/png-to-jpg): Convert PNG images to JPG format
+- [Image Resize](https://devpick.sh/image-resize): Resize images by dimensions or percentage
+- [Image Compress](https://devpick.sh/image-compress): Compress images by adjusting quality
+- [SVG to PNG](https://devpick.sh/svg-to-png): Convert SVG files to PNG images
+- [CSV to SQL](https://devpick.sh/csv-to-sql): Convert CSV to CREATE TABLE + INSERT statements
+- [YAML to JSON](https://devpick.sh/yaml-to-json): Convert YAML to JSON instantly
+- [XML to CSV](https://devpick.sh/xml-to-csv): Convert XML to CSV with auto-detected columns
+- [JSON to XML](https://devpick.sh/json-to-xml): Convert JSON to XML format
+- [Hex Calculator](https://devpick.sh/hex-calculator): Hex arithmetic: add, subtract, AND, OR, XOR, shifts
+
+## Generate
+
+- [UUID Generator](https://devpick.sh/uuid-generator): Generate UUIDs v4
+- [Hash Generator](https://devpick.sh/hash-generator): MD5, SHA-1, SHA-256, SHA-512
+- [Password Generator](https://devpick.sh/password-generator): Generate strong random passwords
+- [Lorem Ipsum](https://devpick.sh/lorem-ipsum-generator): Generate placeholder text
+- [QR Code Generator](https://devpick.sh/qr-code-generator): Generate QR codes from text or URLs
+- [Slug Generator](https://devpick.sh/slug-generator): Generate URL-safe slugs from text
+- [CSS Gradient Generator](https://devpick.sh/css-gradient): Generate linear, radial, and conic CSS gradients
+- [Box Shadow Generator](https://devpick.sh/css-box-shadow): Generate CSS box shadows with live preview
+- [Border Radius Generator](https://devpick.sh/css-border-radius): Generate CSS border-radius with individual corners
+- [CSS Grid Generator](https://devpick.sh/css-grid): Build CSS Grid layouts with columns, rows, and gap
+- [Flexbox Playground](https://devpick.sh/flexbox): Interactive CSS Flexbox builder with live preview
+- [Barcode Generator](https://devpick.sh/barcode-generator): Generate Code 128, EAN-13, Code 39 barcodes
+- [Color Palette Generator](https://devpick.sh/color-palette): Generate complementary, analogous & triadic palettes
+- [Favicon Generator](https://devpick.sh/favicon-generator): Generate favicons at 16, 32, 48, 180px from image or text
+- [Invoice Generator](https://devpick.sh/invoice-generator): Create professional invoices and download as PDF
+- [Email Template Builder](https://devpick.sh/email-template): Build HTML email templates with visual editor
+- [Cron Expression Generator](https://devpick.sh/cron): Build and explain cron job schedules visually
+- [Word Counter](https://devpick.sh/words): Count words, characters, sentences, and reading time
+- [Discord Timestamp Generator](https://devpick.sh/discord-timestamp-generator): Generate Discord timestamp tags for any date/time
+- [GUID Generator](https://devpick.sh/guid-generator): Generate GUIDs (UUID v4) — Microsoft/Windows ecosystem
+- [UTM Builder](https://devpick.sh/utm-builder): Build campaign tracking URLs with UTM parameters
+- [.gitignore Generator](https://devpick.sh/gitignore-generator): Create .gitignore files from popular templates
+- [Email Signature Generator](https://devpick.sh/email-signature-generator): Create HTML email signatures for Gmail, Outlook, and more
+- [README Generator](https://devpick.sh/readme-generator): Create professional GitHub README.md files with live preview, badges, and table of contents.
+- [Nginx Config Generator](https://devpick.sh/nginx-config-generator): Visual Nginx configuration builder with SSL, reverse proxy, gzip, caching, and rate limiting.
+- [Docker Compose Generator](https://devpick.sh/docker-compose-generator): Visual docker-compose.yml builder. Add services, ports, volumes, and environment variables.
+- [License Generator](https://devpick.sh/license-generator): Generate open source license files. MIT, Apache, GPL, BSD, and more with comparison table.
+- [htaccess Generator](https://devpick.sh/htaccess-generator): Build Apache .htaccess files visually. Redirects, rewrites, caching, gzip, and security rules.
+- [Freelance Rate Calculator](https://devpick.sh/freelance-rate-calculator): Calculate your ideal hourly rate based on salary, expenses, taxes, and utilization.
+- [Recipe Cost Calculator](https://devpick.sh/recipe-cost-calculator): Calculate the cost per serving for any recipe. Track ingredient prices and compare meals.
+- [Link in Bio Generator](https://devpick.sh/link-in-bio-generator): Create a free link-in-bio page. Customize colors, add links, and export as HTML.
+
+## Network
+
+- [Subnet Calculator](https://devpick.sh/subnet): CIDR subnet calculations
+- [IP Lookup](https://devpick.sh/ip-lookup): Look up IP address info
+- [Chmod Calculator](https://devpick.sh/chmod): Calculate Unix file permissions
+- [HTTP Status Codes](https://devpick.sh/http-status): Complete reference for all HTTP status codes
+- [Subnet Calculator](https://devpick.sh/subnet-calculator): Calculate CIDR subnet: network, hosts, broadcast
+
+## Compare
+
+- [Diff Checker](https://devpick.sh/diff-checker): Compare text side by side
+- [JSON Diff](https://devpick.sh/json-diff): Compare two JSON objects with color-coded tree diff
+- [Text Compare](https://devpick.sh/text-compare): Compare two texts with line-by-line diff view
+
+## Test & Debug
+
+- [JSONPath Tester](https://devpick.sh/jsonpath): Test JSONPath expressions against JSON
+- [JSON Schema Validator](https://devpick.sh/json-schema): Validate JSON data against JSON Schema
+- [Webhook Request Builder](https://devpick.sh/webhook-tester): Build HTTP requests with custom headers and body
+- [Regex Tester](https://devpick.sh/regex): Test regular expressions with live highlighting
+- [GraphQL Playground](https://devpick.sh/graphql-playground): Execute GraphQL queries and mutations from your browser
+
+## Seo
+
+- [Robots.txt Generator](https://devpick.sh/robots-txt): Generate robots.txt with user agents, paths, and sitemap
+- [Meta Tag Generator](https://devpick.sh/meta-tags): Generate meta, Open Graph, and Twitter Card tags
+- [Open Graph Preview](https://devpick.sh/og-preview): Preview social media share cards from meta tags
+- [Schema Markup Generator](https://devpick.sh/schema-markup-generator): Generate JSON-LD schema markup for SEO
+- [Keyword Density Checker](https://devpick.sh/keyword-density-checker): Analyze keyword frequency and density for SEO
+- [Readability Checker](https://devpick.sh/readability-checker): Flesch-Kincaid, Gunning Fog, SMOG, ARI scores
+
+## Pdf
+
+- [PDF to JPG](https://devpick.sh/pdf-to-jpg): Convert PDF pages to JPG images
+- [JPG to PDF](https://devpick.sh/jpg-to-pdf): Convert images to a PDF document
+- [Merge PDF](https://devpick.sh/merge-pdf): Combine multiple PDFs into one file
+- [Compress PDF](https://devpick.sh/compress-pdf): Reduce PDF file size by optimizing structure
+- [Text to PDF](https://devpick.sh/word-to-pdf): Convert text files to a PDF document
+- [Split PDF](https://devpick.sh/split-pdf): Split a PDF into individual pages or ranges
+- [Unlock PDF](https://devpick.sh/unlock-pdf): Remove password protection from PDF files
+- [Rotate PDF](https://devpick.sh/rotate-pdf): Rotate PDF pages clockwise or counter-clockwise
+- [PDF Page Remover](https://devpick.sh/pdf-page-remover): Delete specific pages from a PDF
+- [PDF Watermark](https://devpick.sh/pdf-watermark): Add text watermark to every PDF page
+- [Markdown to PDF](https://devpick.sh/markdown-to-pdf): Convert Markdown to PDF and download
+
+## Optional
+
+- [Source code (GitHub)](https://github.com/kimbobmarley03/devpick.sh): MIT-licensed source for the whole suite
