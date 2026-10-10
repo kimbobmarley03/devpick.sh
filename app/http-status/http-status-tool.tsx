@@ -253,13 +253,18 @@ export function HttpStatusTool() {
       </div>
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
-        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <h2 className="text-sm font-semibold text-text-secondary mb-2">Related Tools</h2>
+        <p className="text-xs text-text-secondary mb-3 leading-relaxed">
+          Debugging 4xx/5xx responses usually means checking request payloads, redirects, and crawler rules together.
+          These tools cover the most common HTTP troubleshooting workflow.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "IP Lookup", href: "/ip-lookup" },
-            { name: "Subnet Calculator", href: "/subnet" },
-            { name: "Chmod Calculator", href: "/chmod" },
-            { name: "Regex Tester", href: "/regex" },
+            { name: "Webhook Tester", href: "/webhook-tester" },
+            { name: "JSON Formatter", href: "/json-formatter" },
+            { name: "Robots.txt Generator", href: "/robots-txt" },
+            { name: "Nginx Config Generator", href: "/nginx-config-generator" },
+            { name: ".htaccess Generator", href: "/htaccess-generator" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}

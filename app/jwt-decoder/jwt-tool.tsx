@@ -209,15 +209,50 @@ export function JwtTool() {
           </div>
         </div>
       )}
+      {/* FAQ Section */}
+      <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {[
+            {
+              q: "Does this JWT decoder verify signatures?",
+              a: "No — this tool decodes JWT header/payload and shows claims in your browser. Signature verification requires your secret key (HS256) or public key (RS256/ES256).",
+            },
+            {
+              q: "How do I check if a JWT token is expired?",
+              a: "Look at the exp claim in the payload. This tool compares exp to the current time and labels the token as expired or valid.",
+            },
+            {
+              q: "Can I decode malformed JWT tokens?",
+              a: "Only correctly structured JWTs (header.payload.signature) can be decoded. If parsing fails, check for missing sections, invalid Base64URL, or copied whitespace.",
+            },
+            {
+              q: "Is my token uploaded anywhere?",
+              a: "No. Decoding runs client-side in your browser.",
+            },
+          ].map((faq, i) => (
+            <details key={i} className="group">
+              <summary className="cursor-pointer text-sm font-medium text-text-secondary hover:text-text-primary">
+                {faq.q}
+              </summary>
+              <p className="mt-2 text-sm text-text-dimmed pl-4">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-dimmed mb-3 leading-relaxed">
+          Working with auth and API payloads? Decode tokens, inspect JSON claims, and safely encode/decode values in one flow.
+        </p>
         <div className="flex flex-wrap gap-2">
           {[
-            { name: "Base64", href: "/base64" },
+            { name: "JSON Formatter", href: "/json-formatter" },
+            { name: "Base64 Encoder/Decoder", href: "/base64" },
             { name: "Hash Generator", href: "/hash-generator" },
             { name: "UUID Generator", href: "/uuid-generator" },
-            { name: "Password Generator", href: "/password-generator" },
           ].map((t) => (
             <a key={t.href} href={t.href} className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]">
               {t.name}

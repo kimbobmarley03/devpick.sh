@@ -264,6 +264,27 @@ export function GraphqlPlaygroundTool() {
           </pre>
         </div>
       </div>
+
+      {/* Related Tools */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "Webhook Request Builder", href: "/webhook-tester" },
+            { name: "JSON Formatter", href: "/json-formatter" },
+            { name: "JSON Viewer", href: "/json-viewer" },
+            { name: "JWT Decoder", href: "/jwt-decoder" },
+          ].map((t) => (
+            <a
+              key={t.href}
+              href={t.href}
+              className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]"
+            >
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }

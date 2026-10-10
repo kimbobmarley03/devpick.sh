@@ -228,6 +228,39 @@ export function MetaTagsTool() {
           </div>
         </div>
       </div>
+
+      {/* SEO FAQ / Keyword Coverage */}
+      <div className="mt-10 pt-6 border-t border-border-subtle">
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Meta Tag SEO FAQ</h2>
+        <div className="space-y-4">
+          {[
+            {
+              q: "What meta tags are most important for SEO?",
+              a: "Start with a unique title tag, meta description, canonical URL, and Open Graph tags. These cover Google snippets, duplicate URL control, and social share previews.",
+            },
+            {
+              q: "What is a good title and meta description length?",
+              a: "Aim for 50-60 characters for titles and 120-160 characters for descriptions. Keep the primary keyword near the beginning and make the copy click-worthy, not stuffed.",
+            },
+            {
+              q: "Do meta keywords still matter for ranking?",
+              a: "Not much for modern Google ranking. Use keyword fields for internal organization if you want, but focus on title quality, intent match, and on-page content.",
+            },
+            {
+              q: "Should I use canonical tags on every page?",
+              a: "Yes for most indexable pages. A canonical tag helps search engines consolidate duplicate URLs and pass ranking signals to the preferred version.",
+            },
+          ].map((faq, i) => (
+            <details key={i} className="group">
+              <summary className="cursor-pointer text-sm font-medium text-text-secondary hover:text-text-primary">
+                {faq.q}
+              </summary>
+              <p className="mt-2 text-sm text-text-dimmed pl-4">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
       {/* Related Tools */}
       <div className="mt-8 pt-6 border-t border-border-subtle">
         <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>

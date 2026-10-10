@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { RegexTool } from "./regex-tool";
 
 export const metadata: Metadata = {
-  title: "Regex Tester Online — Test Regular Expressions",
+  title: "Regex Tester — JavaScript RegExp Checker",
   description:
-    "Test and debug regular expressions online with real-time matching, capture groups, and match highlighting. Free regex tester with JavaScript flavor support.",
+    "Use this free regex tester to test regular expressions online with live match highlighting, capture groups, flags, and instant JavaScript RegExp debugging.",
   openGraph: {
-    title: "Regex Tester Online | devpick.sh",
-    description: "Test and debug regular expressions with real-time highlighting.",
+    title: "Regex Tester & RegExp Checker Online | devpick.sh",
+    description:
+      "Test JavaScript regular expressions with live matches, capture groups, and flags in a fast browser-based regex debugging tool.",
     url: "https://devpick.sh/regex",
   },
   alternates: { canonical: "https://devpick.sh/regex" },

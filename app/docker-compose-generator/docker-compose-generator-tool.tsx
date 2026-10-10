@@ -318,6 +318,31 @@ export function DockerComposeGeneratorTool() {
           </div>
         </div>
       </div>
+
+      {/* Related Tools */}
+      <div className="mt-8 pt-6 border-t border-border-subtle">
+        <h2 className="text-sm font-semibold text-text-secondary mb-3">Related Tools</h2>
+        <p className="text-xs text-text-ghost mb-3">
+          Keep your deployment workflow moving with config and format tools that pair well with docker-compose.yml.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { name: "Nginx Config Generator", href: "/nginx-config-generator" },
+            { name: ".htaccess Generator", href: "/htaccess-generator" },
+            { name: "Webhook Tester", href: "/webhook-tester" },
+            { name: "JSON to YAML", href: "/json-to-yaml" },
+            { name: "YAML to JSON", href: "/yaml-formatter" },
+          ].map((t) => (
+            <a
+              key={t.href}
+              href={t.href}
+              className="text-xs text-accent hover:underline px-2 py-1 rounded bg-[var(--dp-bg-subtle)]"
+            >
+              {t.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </ToolLayout>
   );
 }
